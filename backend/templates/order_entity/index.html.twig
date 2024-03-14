@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrderEntity index{% endblock %}
+
+{% block body %}
+    <h1>OrderEntity index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>State</th>
+                <th>Total</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order_entity in order_entities %}
+            <tr>
+                <td>{{ order_entity.id }}</td>
+                <td>{{ order_entity.date ? order_entity.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ order_entity.state }}</td>
+                <td>{{ order_entity.total }}</td>
+                <td>
+                    <a href="{{ path('app_order_entity_show', {'id': order_entity.id}) }}">show</a>
+                    <a href="{{ path('app_order_entity_edit', {'id': order_entity.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_order_entity_new') }}">Create new</a>
+{% endblock %}
