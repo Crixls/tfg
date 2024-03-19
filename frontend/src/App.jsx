@@ -1,23 +1,21 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import ErrorCommercePage from "../pages/ErrorCommercePage";
-import RootMovieLayout from "../pages/RootMovieLayout";
-import Home from "../pages/Home";
+
+import { RouterProvider } from "react-router-dom";
+import { AuthProvider } from "./context/useAuthContext";
+import router from "./router/router";
+import { EntitiesProvider } from "./context/useEntitiesContext";
+
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <RootMovieLayout />,
-      errorElement: <ErrorCommercePage />,
-
-      children: [
-        { index: true, element: <Home /> },
-        // { path: "peliculas", element: <Products /> },
-      ],
-    },
-   
-  ]);
-  return <RouterProvider router={router} />;
+  
+  return (
+    <>
+      <AuthProvider>
+        <EntitiesProvider> 
+          <RouterProvider router={router} />
+        </EntitiesProvider>
+      </AuthProvider>
+    </>
+  );
 }
 
 export default App

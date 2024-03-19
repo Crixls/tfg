@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use App\Repository\OrderLineRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
+
+#[ApiResource]
 #[ORM\Entity(repositoryClass: OrderLineRepository::class)]
 class OrderLine
 {

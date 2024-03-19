@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -36,6 +38,12 @@ class Product
 
     #[ORM\Column]
     private ?int $new = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $color = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $deporte = null;
 
     public function getId(): ?int
     {
@@ -134,6 +142,30 @@ class Product
     public function setNew(int $new): static
     {
         $this->new = $new;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): static
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getDeporte(): ?string
+    {
+        return $this->deporte;
+    }
+
+    public function setDeporte(?string $deporte): static
+    {
+        $this->deporte = $deporte;
 
         return $this;
     }

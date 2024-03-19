@@ -22,6 +22,8 @@ class ProductType extends AbstractType
             ->add('brand')
             ->add('category')
             ->add('new')
+            ->add('color')
+            ->add('deporte')
             ->add('image', FileType::class, [
                 'label' => 'Archivo jpg',
                 'mapped' => false,

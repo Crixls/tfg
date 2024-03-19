@@ -1,0 +1,10 @@
+api_platform:
+    resource: .
+    type: api_platform
+    prefix: /api
+
+
+api_getuserinfo:
+    path: '/api/getuserinfo'
+    controller: App\Controller\ApiController::getUserInfo
+    methods: ['POST']

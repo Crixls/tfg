@@ -2,7 +2,7 @@
 const ErrorCommercePage = () => {
   return (
     <div>
-      
+      error
     </div>
   )
 }

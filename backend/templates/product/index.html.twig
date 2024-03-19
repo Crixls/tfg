@@ -27,7 +27,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.price }}</td>
-                <td>{{ product.image }}</td>
+                <td><img src="{{ asset('uploads/images/' ~ product.image) }}" alt="Imagen del comentario" style="width: 200px; height: 200px;"></td>
                 <td>{{ product.size }}</td>
                 <td>{{ product.brand }}</td>
                 <td>{{ product.category }}</td>
