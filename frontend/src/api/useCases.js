@@ -1,4 +1,4 @@
-import {get, post} from './api';
+import {get, post, put} from './api';
 
 export const getFavorites = async () => {
     const endpoint = "/api/favorites";
@@ -23,3 +23,10 @@ export const createProduct = async (product) => {
     const response = await post(endpoint, product);
     return response;
 };
+
+export const editProduct = async (product) => {
+    const endpoint = `/api/products/${product.id}`;
+    delete product.id;
+    const response = await put(endpoint, product);
+    return response;
+  };

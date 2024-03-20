@@ -32,7 +32,7 @@ class ApiController extends AbstractController
                 'id' => $cuenta->getId(),
                 'name' => $cuenta->getName(),
                 'description' => $cuenta->getDescription(),
-                'image' => $baseUrl . $cuenta->getImage(), // Agregar la ruta base al nombre de la imagen
+                'image' => $cuenta->getImageName(), // Agregar la ruta base al nombre de la imagen
                 'price' => $cuenta->getPrice(), 
                 'size' => $cuenta->getSize(), 
                 'brand' => $cuenta->getBrand(), 
@@ -40,6 +40,8 @@ class ApiController extends AbstractController
                 'new' => $cuenta->getNew(), 
             ];
         }
+
+        
 
         $data = $serializerInterface->serialize($cuentasConTotales, 'json');
 

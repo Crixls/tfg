@@ -25,17 +25,19 @@ const ModalNewProduct = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log(image.name);
+
         try {
             if (!name || !description || !price || !image || !size || !brand || !category || !newProduct || !color || !deporte ) {
                 console.error("Por favor complete todos los campos correctamente.");
                 return;
             }
-            
+            console.log(image)
             const productData = ({
                 name: name,
                 description: description,
                 price: price,
-                image: image,
+                image: image.name,
                 brand: brand,
                 category: category,
                 new: newProduct,
@@ -110,7 +112,7 @@ const ModalNewProduct = (props) => {
                 onChange={(e) => setPrice(e.target.value)}
                 required
             />
-            <label htmlFor="name">Seleccionar imagen:</label>
+            <label htmlFor="image">Seleccionar imagen:</label>
             <input
             type="file"
             id="image"

@@ -34,8 +34,35 @@ export const post = async (endpoint, dto) => {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
+      accept: "application/json",
+      "Content-Type": "application/ld+json", // Ajustar el tipo de contenido
     },
-    body: dto,
+    body: JSON.stringify(dto),
+  });
+
+  console.log(dto);
+  if (!response.ok) {
+    throw new Error(
+      `Error en la petición POST al endpoint: ${endpoint} (${response.status} ${response.statusText})`
+    );
+  }
+
+  const data = await response.json();
+  return data;
+};
+
+
+
+export const put = async (endpoint, dto) => {
+  const token = JSON.parse(localStorage.getItem("UserToken"))?.token;
+  const response = await fetch(`${apiUrl}${endpoint}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dto, replacer),
   });
   if (!response.ok) {
     throw new Error(
@@ -44,4 +71,15 @@ export const post = async (endpoint, dto) => {
   }
   const data = await response.json();
   return data;
+};
+
+export const deleteMethod = async (endpoint) => {
+  const token = JSON.parse(localStorage.getItem("UserToken"))?.token;
+  await fetch(`${apiUrl}${endpoint}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
 };

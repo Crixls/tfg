@@ -18,6 +18,7 @@ export const EntitiesProvider = (props) => {
     const addProduct = async (product) => {
         try {
             const data = await createProduct(product);
+            console.log(data.image);
             if (!data) throw new Error(`Error en addUser: no se creó el usuario`);
             setProducts(prevProducts => [
                 ...prevProducts,
@@ -26,7 +27,8 @@ export const EntitiesProvider = (props) => {
                     name: data.name,
                     description: data.description,
                     price: data.price,
-                    image: data.image,
+                    imageFile: data.image,
+                    image: data.image.name,
                     size: data.size,
                     brand: data.brand,
                     category: data.category,
@@ -37,7 +39,7 @@ export const EntitiesProvider = (props) => {
             ]);
             return data;
         } catch (error) {
-            console.error("Error al crear producto:", error);
+            console.error("Error al crear :", error);
         }
     };
 

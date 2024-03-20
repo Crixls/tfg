@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 
 class ProductType extends AbstractType
@@ -24,22 +25,23 @@ class ProductType extends AbstractType
             ->add('new')
             ->add('color')
             ->add('deporte')
-            ->add('image', FileType::class, [
-                'label' => 'Archivo jpg',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '24576K',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                            'image/gif',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid image file (JPEG, PNG, GIF)',
-                    ])
-                ],
-            ]);
+            // ->add('image', FileType::class, [
+            //     'label' => 'Archivo jpg',
+            //     'mapped' => false,
+            //     'required' => false,
+            //     'constraints' => [
+            //         new File([
+            //             'maxSize' => '24576K',
+            //             'mimeTypes' => [
+            //                 'image/jpeg',
+            //                 'image/png',
+            //                 'image/gif',
+            //             ],
+            //             'mimeTypesMessage' => 'Please upload a valid image file (JPEG, PNG, GIF)',
+            //         ])
+            //     ],
+            // ]);
+            ->add('imageFile', VichImageType::class)
         ;
     }
 
