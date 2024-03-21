@@ -19,7 +19,7 @@ export const getProductsTodos = async () => {
 };
 
 export const createProduct = async (product) => {
-    const endpoint = "/api/products";
+    const endpoint = "/api/products/image";
     const response = await post(endpoint, product);
     return response;
 };

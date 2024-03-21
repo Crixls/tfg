@@ -83,3 +83,90 @@ export const deleteMethod = async (endpoint) => {
     },
   });
 };
+
+
+export const sendProductFormData = async (formData) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/ld+json");
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: formData,
+    redirect: "follow",
+  };
+
+  try {
+    const response = await fetch(`${apiUrl}/api/products/image`, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+    throw error;
+  }
+};
+
+export const deleteProduct = async (productId) => {
+  try {
+    const apiUrl = 'https://127.0.0.1:8000/api/products/';
+    const endpoint = `${apiUrl}${productId}`;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/ld+json");
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    const response = await fetch(endpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud DELETE: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.text();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("Error en la eliminación del producto:", error);
+    throw error;
+  }
+};
+
+export const updateProduct = async (productId, updatedProductData) => {
+  try {
+    const apiUrl2 = 'https://127.0.0.1:8000/api/products/';
+    const endpoint = `${apiUrl2}${productId}`;
+    
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/ld+json");
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: JSON.stringify(updatedProductData), // Convertir a JSON
+      redirect: "follow"
+    };
+
+    const response = await fetch(endpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud PUT: ${response.status} ${response.statusText}`);
+    }
+    
+    const result = await response.text();
+    console.log(result); // Imprimir la respuesta si es necesario
+    return result; // O devolver la respuesta si se necesita en otro lugar
+  } catch (error) {
+    console.error("Error en la actualización del producto:", error);
+    throw error; // Lanzar el error para manejarlo en el componente que llama a esta función
+  }
+
+  
+};
+

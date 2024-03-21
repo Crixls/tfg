@@ -4,12 +4,59 @@ namespace App\Entity;
 
 use Symfony\Component\HttpFoundation\File\File;
 use App\Repository\ProductRepository;
-use Doctrine\ORM\Mapping as ORM;
+use App\Controller\CreateImagePublicationController;
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Delete;
+use App\Entity\Product;
+use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\OpenApi\Model;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use ApiPlatform\Metadata\Post; // Agregar esta línea
+use ApiPlatform\Metadata\GetCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
-#[ApiResource]
+
+#[ApiResource(
+   
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Post(),
+        new Put(),
+        new Delete(),
+        new Post(
+            normalizationContext: ['groups' => ['product:read']], 
+            name: 'productsImage',
+            types: ['https://schema.org/Product'],
+            uriTemplate: '/products/image', 
+            controller: CreateImagePublicationController::class, 
+            deserialize: false, 
+            validationContext: ['groups' => ['Default', 'product_create']], 
+            openapi: new Model\Operation(
+                requestBody: new Model\RequestBody(
+                    content: new \ArrayObject([
+                        'multipart/form-data' => [
+                            'schema' => [
+                                'type' => 'object', 
+                                'properties' => [
+                                    'file' => [
+                                        'type' => 'string', 
+                                        'format' => 'binary'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ])
+                )
+            )
+        )
+    ]
+)]
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -29,6 +76,7 @@ class Product
     private ?float $price = null;
 
     #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName', size:"imageSize")]
+    #[Assert\NotNull(groups: ['product_create'])]
     private ?File $imageFile = null;
 
 
@@ -54,6 +102,12 @@ class Product
     #[ORM\Column]
     private ?int $new = null;
 
+
+    
+    #[ApiProperty(types: ['https://schema.org/contentUrl'])]
+    #[Groups(['product:read'])]
+    public ?string $contentUrl = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $color = null;
 
@@ -63,7 +117,7 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updateAt = null;
 
-    // #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $path = null;
 
     public function getId(): ?int
@@ -249,6 +303,16 @@ class Product
         $this->path = $path;
 
         return $this;
+    }
+
+    public function getContentUrl(): ?string
+    {
+        return $this->contentUrl;
+    }
+
+    public function setContentUrl(?string $contentUrl): void
+    {
+        $this->contentUrl = $contentUrl;
     }
 
 

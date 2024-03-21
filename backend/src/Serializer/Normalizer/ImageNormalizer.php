@@ -4,6 +4,8 @@ namespace App\Serializer\Normalizer;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Vich\UploaderBundle\Storage\StorageInterface; 
+
 
 class ImageNormalizer implements NormalizerInterface
 {
@@ -19,9 +21,9 @@ class ImageNormalizer implements NormalizerInterface
         $product->setPath($this->storage->resolveUri($product,'imageFile'));
         $data = $this->normalizer->normalize($product, $format, $context);
 
-        // TODO: add, edit, or delete some data
+        // // TODO: add, edit, or delete some data
 
-        return $data;
+        // return $data;
     }
 
     public function supportsNormalization($data, ?string $format = null, array $context = []): bool
@@ -31,6 +33,6 @@ class ImageNormalizer implements NormalizerInterface
 
     public function getSupportedTypes(?string $format): array
     {
-        // TODO: return [Object::class => true];
+        return [Product::class => true];
     }
 }

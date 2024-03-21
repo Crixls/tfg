@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import { useEffect, useState } from "react";
-import { getProductsTodos } from "../../api/useCases";
+import { getProducts } from "../../api/useCases";
 import CardShoes from "../../components/CardShoes";
 
 const ManPage = () => {
@@ -10,7 +10,7 @@ const ManPage = () => {
   useEffect(() => {
     const fetchApi = async () => {
       try {
-        const data = await getProductsTodos();
+        const data = await getProducts();
         setManShoes(data.filter(product => product.category === "H"));
         console.log("Productos hombre:", data);
       } catch (error) {

@@ -1,92 +1,80 @@
 import { useState } from "react";
 import Swal from 'sweetalert2';
-import { useEntitiesContext } from "../context/useEntitiesContext";
-// import { Modal } from "bootstrap";
+import { sendProductFormData } from "../api/api";
 
+const ModalNewProduct = () => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [imageFile, setImageFile] = useState(null);
+  const [size, setSize] = useState('');
+  const [brand, setBrand] = useState('');
+  const [category, setCategory] = useState('');
+  const [newProduct, setNewProduct] = useState('');
+  const [color, setColor] = useState('');
+  const [deporte, setDeporte] = useState('');
 
-const ModalNewProduct = (props) => {
-    const { addProduct } = useEntitiesContext();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const { open, closeModal } = props;
+    try {
+      if (!name || !description || !price || !imageFile || !size || !brand || !category || !newProduct || !color || !deporte ) {
+        console.error("Por favor complete todos los campos correctamente.");
+        return;
+      }
 
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("imageFile", imageFile);
+      formData.append("size", size);
+      formData.append("brand", brand);
+      formData.append("category", category);
+      formData.append("new", newProduct);
+      formData.append("color", color);
+      formData.append("deporte", deporte);
 
+      const response = await sendProductFormData(formData);
 
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState('');
-    const [image, setImage] = useState('');
-    const [size, setSize] = useState('');
-    const [brand, setBrand] = useState('');
-    const [category, setCategory] = useState('');
-    const [newProduct, setNewProduct] = useState('');
-    const [color, setColor] = useState('');
-    const [deporte, setDeporte] = useState('');
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        console.log(image.name);
-
-        try {
-            if (!name || !description || !price || !image || !size || !brand || !category || !newProduct || !color || !deporte ) {
-                console.error("Por favor complete todos los campos correctamente.");
-                return;
-            }
-            console.log(image)
-            const productData = ({
-                name: name,
-                description: description,
-                price: price,
-                image: image.name,
-                brand: brand,
-                category: category,
-                new: newProduct,
-                color: color,
-                deporte: deporte,
-            });
-
-            const response = await addProduct(productData);
-
-            if (response) {
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Producto creado correctamente!',
-                  text: `El producto ${name} ha sido creado exitosamente.`,
-                });
-              } else {
-                console.error("Error en la respuesta");
-              }
-        } catch (error) {
-            console.error("Error en el envío del formulario:", error);
-        } finally {
-            handleModalClose(); // Cerrar el modal después de enviar el formulario
-        }
+      if (response) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Producto creado correctamente!',
+          text: `El producto ${name} ha sido creado exitosamente.`,
+        });
+      } else {
+        console.error("Error en la respuesta");
+      }
+    } catch (error) {
+      console.error("Error en el envío del formulario:", error);
+    } finally {
+      // Limpiar el formulario después de enviarlo
+      resetForm();
     }
-        
-    const handleModalClose = () => {
-        // setOpen(false); // Cerrar el modal
-        closeModal();
-        // Resetear los estados del formulario
-        setName('');
-        setDescription('');
-        setPrice('');
-        setImage('');
-        setSize('');
-        setBrand('');
-        setCategory('');
-        setNewProduct('');
-        setColor('');
-        setDeporte('');
-    };
+  };
+
+  const resetForm = () => {
+    setName('');
+    setDescription('');
+    setPrice('');
+    setImageFile(null);
+    setSize('');
+    setBrand('');
+    setCategory('');
+    setNewProduct('');
+    setColor('');
+    setDeporte('');
+  };
 
 
     const handleImageChange = (event) => {
         const selectedImage = event.target.files[0];
-        setImage(selectedImage);
+        setImageFile(selectedImage);
     };
 
   return (
-        <div className="flex flex-col bg-blue-200 w-80 border justify-center items-center">
+        <div className="flex flex-col bg-green-200 w-80 border justify-center items-center">
             <form className="flex flex-col" onSubmit={handleSubmit}>
             <label htmlFor="name">Nombre</label>
             <input
@@ -112,10 +100,10 @@ const ModalNewProduct = (props) => {
                 onChange={(e) => setPrice(e.target.value)}
                 required
             />
-            <label htmlFor="image">Seleccionar imagen:</label>
+            <label htmlFor="imageFile">Seleccionar imagen:</label>
             <input
             type="file"
-            id="image"
+            id="imageFile"
             accept="image/*" // Acepta solo archivos de imagen
             onChange={handleImageChange}
             required

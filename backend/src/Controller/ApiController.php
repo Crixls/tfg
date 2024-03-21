@@ -21,18 +21,18 @@ class ApiController extends AbstractController
     #[Route('/api/productstodos', name: 'app_get_products_todos', methods: ['GET'])]
     public function getProductsTotales(ProductRepository $productRepository, SerializerInterface $serializerInterface): Response
     {
-        $baseUrl = 'https://127.0.0.1:8000/uploads/images/'; // Ruta base de las imágenes
 
         $cuentas = $productRepository->findAll();
 
         $cuentasConTotales = [];
 
         foreach ($cuentas as $cuenta) {
+            dd($cuenta);
             $cuentasConTotales[] = [
                 'id' => $cuenta->getId(),
                 'name' => $cuenta->getName(),
                 'description' => $cuenta->getDescription(),
-                'image' => $cuenta->getImageName(), // Agregar la ruta base al nombre de la imagen
+                'image' => $cuenta->getContentUrl(), // Agregar la ruta base al nombre de la imagen
                 'price' => $cuenta->getPrice(), 
                 'size' => $cuenta->getSize(), 
                 'brand' => $cuenta->getBrand(), 
