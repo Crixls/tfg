@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { updateProduct } from '../../api/api';
 
@@ -63,38 +63,38 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
   };
 
   return (
-    <div className={`modal ${open ? 'open' : 'closed'}`}>
+    <div className={`modal ${open ? 'open' : 'closed'}  bg-green-200 `}>
       <div className="modal-content">
-        <span className="close" onClick={closeModal}>&times;</span>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Nombre</label>
-          <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+        <span className="close " onClick={closeModal}>&times;</span>
+        <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-80">
+          <label className="mb-4" htmlFor="name">Nombre</label>
+          <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
           
-          <label htmlFor="description">Descripción</label>
-          <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
+          <label className="mt-4 mb-4" htmlFor="description">Descripción</label>
+          <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
           
-          <label htmlFor="price">Precio</label>
-          <input type="text" id="price" value={price} onChange={(e) => setPrice(e.target.value)} required />
+          <label className="mt-4 mb-4" htmlFor="price">Precio</label>
+          <input type="text" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
           
-          <label htmlFor="size">Tamaño</label>
-          <input type="text" id="size" value={size} onChange={(e) => setSize(e.target.value)} required />
+          <label className="mt-4 mb-4" htmlFor="size">Tamaño</label>
+          <input type="text" id="size" value={size} onChange={(e) => setSize(e.target.value)} />
           
-          <label htmlFor="brand">Marca</label>
-          <input type="text" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} required />
+          <label className="mt-4 mb-4" htmlFor="brand">Marca</label>
+          <input type="text" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} />
           
-          <label htmlFor="category">Categoria</label>
-          <input type="text" id="category" value={category} onChange={(e) => setCategory(e.target.value)} required />
+          <label className="mt-4 mb-4" htmlFor="category">Categoria</label>
+          <input type="text" id="category" value={category} onChange={(e) => setCategory(e.target.value)} />
           
-          <label htmlFor="new">Nuevo</label>
-          <input type="text" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} required />
+          <label className="mt-4 mb-4" htmlFor="new">Nuevo</label>
+          <input type="text" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} />
           
-          <label htmlFor="color">Color</label>
-          <input type="text" id="color" value={color} onChange={(e) => setColor(e.target.value)} required />
+          <label className="mt-4 mb-4" htmlFor="color">Color</label>
+          <input type="text" id="color" value={color} onChange={(e) => setColor(e.target.value)} />
           
-          <label htmlFor="deporte">Deporte</label>
-          <input type="text" id="deporte" value={deporte} onChange={(e) => setDeporte(e.target.value)} required />
+          <label className="mt-4 mb-4" htmlFor="deporte">Deporte</label>
+          <input type="text" id="deporte" value={deporte} onChange={(e) => setDeporte(e.target.value)} />
           
-          <button className="bg-gray-200" type="submit">Actualizar</button>
+          <button className="bg-gray-300 mt-4 mb-4 p-2" type="submit">Actualizar</button>
         </form>
       </div>
     </div>

@@ -42,9 +42,14 @@ const Header = () => {
     navigate("/admin");
   }
 
-  useEffect(() => {
-    localStorage.setItem('loggedUser', JSON.stringify(useLogged));
-  }, [useLogged]);
+  const handleLogout = () => {
+    logout();
+    setAdminLogged(false);
+    localStorage.setItem('isAdmin', false);
+
+
+  }
+
   
   useEffect(() => {
     localStorage.setItem('adminUser', JSON.stringify(adminLogged));
@@ -101,7 +106,7 @@ const Header = () => {
                   <div className='mr-8 custom-cursor-pointer'>
                     <ion-icon name="person-circle-outline" onClick={handleOpenModal} onDoubleClick={handleDoubleClick} className="cursor-pointer"></ion-icon>
                   </div>
-                  <p className='noto-sans'>Hola {useLogged.login}</p>
+                  <p className='noto-sans'>Hola {useLogged && useLogged.login}</p>
                   {modalOpen && (
                     <div className="fixed top-40 right-0  flex justify-center items-center">
                       <div className="bg-blue-300 p-6 ">
@@ -122,7 +127,7 @@ const Header = () => {
                           </Link>
                         </li>
                         <li className='p-2'>
-                          <button onClick={logout} className='noto-sans'>Cerrar sesión</button>
+                          <button onClick={handleLogout} className='noto-sans'>Cerrar sesión</button>
                         </li>
                       </ul>
                     </div>

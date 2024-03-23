@@ -1,10 +1,22 @@
 
+
+import UserRegisterForm from "../../components/UserRegisterForm";
+
 const RegisterPage = () => {
+
+  
   return (
-    <div>
-      Register
-    </div>
-  )
-}
+    <>
+      <UserRegisterForm
+        open={open}
+      
+      >
+      </UserRegisterForm>
+    </>
+  );
+};
+
+
+
 
 export default RegisterPage

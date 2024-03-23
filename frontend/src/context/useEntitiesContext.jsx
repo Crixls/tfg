@@ -8,6 +8,8 @@ export const EntitiesProvider = (props) => {
     const { children } = props;
     // const [loadedData, setLoadedData] = useState(false);
     const [products, setProducts] = useState([]);
+    const [users, setUsers] = useState([]);
+
     // const [loadingUsers, setLoadingUsers] = useState(true);
     // const [brands, setBrands] = useState([]);
     // const [loadingBrands, setLoadingBrands] = useState(true);
@@ -42,12 +44,33 @@ export const EntitiesProvider = (props) => {
         }
     };
 
+    const addUser = async (userDTO) => {
+        try {
+          const data = await createUser(userDTO);
+          console.log(data);
+          if (!data) throw new Error(`Error en addUser: no se creó el usuario`);
+          const newArrayUsers = [
+            ...users,
+            {
+              id: data.id,
+              password: data.password,
+              username: data.username,
+              email: data.email,
+            },
+          ];
+          setUsers(newArrayUsers);
+          return data;
+        } catch (error) {
+          console.error("Error al crear usuario:", error);
+        }
+      };
+
     return (
         <EntitiesContext.Provider
           value={{
             products,
             addProduct,
-            // addUser,
+            addUser,
             // loadUsers,
             // loadingUsers,
             // brands,

@@ -3,38 +3,67 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Metadata\ApiResource;
+use App\State\UserProcessor;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ApiResource]
+
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Post(processor: UserProcessor::class, validationContext: ['groups' => ['Default', 'user:create']]),
+        new Get(),
+        new Put(processor: UserProcessor::class),
+        new Patch(processor: UserProcessor::class),
+        new Delete(),
+    ],
+    normalizationContext: ['groups' => ['user:read']],
+    denormalizationContext: ['groups' => ['user:create', 'user:update']],
+)]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    #[Groups(['user:read'])]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Groups(['user:read', 'user:create', 'user:update'])]
     private ?string $username = null;
+
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
+    #[Groups(['user:read', 'user:create', 'user:update'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(['user:read', 'user:create', 'user:update'])]
     private ?string $password = null;
 
+    #[Assert\NotBlank]
+    #[Groups(['user:read', 'user:create', 'user:update'])]
+    #[Assert\Email]
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 

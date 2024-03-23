@@ -138,6 +138,35 @@ export const deleteProduct = async (productId) => {
   }
 };
 
+export const deleteUser = async (userId) => {
+  try {
+    const apiUrl = 'https://127.0.0.1:8000/api/users/';
+    const endpoint = `${apiUrl}${userId}`;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/ld+json");
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    const response = await fetch(endpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud DELETE: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.text();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("Error en la eliminación del producto:", error);
+    throw error;
+  }
+};
+
 export const updateProduct = async (productId, updatedProductData) => {
   try {
     const apiUrl2 = 'https://127.0.0.1:8000/api/products/';
@@ -166,7 +195,67 @@ export const updateProduct = async (productId, updatedProductData) => {
     console.error("Error en la actualización del producto:", error);
     throw error; // Lanzar el error para manejarlo en el componente que llama a esta función
   }
-
   
+};
+
+export const updateUser = async (userId, updatedUserData) => {
+  console.log(updatedUserData);
+  try {
+    const apiUrl2 = 'https://127.0.0.1:8000/api/users/';
+    const endpoint = `${apiUrl2}${userId}`;
+    
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/ld+json");
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: JSON.stringify(updatedUserData), // Convertir a JSON
+      redirect: "follow"
+    };
+
+    const response = await fetch(endpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud PUT: ${response.status} ${response.statusText}`);
+    }
+    
+    const result = await response.text();
+    console.log(result); // Imprimir la respuesta si es necesario
+    return result; // O devolver la respuesta si se necesita en otro lugar
+  } catch (error) {
+    console.error("Error en la actualización del producto:", error);
+    throw error; // Lanzar el error para manejarlo en el componente que llama a esta función
+  }
+  
+};
+
+export const post2 = async (formData) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/ld+json");
+  myHeaders.append("Content-Type", "application/json");
+
+  const formDataObject = Object.fromEntries(formData.entries());
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify(formDataObject),
+    redirect: "follow",
+  };
+  console.log(requestOptions);
+  
+  try {
+    const response = await fetch(`${apiUrl}/api/users`, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+    throw error;
+  }
+
 };
 

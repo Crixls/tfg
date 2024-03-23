@@ -12,11 +12,6 @@ export const getProducts = async () => {
     return data;
 };
 
-export const getProductsTodos = async () => {
-    const endpoint = "/api/productstodos";
-    const data = await get(endpoint);
-    return data;
-};
 
 export const createProduct = async (product) => {
     const endpoint = "/api/products/image";
@@ -29,4 +24,29 @@ export const editProduct = async (product) => {
     delete product.id;
     const response = await put(endpoint, product);
     return response;
-  };
+};
+
+export const getUsers = async () => {
+    const endpoint = "/api/users";
+    const data = await get(endpoint);
+    return data;
+};
+
+export const getTotales = async () =>{
+    const endpoint = "/productstodos";
+    const data = await get(endpoint);
+    return data;
+}
+
+export const getOneUser = async () =>{
+    const endpoint = "/getallusers";
+    const data = await get(endpoint);
+    return data;
+}
+
+export const getUser = async (user) => {
+    const endpoint = `/getallusers/${user.id}`;
+    delete user.id;
+    const response = await put(endpoint, user);
+    return response;
+};

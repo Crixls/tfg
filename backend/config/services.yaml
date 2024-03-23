@@ -11,6 +11,11 @@ services:
         arguments:
             $targetDirectory: '%images_directory%'
 
+     
+    App\State\UserProcessor:
+        bind:
+            $processor: '@api_platform.doctrine.orm.state.persist_processor'
+
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.

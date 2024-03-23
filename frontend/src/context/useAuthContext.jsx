@@ -15,7 +15,7 @@ export const AuthProvider = (props) => {
   const [logged, setLogged] = useState(null);
   const [token, setToken] = useState(null);
 
-  console.log(logged)
+  // console.log(logged)
 
   // Obtiene el estado inicial del token de usuario desde el almacenamiento local
   useEffect(() => {

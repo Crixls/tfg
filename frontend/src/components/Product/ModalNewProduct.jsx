@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Swal from 'sweetalert2';
-import { sendProductFormData } from "../api/api";
+import { sendProductFormData } from "../../api/api";
 
 const ModalNewProduct = () => {
   const [name, setName] = useState('');
