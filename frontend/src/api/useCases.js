@@ -1,10 +1,19 @@
-import {get, post, put} from './api';
+import {deleteFav, get, post, postFav, put} from './api';
 
 export const getFavorites = async () => {
     const endpoint = "/api/favorites";
     const data = await get(endpoint);
     return data;
 };
+
+export const getFavorite = async (favorite) => {
+    console.log(favorite.id)
+    const endpoint = `/api/favorites/${favorite.id}`;
+    delete favorite.id;
+    const response = await get(endpoint);
+    return response;
+};
+
 
 export const getProducts = async () => {
     const endpoint = "/api/products";
@@ -23,6 +32,26 @@ export const editProduct = async (product) => {
     const endpoint = `/api/products/${product.id}`;
     delete product.id;
     const response = await put(endpoint, product);
+    return response;
+};
+
+export const getProduct = async (endpoint) => {
+    const response = await get(endpoint);
+    return response;
+};
+
+export const postFavorites = async (idShoe,idUser) => {
+    console.log(idUser)
+    const endpoint = `/api/favorites`;
+    const productPath= `/api/products/${idShoe}`;
+    const userPath= `/api/users/${idUser}`;
+    const response = await postFav(endpoint, userPath, productPath);
+    return response;
+};
+
+export const deleteFavorite2 = async (product) => {
+    const endpoint = `/api/favorites/${product.id}`;
+    const response = await deleteFav(endpoint);
     return response;
 };
 

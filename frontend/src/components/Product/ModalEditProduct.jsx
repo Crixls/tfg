@@ -30,12 +30,15 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Parse price to float before submitting
+    const parsedPrice = parseFloat(price);
+  
     try {
       const updatedProductData = {
         name,
         description,
-        price,
+        price: parsedPrice, // Use parsedPrice instead of price
         size,
         brand,
         category,
@@ -43,9 +46,9 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
         color,
         deporte
       };
-
+  
       const response = await updateProduct(product.id, updatedProductData);
-
+  
       if (response) {
         Swal.fire({
           icon: 'success',
@@ -61,6 +64,7 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
       closeModal();
     }
   };
+  
 
   return (
     <div className={`modal ${open ? 'open' : 'closed'}  bg-green-200 `}>
@@ -74,10 +78,10 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
           <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
           
           <label className="mt-4 mb-4" htmlFor="price">Precio</label>
-          <input type="text" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
+          <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
           
           <label className="mt-4 mb-4" htmlFor="size">Tamaño</label>
-          <input type="text" id="size" value={size} onChange={(e) => setSize(e.target.value)} />
+          <input type="number" id="size" value={size} onChange={(e) => setSize(e.target.value)} />
           
           <label className="mt-4 mb-4" htmlFor="brand">Marca</label>
           <input type="text" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} />
@@ -86,7 +90,7 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
           <input type="text" id="category" value={category} onChange={(e) => setCategory(e.target.value)} />
           
           <label className="mt-4 mb-4" htmlFor="new">Nuevo</label>
-          <input type="text" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} />
+          <input type="number" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} />
           
           <label className="mt-4 mb-4" htmlFor="color">Color</label>
           <input type="text" id="color" value={color} onChange={(e) => setColor(e.target.value)} />

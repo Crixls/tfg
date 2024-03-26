@@ -14,7 +14,6 @@ const AdminPageUsers = () => {
     const navigate= useNavigate();
 
 
-
     useEffect(() => {
         const fetchApi = async () => {
             try {

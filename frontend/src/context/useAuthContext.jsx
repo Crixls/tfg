@@ -28,7 +28,6 @@ export const AuthProvider = (props) => {
 
   // Función para obtener la información del usuario desde la API
   const getUserInfo = async (newToken) => {
-
     try {
       const response = await fetch(`${apiUrl}/api/getuserinfo`, {
         method: "POST",
@@ -37,10 +36,11 @@ export const AuthProvider = (props) => {
           accept: "application/json",
         },
       });
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error("No se pudo obtener la información del usuario");
-      }
+      // console.log("getuserinfo response:", response);
       const data = await response.json();
+      // console.log("getuserinfo data:", data);
       return data;
     } catch (error) {
       console.error("Error en getUserInfo:", error);
@@ -82,4 +82,3 @@ export const AuthProvider = (props) => {
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };
-

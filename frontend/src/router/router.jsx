@@ -13,6 +13,7 @@ import AdminPage from "../pages/AdminPage/AdminPage";
 import AdminPageProducts from "../pages/AdminPage/AdminPageProducts";
 import ProtectedRoute from "../pages/utils/ProtectedRoute";
 import AdminPageUsers from "../pages/AdminPage/AdminPageUsers";
+import ShoePage from "../pages/ShoePage/ShoePage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/kids", element: <KidsPage /> },
       { path: "/cart", element: <CartPage /> },
       { path: "/favorites", element: <FavoritePage /> },
+      { path: "/shoe", element: <ShoePage /> },
     ],
   },
   {

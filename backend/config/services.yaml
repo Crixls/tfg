@@ -10,6 +10,11 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%images_directory%'
+    
+    # App\Encoder\MultipartDecoder:
+    #     tags: ['serializer.encoder']
+    # App\Serializer\UploadedFileDenormalizer:
+    #     tags: ['serializer.normalizer']
 
      
     App\State\UserProcessor:

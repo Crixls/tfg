@@ -85,30 +85,6 @@ export const deleteMethod = async (endpoint) => {
 };
 
 
-export const sendProductFormData = async (formData) => {
-  const myHeaders = new Headers();
-  myHeaders.append("Accept", "application/ld+json");
-
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: formData,
-    redirect: "follow",
-  };
-
-  try {
-    const response = await fetch(`${apiUrl}/api/products/image`, requestOptions);
-    if (!response.ok) {
-      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error al enviar la solicitud:", error);
-    throw error;
-  }
-};
-
 export const deleteProduct = async (productId) => {
   try {
     const apiUrl = 'https://127.0.0.1:8000/api/products/';
@@ -167,6 +143,54 @@ export const deleteUser = async (userId) => {
   }
 };
 
+export const deleteFav = async (endpoint2) => {
+  try {
+
+    const apiUrl = import.meta.env.VITE_API_URL;
+
+    console.log(endpoint2);
+
+    const endpoint = `${apiUrl}${endpoint2}`;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/ld+json");
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    const response = await fetch(endpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud DELETE: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.text();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("Error en la eliminación del producto:", error);
+    throw error;
+  }
+};
+
+// Función para convertir FormData a JSON
+const formDataToJSON = (formData) => {
+  const jsonObject = {};
+  formData.forEach((value, key) => {
+    // Verificar si el valor es un archivo para manejarlo adecuadamente
+    if (value instanceof File) {
+      jsonObject[key] = value;
+    } else {
+      jsonObject[key] = value;
+    }
+  });
+  return jsonObject;
+};
+
+// Función para actualizar un producto
 export const updateProduct = async (productId, updatedProductData) => {
   try {
     const apiUrl2 = 'https://127.0.0.1:8000/api/products/';
@@ -174,12 +198,19 @@ export const updateProduct = async (productId, updatedProductData) => {
     
     const myHeaders = new Headers();
     myHeaders.append("Accept", "application/ld+json");
-    myHeaders.append("Content-Type", "application/json");
+
+    const formData = new FormData();
+    for (const key in updatedProductData) {
+      formData.append(key, updatedProductData[key]);
+    }
+
+    // Convertir FormData a JSON
+    const jsonData = formDataToJSON(formData);
 
     const requestOptions = {
       method: "PUT",
       headers: myHeaders,
-      body: JSON.stringify(updatedProductData), // Convertir a JSON
+      body: JSON.stringify(jsonData), // Convertir a JSON
       redirect: "follow"
     };
 
@@ -195,8 +226,68 @@ export const updateProduct = async (productId, updatedProductData) => {
     console.error("Error en la actualización del producto:", error);
     throw error; // Lanzar el error para manejarlo en el componente que llama a esta función
   }
-  
 };
+
+
+export const sendProductFormData = async (formData) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/ld+json");
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: formData,
+    redirect: "follow",
+  };
+
+  console.log(requestOptions);
+
+  try {
+    const response = await fetch(`${apiUrl}/api/products/image`, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+    throw error;
+  }
+};
+
+export const postFav = async (endpoint, userApiPath, productApiPath) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/json");
+  myHeaders.append("Content-Type", "application/json"); // Agrega el encabezado Content-Type
+
+  // Crea el cuerpo de la solicitud en formato JSON
+  const requestBody = JSON.stringify({
+    user: userApiPath,
+    product: productApiPath
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: requestBody, // Utiliza el cuerpo JSON creado anteriormente
+    redirect: "follow",
+  };
+
+  try {
+    const response = await fetch(`${apiUrl}${endpoint}`, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+    throw error;
+  }
+}
+
+
+
 
 export const updateUser = async (userId, updatedUserData) => {
   console.log(updatedUserData);

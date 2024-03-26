@@ -1,4 +1,3 @@
-import React from 'react'
 
 const CardUser = ({user}) => {
     const roles= user.roles;

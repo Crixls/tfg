@@ -1,21 +1,14 @@
 import { createContext, useContext, useState } from "react";
-import { createProduct } from "../api/useCases";
+import { createProduct, deleteFavorite2, postFavorites } from "../api/useCases";
 
 const EntitiesContext = createContext();
 
-
 export const EntitiesProvider = (props) => {
     const { children } = props;
-    // const [loadedData, setLoadedData] = useState(false);
     const [products, setProducts] = useState([]);
-    const [users, setUsers] = useState([]);
-
-    // const [loadingUsers, setLoadingUsers] = useState(true);
-    // const [brands, setBrands] = useState([]);
-    // const [loadingBrands, setLoadingBrands] = useState(true);
-    // const [accounts, setAccounts] = useState([]);
-    // const [loadingAccounts, setLoadingAccounts] = useState(true);
-
+    const [users] = useState([]);
+    const [favorites, setFavorites] = useState([]);
+    const [dataDetails, setDataDetails] = useState(null);
 
     const addProduct = async (product) => {
         try {
@@ -40,56 +33,76 @@ export const EntitiesProvider = (props) => {
             ]);
             return data;
         } catch (error) {
-            console.error("Error al crear :", error);
+            console.error("Error al crear producto:", error);
         }
     };
 
-    const addUser = async (userDTO) => {
+    // const addUser = async (userDTO) => {
+    //     try {
+    //         const data = await createUser(userDTO);
+    //         console.log(data);
+    //         if (!data) throw new Error(`Error en addUser: no se creó el usuario`);
+    //         const newArrayUsers = [
+    //             ...users,
+    //             {
+    //                 id: data.id,
+    //                 password: data.password,
+    //                 username: data.username,
+    //                 email: data.email,
+    //             },
+    //         ];
+    //         setUsers(newArrayUsers);
+    //         return data;
+    //     } catch (error) {
+    //         console.error("Error al crear usuario:", error);
+    //     }
+    // };
+
+    const addFavorite = async (productId, userId) => {
+      console.log(productId, userId);
         try {
-          const data = await createUser(userDTO);
-          console.log(data);
-          if (!data) throw new Error(`Error en addUser: no se creó el usuario`);
-          const newArrayUsers = [
-            ...users,
-            {
-              id: data.id,
-              password: data.password,
-              username: data.username,
-              email: data.email,
-            },
-          ];
-          setUsers(newArrayUsers);
-          return data;
+            await postFavorites(productId, userId);
+            setFavorites(prevFavorites => [...prevFavorites, productId]);
         } catch (error) {
-          console.error("Error al crear usuario:", error);
+            console.error("Error al añadir favorito:", error);
         }
-      };
+    };
+
+    const removeFavorite = async (favoritoId) => {
+      try {
+        // Llama a la función en tu API para eliminar el favorito
+        await deleteFavorite2(favoritoId);
+        // Actualiza el estado de favoritos eliminando el producto
+        setFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.id !== favoritoId));
+      } catch (error) {
+          console.error("Error al eliminar favorito:", error);
+      }
+    };
+
+    const updateDetails = (newData) => {
+        setDataDetails(newData);
+    };
 
     return (
         <EntitiesContext.Provider
-          value={{
-            products,
-            addProduct,
-            addUser,
-            // loadUsers,
-            // loadingUsers,
-            // brands,
-            // addBrand,
-            // loadBrands,
-            // loadingBrands,
-            // accounts,
-            // addAccount,
-            // loadAccounts,
-            // loadingAccounts,
-            // loadedData,
-            // loadData,
-          }}
+            value={{
+                products,
+                addProduct,
+                users,
+                // addUser,
+                favorites,
+                addFavorite,
+                removeFavorite,
+                updateDetails,
+                dataDetails
+            }}
         >
-          {children}
+            {children}
         </EntitiesContext.Provider>
     );
-};  
+
+};
 
 export const useEntitiesContext = () => {
     return useContext(EntitiesContext);
-  };
+};

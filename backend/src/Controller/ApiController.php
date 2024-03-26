@@ -9,6 +9,8 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use App\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -95,35 +97,23 @@ class ApiController extends AbstractController
         ], true);
     }
 
-    // #[Route('/getuserinfo', name: 'app_get_user_info', methods: ['POST'])]
-    // public function getUserInfo(SerializerInterface $serializerInterface, JWTTokenManagerInterface $jwtManagerInterface, TokenStorageInterface $tokenStorageInterface, UserRepository $userRepository): Response
+    // #[Route('/api/getuser', name: 'app_get_user_info', methods: ['GET'])]
+    // public function getUser(SerializerInterface $serializerInterface, JWTTokenManagerInterface $jwtManagerInterface, TokenStorageInterface $tokenStorageInterface, UserRepository $userRepository): Response
     // {
     //     $decodedToken = $jwtManagerInterface->decode($tokenStorageInterface->getToken());
-        
-    //     // Verificar si la clave 'username' existe en el token decodificado
-    //     if (isset($decodedToken['username'])) {
-    //         // Obtener el username del usuario desde el token decodificado
-    //         $username = $decodedToken['username'];
-    //         // Buscar el usuario en la base de datos usando el username obtenido
-    //         $user = $userRepository->findOneBy(['username' => $username]);
-    //         // Devolver los datos del usuario en la respuesta HTTP
-    //         $response =  $serializerInterface->serialize([
-    //             'username' => $user->getUsername(),
-    //             'roles' => $user->getRoles(),
-    //             'email' => $user->getEmail(),
-    //             'password' => $user->getPassword(),
-    //             'id' => $user->getId(),
-    //             // 'decodedToken' => $decodedToken, // Añadir el token decodificado a la respuesta
-    //         ], 'json');
-            
-    //         return new JsonResponse($response, 200, [
-    //             'Content-Type' => 'application/json',
-    //         ], true);
-    //     } else {
-    //         // Manejar el caso en el que la clave 'username' no existe en el token decodificado
-    //         // Por ejemplo, devolver un error o una respuesta apropiada
-    //         return new JsonResponse(['error' => 'Username not found in token'], 400);
-    //     }
+    //     // Obtener el username del usuario desde el token decodificado
+    //     $username = $decodedToken['username'];
+    //     // Buscar el usuario en la base de datos usando el username obtenido
+    //     $user = $userRepository->findOneBy(['username' => $username]);
+    //     // Devolver los datos del usuario en la respuesta HTTP
+    //     $response =  $serializerInterface->serialize([
+    //         'username' => $user->getUsername(),
+    //         'id' => $user->getId(),
+    //     ], 'json');
+ 
+    //     return new JsonResponse($response, 200, [
+    //         'Content-Type' => 'application/json',
+    //     ], true);
     // }
     
 
