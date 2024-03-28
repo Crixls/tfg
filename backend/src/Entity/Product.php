@@ -90,8 +90,8 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column]
-    private ?int $size = null;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $size = [];
 
     #[ORM\Column(length: 255)]
     private ?string $brand = null;
@@ -108,11 +108,12 @@ class Product
     #[Groups(['product:read'])]
     public ?string $contentUrl = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $color = null;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $color = [];
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $deporte = null;
+
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $deporte = [];
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updateAt = null;
@@ -173,12 +174,12 @@ class Product
         return $this;
     }
 
-    public function getSize(): ?int
+    public function getSize(): ?array
     {
         return $this->size;
     }
 
-    public function setSize(int $size): static
+    public function setSize(?array $size): static
     {
         $this->size = $size;
 
@@ -221,24 +222,24 @@ class Product
         return $this;
     }
 
-    public function getColor(): ?string
+    public function getColor(): ?array
     {
         return $this->color;
     }
 
-    public function setColor(?string $color): static
+    public function setColor(?array $color): static
     {
         $this->color = $color;
 
         return $this;
     }
 
-    public function getDeporte(): ?string
+    public function getDeporte(): ?array
     {
         return $this->deporte;
     }
 
-    public function setDeporte(?string $deporte): static
+    public function setDeporte(?array $deporte): static
     {
         $this->deporte = $deporte;
 

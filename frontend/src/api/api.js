@@ -177,40 +177,34 @@ export const deleteFav = async (endpoint2) => {
 };
 
 // Función para convertir FormData a JSON
-const formDataToJSON = (formData) => {
-  const jsonObject = {};
-  formData.forEach((value, key) => {
-    // Verificar si el valor es un archivo para manejarlo adecuadamente
-    if (value instanceof File) {
-      jsonObject[key] = value;
-    } else {
-      jsonObject[key] = value;
-    }
-  });
-  return jsonObject;
-};
+// const formDataToJSON = (formData) => {
+//   const jsonObject = {};
+//   formData.forEach((value, key) => {
+//     // Verificar si el valor es un archivo para manejarlo adecuadamente
+//     if (value instanceof File) {
+//       jsonObject[key] = value;
+//     } else {
+//       jsonObject[key] = value;
+//     }
+//   });
+//   return jsonObject;
+// };
+
+
 
 // Función para actualizar un producto
 export const updateProduct = async (productId, updatedProductData) => {
   try {
-    const apiUrl2 = 'https://127.0.0.1:8000/api/products/';
+    const apiUrl2 = 'https://127.0.0.1:8000/products/';
     const endpoint = `${apiUrl2}${productId}`;
     
     const myHeaders = new Headers();
-    myHeaders.append("Accept", "application/ld+json");
-
-    const formData = new FormData();
-    for (const key in updatedProductData) {
-      formData.append(key, updatedProductData[key]);
-    }
-
-    // Convertir FormData a JSON
-    const jsonData = formDataToJSON(formData);
+    myHeaders.append("Content-Type", "application/json"); // Cambiado a "application/json"
 
     const requestOptions = {
       method: "PUT",
       headers: myHeaders,
-      body: JSON.stringify(jsonData), // Convertir a JSON
+      body: JSON.stringify(updatedProductData), // Enviar los datos directamente como JSON
       redirect: "follow"
     };
 
@@ -218,7 +212,7 @@ export const updateProduct = async (productId, updatedProductData) => {
     if (!response.ok) {
       throw new Error(`Error en la solicitud PUT: ${response.status} ${response.statusText}`);
     }
-    
+
     const result = await response.text();
     console.log(result); // Imprimir la respuesta si es necesario
     return result; // O devolver la respuesta si se necesita en otro lugar
@@ -244,6 +238,33 @@ export const sendProductFormData = async (formData) => {
 
   try {
     const response = await fetch(`${apiUrl}/api/products/image`, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+    throw error;
+  }
+};
+
+
+export const postProduct = async (formData) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/ld+json");
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: formData,
+    redirect: "follow",
+  };
+
+  console.log(requestOptions);
+
+  try {
+    const response = await fetch(`${apiUrl}/productsfinales`, requestOptions);
     if (!response.ok) {
       throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
     }

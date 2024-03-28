@@ -39,4 +39,3 @@ class CreateImagePublicationController extends AbstractController
     }
 }
 
-

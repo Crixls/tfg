@@ -5,13 +5,14 @@ import { updateProduct } from '../../api/api';
 const ModalEditProduct = ({ product, open, closeModal }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [size, setSize] = useState('');
+  const [price, setPrice] = useState(null); // Inicializando con null
+  // const [imageFile, setImageFile] = useState(null);
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [newProduct, setNewProduct] = useState('');
-  const [color, setColor] = useState('');
-  const [deporte, setDeporte] = useState('');
+  const [size, setSize] = useState([]);
+  const [color, setColor] = useState([]);
+  const [deporte, setDeporte] = useState([]);
 
   // Establecer valores iniciales del estado con los valores del producto
   useEffect(() => {
@@ -19,33 +20,37 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
       setName(product.name || '');
       setDescription(product.description || '');
       setPrice(product.price || '');
-      setSize(product.size || '');
+      setSize(product.size || []);
       setBrand(product.brand || '');
       setCategory(product.category || '');
       setNewProduct(product.new || '');
-      setColor(product.color || '');
-      setDeporte(product.deporte || '');
+      setColor(product.color || []);
+      setDeporte(product.deporte || []);
     }
   }, [product]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // Parse price to float before submitting
     const parsedPrice = parseFloat(price);
+    console.log(parsedPrice); // Log the parsed price to check its type
+
   
     try {
       const updatedProductData = {
         name,
         description,
-        price: parsedPrice, // Use parsedPrice instead of price
+        price:parsedPrice, // Use parsedPrice instead of price
         size,
         brand,
         category,
         new: newProduct,
         color,
-        deporte
+        deporte,
+        // imageFile
       };
+
+      console.log(updatedProductData);
   
       const response = await updateProduct(product.id, updatedProductData);
   
@@ -64,6 +69,11 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
       closeModal();
     }
   };
+
+  // const handleImageChange = (event) => {
+  //   const selectedImage = event.target.files[0];
+  //   setImageFile(selectedImage);
+  // };
   
 
   return (
@@ -80,9 +90,14 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
           <label className="mt-4 mb-4" htmlFor="price">Precio</label>
           <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
           
-          <label className="mt-4 mb-4" htmlFor="size">Tamaño</label>
-          <input type="number" id="size" value={size} onChange={(e) => setSize(e.target.value)} />
-          
+          <label htmlFor="size">Tamaño (separados por comas)</label>
+          <input
+            type="text"
+            id="size"
+            value={size.join(',')}
+            onChange={(e) => setSize(e.target.value.split(','))}
+          />
+
           <label className="mt-4 mb-4" htmlFor="brand">Marca</label>
           <input type="text" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} />
           
@@ -92,11 +107,27 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
           <label className="mt-4 mb-4" htmlFor="new">Nuevo</label>
           <input type="number" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} />
           
-          <label className="mt-4 mb-4" htmlFor="color">Color</label>
-          <input type="text" id="color" value={color} onChange={(e) => setColor(e.target.value)} />
-          
-          <label className="mt-4 mb-4" htmlFor="deporte">Deporte</label>
-          <input type="text" id="deporte" value={deporte} onChange={(e) => setDeporte(e.target.value)} />
+          <label htmlFor="color">Color (separados por comas)</label>
+          <input
+            type="text"
+            id="color"
+            value={color.join(',')}
+            onChange={(e) => setColor(e.target.value.split(','))}
+          />
+          <label htmlFor="deporte">Deporte (separados por comas)</label>
+          <input
+            type="text"
+            id="deporte"
+            value={deporte.join(',')}
+            onChange={(e) => setDeporte(e.target.value.split(','))}
+          />
+          {/* <input
+            type="file"
+            id="imageFile"
+            accept="image/*" // Acepta solo archivos de imagen
+            onChange={handleImageChange}
+            required
+          /> */}
           
           <button className="bg-gray-300 mt-4 mb-4 p-2" type="submit">Actualizar</button>
         </form>

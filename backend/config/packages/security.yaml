@@ -79,6 +79,8 @@ security:
         # - { path: ^/account,       roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/users,       roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/getuserinfo,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/productsfinales,       roles: PUBLIC_ACCESS  }
+        - { path: ^/products/id,       roles: PUBLIC_ACCESS  }
         # - { path: ^/api,       roles: true }
 
 when@test:

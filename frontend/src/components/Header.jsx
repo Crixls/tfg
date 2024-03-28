@@ -2,13 +2,17 @@ import  { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.svg'; // Ajusta la ruta al archivo SVG de tu logo
 import { useAuthContext } from '../context/useAuthContext';
+import { getUsers } from '../api/useCases';
 
 const Header = () => {
-  const { logged, logout } = useAuthContext();
+  const {logged, logout } = useAuthContext();
   const [modalOpen, setModalOpen] = useState(false);
   const [useLogged, setUseLogged] = useState(false);
   const [adminLogged, setAdminLogged] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
+
   const navigate = useNavigate();
+
 
 
   useEffect(() => {
@@ -23,7 +27,20 @@ const Header = () => {
     if (adminUser) {
       setAdminLogged(JSON.parse(adminUser));
     }
+  }, [allUsers, useLogged]);
+
+  useEffect(() => {
+      const fetchApi = async () => {
+          try {
+              const data = await getUsers();
+              setAllUsers(data);
+          } catch (error) {
+              console.log("Error:", error);
+          }
+      };
+      fetchApi();
   }, []);
+
 
 
   const handleOpenModal = () => {
@@ -47,8 +64,8 @@ const Header = () => {
     setAdminLogged(false);
     localStorage.setItem('isAdmin', false);
 
-
   }
+
 
   
   useEffect(() => {
@@ -56,10 +73,10 @@ const Header = () => {
   }, [adminLogged]);
 
   useEffect(() => {
-    if (logged && logged.roles && logged.roles.includes('ROLE_ADMIN')) {
-      localStorage.setItem('isAdmin', true);
-    } 
-  }, [logged]);
+    const isAdmin = allUsers.some(user => user.username === useLogged.login && user.roles.includes('ROLE_ADMIN'));
+    localStorage.setItem('isAdmin', isAdmin);
+  }, [allUsers, useLogged]);
+
 
   return (
     <header className="bg-blue-200 text-white pl-4 pr-4 flex justify-between items-center font-bold font-sans">

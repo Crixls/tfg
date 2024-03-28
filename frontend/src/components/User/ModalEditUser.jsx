@@ -63,7 +63,7 @@ const ModalEditUser = ({ user, open, closeModal }) => {
         roles: roles
       };
 
-      const response = await updateUser(user.id, updatedUserData);
+      const response = await updateProduct(user.id, updatedUserData);
 
       if (response) {
         Swal.fire({
