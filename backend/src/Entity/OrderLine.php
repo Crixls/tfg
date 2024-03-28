@@ -29,6 +29,12 @@ class OrderLine
     #[ORM\ManyToOne]
     private ?OrderEntity $orderentity = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $unit_size = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $unit_color = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -79,6 +85,30 @@ class OrderLine
     public function setOrderentity(?OrderEntity $orderentity): static
     {
         $this->orderentity = $orderentity;
+
+        return $this;
+    }
+
+    public function getUnitSize(): ?int
+    {
+        return $this->unit_size;
+    }
+
+    public function setUnitSize(?int $unit_size): static
+    {
+        $this->unit_size = $unit_size;
+
+        return $this;
+    }
+
+    public function getUnitColor(): ?string
+    {
+        return $this->unit_color;
+    }
+
+    public function setUnitColor(?string $unit_color): static
+    {
+        $this->unit_color = $unit_color;
 
         return $this;
     }

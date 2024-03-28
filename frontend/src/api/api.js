@@ -17,10 +17,8 @@ export const get = async (endpoint) => {
       );
     }
     const data = await response.json();
-    console.log(data)
     const favoritos = data["hydra:member"]?data["hydra:member"]:data; // Aquí obtienes la lista de favoritos
 
-    console.log(favoritos)
     return favoritos;
   } catch (error) {
     console.error("Error en la solicitud GET:", error);
@@ -359,6 +357,63 @@ export const post2 = async (formData) => {
   
   try {
     const response = await fetch(`${apiUrl}/api/users`, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+    throw error;
+  }
+
+};
+export const postOrderEntity = async (formData) => {
+    
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/ld+json");
+  myHeaders.append("Content-Type", "application/json");
+
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify(formData),
+    redirect: "follow",
+  };
+  console.log(requestOptions);
+  
+  try {
+    const response = await fetch(`${apiUrl}/api/order_entities`, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+    throw error;
+  }
+
+};
+
+export const postOrderLine = async (formData) => {
+    
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/ld+json");
+  myHeaders.append("Content-Type", "application/json");
+
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify(formData),
+    redirect: "follow",
+  };
+  console.log(requestOptions);
+  
+  try {
+    const response = await fetch(`${apiUrl}/api/order_lines`, requestOptions);
     if (!response.ok) {
       throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
     }

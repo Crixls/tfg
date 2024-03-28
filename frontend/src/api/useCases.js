@@ -60,6 +60,12 @@ export const getUsers = async () => {
     const data = await get(endpoint);
     return data;
 };
+export const getOrderEntities = async () => {
+    const endpoint = "/api/order_entities";
+    const data = await get(endpoint);
+    console.log(data);
+    return data;
+};
 
 export const getTotales = async () =>{
     const endpoint = "/productstodos";
