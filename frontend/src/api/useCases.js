@@ -35,6 +35,11 @@ export const editProduct = async (product) => {
     return response;
 };
 
+export const getOneProduct = async (endpoint) => {
+    const response = await get(endpoint);
+    return response;
+};
+
 export const getProduct = async (endpoint) => {
     const response = await get(endpoint);
     return response;
@@ -64,6 +69,11 @@ export const getOrderEntities = async () => {
     const endpoint = "/api/order_entities";
     const data = await get(endpoint);
     console.log(data);
+    return data;
+};
+export const getOrderLines = async () => {
+    const endpoint = "/api/order_lines";
+    const data = await get(endpoint);
     return data;
 };
 

@@ -9,6 +9,8 @@ export const EntitiesProvider = (props) => {
     const [users] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [dataDetails, setDataDetails] = useState(null);
+    const [search, setSearch] = useState(false);
+
 
     const addProduct = async (product) => {
         try {
@@ -36,6 +38,12 @@ export const EntitiesProvider = (props) => {
             console.error("Error al crear producto:", error);
         }
     };
+
+    const changeSearch = async (search) => {
+        setSearch(search);
+    }
+
+    
 
     // const addUser = async (userDTO) => {
     //     try {
@@ -94,7 +102,9 @@ export const EntitiesProvider = (props) => {
                 addFavorite,
                 removeFavorite,
                 updateDetails,
-                dataDetails
+                dataDetails,
+                search,
+                changeSearch
             }}
         >
             {children}

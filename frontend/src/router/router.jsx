@@ -14,6 +14,7 @@ import AdminPageProducts from "../pages/AdminPage/AdminPageProducts";
 import ProtectedRoute from "../pages/utils/ProtectedRoute";
 import AdminPageUsers from "../pages/AdminPage/AdminPageUsers";
 import ShoePage from "../pages/ShoePage/ShoePage";
+import PayPage from "../pages/PayPage/PayPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "/cart", element: <CartPage /> },
       { path: "/favorites", element: <FavoritePage /> },
       { path: "/shoe", element: <ShoePage /> },
+      { path: "/payment", element: <PayPage /> },
     ],
   },
   {

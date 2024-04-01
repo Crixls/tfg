@@ -13,9 +13,10 @@ export const AuthProvider = (props) => {
 
   // Estado del usuario autenticado y el token
   const [logged, setLogged] = useState(null);
+  const [userLogged, setUserLogged]= useState(null);
   const [token, setToken] = useState(null);
 
-  // console.log(logged)
+  console.log(userLogged);
 
   // Obtiene el estado inicial del token de usuario desde el almacenamiento local
   useEffect(() => {
@@ -70,9 +71,8 @@ export const AuthProvider = (props) => {
     setLogged(null);
   };
   
-
   return (
-    <AuthContext.Provider value={{ logged, login, logout, token ,setLogged}}>
+    <AuthContext.Provider value={{ logged, login, logout, token ,setLogged , userLogged, setUserLogged}}>
       {children}
     </AuthContext.Provider>
   );

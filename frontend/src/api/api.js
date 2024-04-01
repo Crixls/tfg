@@ -112,6 +112,35 @@ export const deleteProduct = async (productId) => {
   }
 };
 
+export const deleteOrderLine = async (orderLineId) => {
+  try {
+    const apiUrl = 'https://127.0.0.1:8000/api/order_lines/';
+    const endpoint = `${apiUrl}${orderLineId}`;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/ld+json");
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    const response = await fetch(endpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud DELETE: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.text();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("Error en la eliminación del producto:", error);
+    throw error;
+  }
+};
+
 export const deleteUser = async (userId) => {
   try {
     const apiUrl = 'https://127.0.0.1:8000/api/users/';
@@ -144,7 +173,7 @@ export const deleteUser = async (userId) => {
 export const deleteFav = async (endpoint2) => {
   try {
 
-    const apiUrl = import.meta.env.VITE_API_URL;
+    // const apiUrl = import.meta.env.VITE_API_URL;
 
     console.log(endpoint2);
 
@@ -203,6 +232,35 @@ export const updateProduct = async (productId, updatedProductData) => {
       method: "PUT",
       headers: myHeaders,
       body: JSON.stringify(updatedProductData), // Enviar los datos directamente como JSON
+      redirect: "follow"
+    };
+
+    const response = await fetch(endpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud PUT: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.text();
+    console.log(result); // Imprimir la respuesta si es necesario
+    return result; // O devolver la respuesta si se necesita en otro lugar
+  } catch (error) {
+    console.error("Error en la actualización del producto:", error);
+    throw error; // Lanzar el error para manejarlo en el componente que llama a esta función
+  }
+};
+
+export const updateOrderLine = async (orderLineId, updatedOrderData) => {
+  try {
+    const apiUrl2 = 'https://127.0.0.1:8000/api/order_lines/';
+    const endpoint = `${apiUrl2}${orderLineId}`;
+    
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json"); // Cambiado a "application/json"
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: JSON.stringify(updatedOrderData), // Enviar los datos directamente como JSON
       redirect: "follow"
     };
 

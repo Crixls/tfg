@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
-import {  deleteFavorite2, getFavorite, getFavorites } from "../../api/useCases";
+import { getFavorites } from "../../api/useCases";
 import FavoriteCard from "../../components/Favorite/FavoriteCard";
+import { useAuthContext } from "../../context/useAuthContext";
 
-// import { useEntitiesContext } from "../../context/useEntitiesContext";
 
 const FavoritePage = () => {
 
   const [favorites, setFavorites] = useState([]);
 
-  //  const{favorites}= useEntitiesContext;
+  const{userLogged}= useAuthContext();
 
-   console.log(favorites);
-
+  console.log(userLogged);
   useEffect(() => {
     const fetchApi = async () => {
       try {
         const data = await getFavorites();
-        setFavorites(data);
-        console.log("Favoritos:", data);
+        const filteredFavorites = data.filter(favorite => {
+          const userId = parseInt(favorite.user.split('/').pop(), 10); // Obtener el ID del usuario desde la ruta de la API
+          console.log(userLogged);
+          return userId === parseInt(userLogged, 10);
+        });
+        setFavorites(filteredFavorites);
+        console.log("Favoritos:", filteredFavorites);
       } catch (error) {
         console.log("Error:", error);
       }

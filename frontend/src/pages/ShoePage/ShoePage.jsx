@@ -96,7 +96,7 @@ const ShoePage = () => {
       }
       setstateFav(true);
     }
-  }
+  } 
 
   const handleCarrito = async () => {
     try {

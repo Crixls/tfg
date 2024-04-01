@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.svg'; // Ajusta la ruta al archivo SVG de tu logo
 import { useAuthContext } from '../context/useAuthContext';
 import { getUsers } from '../api/useCases';
+import ProductsSearch from './ProductsSearch';
+import { useEntitiesContext } from '../context/useEntitiesContext';
 
 const Header = () => {
   const {logged, logout } = useAuthContext();
@@ -12,6 +14,9 @@ const Header = () => {
   const [allUsers, setAllUsers] = useState([]);
 
   const navigate = useNavigate();
+
+  const {changeSearch} = useEntitiesContext();
+
 
 
 
@@ -66,6 +71,10 @@ const Header = () => {
 
   }
 
+  const handleSearch=() => {
+    changeSearch(true);
+  }
+
 
   
   useEffect(() => {
@@ -103,7 +112,7 @@ const Header = () => {
           <li>
             <Link to="/kids" className="hover:text-gray-400 noto-sans">Niña/o</Link>
           </li>
-          <li className="custom-cursor-pointer">
+          <li className="custom-cursor-pointer" onClick={handleSearch}>
             <ion-icon name="search-outline"></ion-icon>
           </li> 
           <li>
