@@ -25,3 +25,78 @@
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+
+
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Timmana&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Pahawh+Hmong&display=swap" rel="stylesheet">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/libs/fflate.min.js"></script></head>
+
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      let scene, camera, renderer;
+
+      function init() {
+          scene = new THREE.Scene();
+          scene.background = new THREE.Color(0xdddddd);
+
+          camera = new THREE.PerspectiveCamera(5, window.innerWidth/window.innerHeight, 1, 5000);
+          camera.position.z = 1000;
+
+          light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
+          light.position.set(0, 1, 0);
+          scene.add(light);
+
+          light = new THREE.DirectionalLight(0xffffff, 1.0);
+          light.position.set(0, 1, 0);
+          scene.add(light);
+
+          renderer = new THREE.WebGLRenderer({antialias:true});
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          document.body.appendChild(renderer.domElement);
+
+          controls = new THREE.OrbitControls(camera,  renderer.domElement);
+          controls.update();
+
+          const fbxLoader = new THREE.FBXLoader();
+
+          fbxLoader.load('../frontend/src/assets/shoe1/sketchfab_shoe.fbx', (object) => {
+            scene.add(object);
+            animate();
+          });
+      }
+      function animate(){
+          renderer.render(scene,camera);
+          requestAnimationFrame(animate);
+      }
+      init();
+  </script>
+  </body>
+</html> -->

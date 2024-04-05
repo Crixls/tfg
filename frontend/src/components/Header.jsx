@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.svg'; // Ajusta la ruta al archivo SVG de tu logo
 import { useAuthContext } from '../context/useAuthContext';
 import { getUsers } from '../api/useCases';
-import ProductsSearch from './ProductsSearch';
+// import ProductsSearch from './ProductsSearch';
 import { useEntitiesContext } from '../context/useEntitiesContext';
 
 const Header = () => {

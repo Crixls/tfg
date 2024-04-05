@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { createProduct, deleteFavorite2, postFavorites } from "../api/useCases";
 
 const EntitiesContext = createContext();
@@ -42,6 +42,11 @@ export const EntitiesProvider = (props) => {
     const changeSearch = async (search) => {
         setSearch(search);
     }
+
+    const handleUnload = () => {
+        changeSearch(false);
+    };
+
 
     
 
@@ -104,7 +109,8 @@ export const EntitiesProvider = (props) => {
                 updateDetails,
                 dataDetails,
                 search,
-                changeSearch
+                changeSearch,
+                handleUnload
             }}
         >
             {children}

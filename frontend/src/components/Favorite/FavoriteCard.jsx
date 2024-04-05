@@ -46,7 +46,7 @@ const FavoriteCard = ({favorito}) => {
     }, []);
     
   return (
-    <div>
+    <div className='flex justify-center items-center flex-col m-6 '>
         <img src={`${apiUrl}${infoFav.contentUrl}`} alt="productos" className="w-40"/>
         <p>Name: {infoFav.name}</p>
         <p>Description: {infoFav.description}</p>

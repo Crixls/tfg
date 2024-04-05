@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { getOrderEntities, getUsers } from "../api/useCases";
+import { getOrderEntities, getProducts, getUsers } from "../api/useCases";
 import { postOrderEntity } from "../api/api";
 import Swal from "sweetalert2";
 import { useAuthContext } from "../context/useAuthContext";
 import CardShoes from "../components/CardShoes";
 import ProductsSearch from "../components/ProductsSearch";
 import { useEntitiesContext } from '../context/useEntitiesContext';
+import miImagen from '../assets/shoe1.png';
+import ObjectThreeD from "../components/ThreeD/ObjectThreeD";
 
 
 const Home = () => {
   const [allUsers, setallUsers] = useState([]);
+  const [products, setProducts] = useState([]);
   const [orderUser, setorderUser] = useState(null);
   const [useLogged, setUseLogged] = useState(false);
   const [idUser, setIdUser] = useState(null);
@@ -36,6 +39,21 @@ const Home = () => {
 
     fetchApi();
   }, []);
+
+
+  useEffect(() => {
+    const fetchApi = async () => {
+
+      try {
+        const products=await getProducts();
+          setProducts(products.filter(product => product.new === 1));
+      }catch(err) {
+          console.log("Error:", err);
+      }
+    };
+    fetchApi();
+
+  }, [])
 
 
 
@@ -94,9 +112,22 @@ const Home = () => {
   
 
   return (
-    <>
+    <div className="bg-black">
       {search ? <ProductsSearch></ProductsSearch>:""}
-    </>
+      <ObjectThreeD></ObjectThreeD>
+      <div className="flex justify-end ">
+        <img className="w-1/2" src={miImagen} alt="shoe1" />
+      </div>
+      <p className="m-12 text-xl font-bold ">Productos nuevos</p>
+      <div className="grid grid-cols-2 gap-4 m-20">
+        {products.map((womanShoe, index) => (
+          <div key={index} className="flex justify-center" >
+            <CardShoes typeShoe={womanShoe} />
+          </div>
+        ))}
+      </div>
+      
+    </div>
   );
 };
 

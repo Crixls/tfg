@@ -15,6 +15,8 @@ import ProtectedRoute from "../pages/utils/ProtectedRoute";
 import AdminPageUsers from "../pages/AdminPage/AdminPageUsers";
 import ShoePage from "../pages/ShoePage/ShoePage";
 import PayPage from "../pages/PayPage/PayPage";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
+
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,7 @@ const router = createBrowserRouter([
       { path: "/favorites", element: <FavoritePage /> },
       { path: "/shoe", element: <ShoePage /> },
       { path: "/payment", element: <PayPage /> },
+      { path: "/profile", element: <ProfilePage /> }
     ],
   },
   {
@@ -44,8 +47,10 @@ const router = createBrowserRouter([
     path: "/admin", 
     element: <RootLayout />,
     errorElement: <ErrorCommercePage />,
+    
     children: [
       {
+        element: <ProtectedRoute redirect="/login" />, // Redirige a la página de inicio de sesión si el usuario no está autenticado
         children:[
           { index: true, element: <AdminPage /> },
           { path: "products", element: <AdminPageProducts /> }, // Quitamos la barra inicial para indicar que es relativa a la ruta "/admin"

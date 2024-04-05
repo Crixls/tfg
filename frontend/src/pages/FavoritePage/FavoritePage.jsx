@@ -2,16 +2,23 @@ import { useEffect, useState } from "react";
 import { getFavorites } from "../../api/useCases";
 import FavoriteCard from "../../components/Favorite/FavoriteCard";
 import { useAuthContext } from "../../context/useAuthContext";
+import { useEntitiesContext } from "../../context/useEntitiesContext";
+import ProductsSearch from "../../components/ProductsSearch";
+
 
 
 const FavoritePage = () => {
 
   const [favorites, setFavorites] = useState([]);
 
+  const {search,handleUnload}= useEntitiesContext();
+
   const{userLogged}= useAuthContext();
 
   console.log(userLogged);
   useEffect(() => {
+    handleUnload();
+
     const fetchApi = async () => {
       try {
         const data = await getFavorites();
@@ -33,16 +40,19 @@ const FavoritePage = () => {
 
   return (
     <>
+      {search ? <ProductsSearch></ProductsSearch>:""}
+
       <div className="p-4 bg-blue-700"> 
         <p className="text-white flex w-full text-lg">Tus productos favoritos</p>
       </div>
-      <div className="grid grid-cols-3 gap-4 p-8">
-        {favorites.map((favorite, index) => (
-          <div key={index} className="flex justify-center w-80 bg-green-100">
-            <FavoriteCard favorito={favorite}></FavoriteCard>
-
-          </div>
-        ))}  
+      <div className="flex justify-center">
+        <div className="grid grid-cols-3 gap-10 p-8">
+          {favorites.map((favorite, index) => (
+            <div key={index} className="flex justify-center w-80 bg-green-100 rounded-md ">
+              <FavoriteCard favorito={favorite}></FavoriteCard>
+            </div>
+          ))}  
+        </div>
       </div>
     </>
   )

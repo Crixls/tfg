@@ -158,13 +158,13 @@ const ShoePage = () => {
         <p className="mb-4 text-lg font-bold mt-8">Colores</p>
         <div className="flex ">
           {dataDetails.color.map((col, index) => {
-            return <p className="bg-red-100 m-4 p-2" onClick={() => handleClickColor(col)} key={index}>{col}</p>;
+            return <button className="bg-red-100 m-4 p-2" onClick={() => handleClickColor(col)} key={index}>{col}</button>;
           })}
         </div>
         <p className="mb-4 text-lg font-bold">Selecciona la talla</p>
         <div className="flex">
           {dataDetails.size.map((siz, index) => {
-            return <p className="p-4" onClick={() => handleClickSize(siz)} key={index}>{siz}</p>;
+            return <button className="p-2 bg-blue-200 m-4 " onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
           })}
         </div>
 

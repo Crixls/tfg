@@ -85,7 +85,7 @@ export const deleteMethod = async (endpoint) => {
 
 export const deleteProduct = async (productId) => {
   try {
-    const apiUrl = 'https://127.0.0.1:8000/api/products/';
+    const apiUrl = `${apiUrl}/api/products/`;
     const endpoint = `${apiUrl}${productId}`;
 
     const myHeaders = new Headers();
@@ -114,7 +114,7 @@ export const deleteProduct = async (productId) => {
 
 export const deleteOrderLine = async (orderLineId) => {
   try {
-    const apiUrl = 'https://127.0.0.1:8000/api/order_lines/';
+    const apiUrl = `${apiUrl}/api/order_lines/`;
     const endpoint = `${apiUrl}${orderLineId}`;
 
     const myHeaders = new Headers();
@@ -143,7 +143,7 @@ export const deleteOrderLine = async (orderLineId) => {
 
 export const deleteUser = async (userId) => {
   try {
-    const apiUrl = 'https://127.0.0.1:8000/api/users/';
+    const apiUrl = `${apiUrl}/api/users/`;
     const endpoint = `${apiUrl}${userId}`;
 
     const myHeaders = new Headers();
@@ -203,26 +203,11 @@ export const deleteFav = async (endpoint2) => {
   }
 };
 
-// Función para convertir FormData a JSON
-// const formDataToJSON = (formData) => {
-//   const jsonObject = {};
-//   formData.forEach((value, key) => {
-//     // Verificar si el valor es un archivo para manejarlo adecuadamente
-//     if (value instanceof File) {
-//       jsonObject[key] = value;
-//     } else {
-//       jsonObject[key] = value;
-//     }
-//   });
-//   return jsonObject;
-// };
-
-
 
 // Función para actualizar un producto
 export const updateProduct = async (productId, updatedProductData) => {
   try {
-    const apiUrl2 = 'https://127.0.0.1:8000/products/';
+    const apiUrl2 = `${apiUrl}/products/`;
     const endpoint = `${apiUrl2}${productId}`;
     
     const myHeaders = new Headers();
@@ -251,7 +236,7 @@ export const updateProduct = async (productId, updatedProductData) => {
 
 export const updateOrderLine = async (orderLineId, updatedOrderData) => {
   try {
-    const apiUrl2 = 'https://127.0.0.1:8000/api/order_lines/';
+    const apiUrl2 = `${apiUrl}/api/order_lines/`;
     const endpoint = `${apiUrl2}${orderLineId}`;
     
     const myHeaders = new Headers();
@@ -369,7 +354,7 @@ export const postFav = async (endpoint, userApiPath, productApiPath) => {
 export const updateUser = async (userId, updatedUserData) => {
   console.log(updatedUserData);
   try {
-    const apiUrl2 = 'https://127.0.0.1:8000/api/users/';
+    const apiUrl2 = `${apiUrl}/api/users/`;
     const endpoint = `${apiUrl2}${userId}`;
     
     const myHeaders = new Headers();
