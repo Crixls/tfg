@@ -148,7 +148,7 @@ const CartPage = () => {
           </div>
         ))}
       </div>
-      <div className="bg-gray-100 m-10 mt-28 p-10 h-1/2">
+      <div className="bg-gray-100 m-10 mt-28 p-10 h-1/2"  style={{ backgroundImage: 'url(/src/assets/tex1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <p className="text-lg font-bold">Total: {total}</p>
         <div className="flex flex-col items-center mt-6">
           <button className="flex justify-center items-center bg-purple-300 border rounded-md p-4 mt-4 w-80" onClick={handlePay}>

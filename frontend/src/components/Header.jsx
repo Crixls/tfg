@@ -88,8 +88,8 @@ const Header = () => {
 
 
   return (
-    <header className="bg-blue-200 text-white pl-4 pr-4 flex justify-between items-center font-bold font-sans">
-      <div className="flex items-center">
+    <header className=" text-white ml-4 pr-4 flex justify-between items-center font-bold font-sans " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="flex items-center bg-white m-0 p-0">
         <Link to="/">
           <img src={logo} alt="Logo React" className="w-40 h-40 mx-2" />
         </Link>
@@ -100,42 +100,42 @@ const Header = () => {
       </div>
       {/* Enlaces a distintas partes de la web */}
       <nav>
-        <ul className="flex space-x-12 mx-10 justify-center items-center">
+        <ul className="flex space-x-12 mx-10 justify-center items-center bg-white p-1 pl-2 pr-2 rounded-md">
           <li>
-            <Link to="/man" className="hover:text-gray-400 noto-sans">
+            <Link to="/man" className="hover:text-gray-400 noto-sans text-black p-1 rounded-md">
               Hombre
             </Link>
           </li>
           <li>
-            <Link to="/woman" className="hover:text-gray-400 noto-sans">Mujer</Link>
+            <Link to="/woman" className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md">Mujer</Link>
           </li>
-          <li>
-            <Link to="/kids" className="hover:text-gray-400 noto-sans">Niña/o</Link>
+          <li >
+            <Link to="/kids" className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md">Niña/o</Link>
           </li>
-          <li className="custom-cursor-pointer" onClick={handleSearch}>
-            <ion-icon name="search-outline"></ion-icon>
+          <li className="custom-cursor-pointer flex items-center " onClick={handleSearch}>
+            <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
           </li> 
-          <li>
-            <Link to="/favorites">
-              <ion-icon name="heart-circle-outline"></ion-icon>
+          <li className="custom-cursor-pointer ">
+            <Link to="/favorites" className='flex items-center'>
+              <ion-icon name="heart-circle-outline" style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
             </Link>
           </li>
-          <li>
-            <Link to="/cart">
-              <ion-icon name="bag-outline"></ion-icon>   
+          <li  className="custom-cursor-pointer flex items-center">
+            <Link to="/cart" className='flex items-center'>
+              <ion-icon name="bag-outline"  style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>   
             </Link>
           </li>
           <li>
           {logged ? (
               <>
                 <div className='flex justify-content items-center'>
-                  <div className='mr-8 custom-cursor-pointer'>
-                    <ion-icon name="person-circle-outline" onClick={handleOpenModal} onDoubleClick={handleDoubleClick} className="cursor-pointer"></ion-icon>
+                  <div className='mr-8 custom-cursor-pointer flex items-center'>
+                    <ion-icon name="person-circle-outline" style={{color:"black", padding:"1px", borderRadius: "0.375rem"}} onClick={handleOpenModal} onDoubleClick={handleDoubleClick} className="cursor-pointer"></ion-icon>
                   </div>
-                  <p className='noto-sans'>Hola {useLogged && useLogged.login}</p>
+                  <p className='noto-sans text-black p-1 rounded-md'>Hola {useLogged && useLogged.login}</p>
                   {modalOpen && (
                     <div className="fixed top-40 right-0  flex justify-center items-center">
-                      <div className="bg-blue-300 p-6 ">
+                      <div className="bg-black p-6 ">
                       <ul>
                         <li className='p-2'>
                           <Link to="/profile" onClick={handleCloseModal}>
@@ -162,14 +162,14 @@ const Header = () => {
                 </div>
               </>
             ): (
-              <Link to="/login">
-                <ion-icon name="person-circle-outline"></ion-icon>
+              <Link to="/login" className='flex items-center'>
+                <ion-icon name="person-circle-outline"  style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
               </Link>
             )}
           </li>
           {adminLogged && (
             <li>
-              <button onClick={handlePanel} className='noto-sans'>Panel Administrador</button>
+              <button onClick={handlePanel} className='noto-sans text-black p-1 rounded-md'>Panel Administrador</button>
             </li>
           )}
         </ul>

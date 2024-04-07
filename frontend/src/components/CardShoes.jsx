@@ -19,12 +19,15 @@ const CardShoes = ({ typeShoe }) => {
     
 
     return (
-        <div className="flex justify-center items-center flex-col bg-slate-100 w-80 m-4 p-4 border-none rounded-md" onClick={handleFlip}>
-            <img src={`${apiUrl}${typeShoe.contentUrl}`} alt="productos" className="w-40"/>
-            <p>Name: {typeShoe.name}</p>
-            <p>Description: {typeShoe.description}</p>
-            <p className="font-bold">{typeShoe.price} €</p>
-            
+        <div className="flex justify-center items-center flex-col w-80 m-4 p-4 border-none rounded-md cursor-pointer" onClick={handleFlip}>
+            <div className="flex justify-center items-center flex-col bg-slate-100 w-80 m-4 p-4 border-none rounded-md"   style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_193M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <img src={`${apiUrl}${typeShoe.contentUrl}`} alt="productos" className="w-40"/>
+            </div>
+            <div className=" flex justify-between">
+                <p className="font-bold mr-40">{typeShoe.name}</p>
+                <p className="font-bold">{typeShoe.price} €</p>
+                
+            </div>
         </div>
     );
 }

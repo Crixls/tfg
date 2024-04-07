@@ -6,7 +6,9 @@ import { useAuthContext } from "../context/useAuthContext";
 import CardShoes from "../components/CardShoes";
 import ProductsSearch from "../components/ProductsSearch";
 import { useEntitiesContext } from '../context/useEntitiesContext';
-import miImagen from '../assets/shoe1.png';
+import miImagen from '../assets/home/zapa2.png';
+import airjordan from '../assets/airjordan.jpg';
+import circuit from '../assets/circuit-last.jpg';
 import ObjectThreeD from "../components/ThreeD/ObjectThreeD";
 
 
@@ -112,13 +114,19 @@ const Home = () => {
   
 
   return (
-    <div className="bg-black">
+    <div className="">
       {search ? <ProductsSearch></ProductsSearch>:""}
-      <ObjectThreeD></ObjectThreeD>
-      <div className="flex justify-end ">
-        <img className="w-1/2" src={miImagen} alt="shoe1" />
+      <div className="mt-10 flex justify-between">
+        <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD>
+        <img className="w-1/2 pl-10" src={airjordan} alt="zapatos" />
       </div>
-      <p className="m-12 text-xl font-bold ">Productos nuevos</p>
+      <div className="flex justify-end mt-20 mb-40">
+        <img className="w-1/2 p-10" src={circuit} alt="circuito" />
+        <ObjectThreeD  carpeta="shoe2" file="brown_sneakers.fbx"></ObjectThreeD>
+      </div>
+      <div className="flex">
+        <img   src={miImagen} alt="shoe1" />
+      </div>
       <div className="grid grid-cols-2 gap-4 m-20">
         {products.map((womanShoe, index) => (
           <div key={index} className="flex justify-center" >

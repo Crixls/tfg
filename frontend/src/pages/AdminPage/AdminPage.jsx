@@ -21,8 +21,8 @@ const AdminPage = () => {
    
 
     return (
-        <>
-           <div className="flex justify-center items-center m-20">
+        <div className="h-1/2" style={{ backgroundImage: 'url(/src/assets/tex2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+           <div className="flex justify-center items-center m-20" >
                 <button className="mr-40 bg-green-200 p-2" onClick={handleProduct}>Productos</button>
                 <button className="ml-40 bg-green-200 p-2" onClick={handleUsuarios}>Usuarios</button>
            </div>
@@ -31,7 +31,7 @@ const AdminPage = () => {
                     Volver inicio
                 </button>
             </div>
-        </>
+        </div>
     )
 }
 
