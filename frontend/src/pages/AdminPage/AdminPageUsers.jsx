@@ -56,9 +56,11 @@ const AdminPageUsers = () => {
 
     return (
         <>
-            <h1 className='text-2xl p-4 text-white font-bold bg-blue-800'>Usuarios</h1>
-            <div className="flex justify-center">
-                <button onClick={handleCreateUser} className="bg-red-200 p-2 m-2">Crear Usario</button>
+            <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+                <p className="text-white flex w-full text-2xl font-bold">USUARIOS</p>
+            </div>
+            <div className="flex justify-center pt-10">
+                <button onClick={handleCreateUser} className="bg-gray-300 font-medium rounded-lg p-4 m-2">Crear Usario</button>
             </div>
             <div className="flex justify-center">
                 {open && <ModalNewUser open={open} closeModal={handleCloseModal}/>}
@@ -71,12 +73,12 @@ const AdminPageUsers = () => {
                 {allUsers.map((user, index) => (
                     <div key={index} className="flex justify-center flex-col items-center">
                         <CardUser user={user} />
-                        <button className="bg-green-200 p-2 m-2" onClick={() => handleEditUser(user)}>Editar usuario</button>
-                        <button className="bg-purple-200 p-2 m-2" onClick={() => handleDeleteUser(user.id)}>Eliminar usuario</button>
+                        <button className="bg-black rounded-lg text-white font-medium p-4 m-2"  onClick={() => handleEditUser(user)}>Editar usuario</button>
+                        <button className="border-2 border-red-600 p-4 text-red-600 rounded-lg font-medium m-2" onClick={() => handleDeleteUser(user.id)}>Eliminar usuario</button>
                     </div>
                 ))}
             </div>
-            <button className='bg-purple-200 p-2' onClick={handleReturn}>Volver</button>
+            <button className='border-2 border-black rounded-lg m-4 font-medium p-2' onClick={handleReturn}>Volver</button>
         </>
     )
 }

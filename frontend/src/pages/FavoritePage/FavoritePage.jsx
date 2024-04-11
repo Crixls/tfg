@@ -42,13 +42,13 @@ const FavoritePage = () => {
     <>
       {search ? <ProductsSearch></ProductsSearch>:""}
 
-      <div className="p-4 bg-blue-700"> 
-        <p className="text-white flex w-full text-lg">Tus productos favoritos</p>
+      <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+        <p className="text-white flex w-full text-2xl font-bold">Tus productos favoritos</p>
       </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-3 gap-10 p-8">
           {favorites.map((favorite, index) => (
-            <div key={index} className="flex justify-center w-80 bg-green-100 rounded-md ">
+            <div key={index} className="flex justify-center  ">
               <FavoriteCard favorito={favorite}></FavoriteCard>
             </div>
           ))}  

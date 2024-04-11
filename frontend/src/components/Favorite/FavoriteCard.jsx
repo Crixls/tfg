@@ -46,12 +46,14 @@ const FavoriteCard = ({favorito}) => {
     }, []);
     
   return (
-    <div className='flex justify-center items-center flex-col m-6 '>
+    <div className='flex justify-center items-center flex-col m-6 bg-gray-200 p-2 pl-16 pr-16 rounded-md'>
         <img src={`${apiUrl}${infoFav.contentUrl}`} alt="productos" className="w-40"/>
-        <p>Name: {infoFav.name}</p>
-        <p>Description: {infoFav.description}</p>
-        <p className="font-bold">{infoFav.price} €</p>
-        <button onClick={()=>handleClick(favorito)}>Eliminar favorito</button>
+        <div className=' flex flex-col pt-6 pl-0'>
+          <p className='font-bold '> {infoFav.name}</p>
+          <p className='pt-4 pb-4'>{infoFav.description}</p>
+          <p className="font-bold">{infoFav.price} €</p>
+        </div>
+        <button className='m-6 mt-8 text-white bg-red-600 p-4 pt-2 pb-2 rounded-md font-medium' onClick={()=>handleClick(favorito)}>Eliminar favorito</button>
     </div>
   )
 }

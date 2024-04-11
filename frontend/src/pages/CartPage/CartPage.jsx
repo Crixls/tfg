@@ -123,7 +123,9 @@ const CartPage = () => {
     </div>
     <div className="grid grid-cols-2">
       <div className="m-10">
-        <p className="text-lg font-bold">CESTA DE COMPRAS - {orderLines.length}</p>
+        <div className="p-4 mt-16" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+          <p className="text-xl font-bold text-white">CESTA DE COMPRAS - {orderLines.length}</p>
+        </div>
         {orderLines.map((order, index) => (
           <div key={index} className="m-10">
             <div className="grid grid-cols-2 border p-6 rounded-md">
@@ -148,18 +150,20 @@ const CartPage = () => {
           </div>
         ))}
       </div>
-      <div className="bg-gray-100 m-10 mt-28 p-10 h-1/2"  style={{ backgroundImage: 'url(/src/assets/tex1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <p className="text-lg font-bold">Total: {total}</p>
-        <div className="flex flex-col items-center mt-6">
-          <button className="flex justify-center items-center bg-purple-300 border rounded-md p-4 mt-4 w-80" onClick={handlePay}>
-            <ion-icon name="card-outline"></ion-icon> 
-            <p className="ml-4 font-bold">
-              PAGAR
-            </p>
-          </button>
-          <a className="flex justify-center items-center bg-green-200 border rounded-md p-4 mt-4 w-80" href="https://www.paypal.com/checkoutnow?cmd=_express-checkout&token=EC-6G927306LJ3954746&useraction=continue">
-            <img className="w-24" src={paypalImage} alt="paypal" />
-          </a>
+      <div className="bg-gray-100 m-10 mt-24 p-10 h-1/2 flex flex-col items-center justify-center"  style={{ backgroundImage: 'url(/src/assets/tex1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="p-24" style={{backgroundColor: "rgba(128, 128, 128, 0.8)"}}>
+            <p className="text-lg font-bold text-white ">Total: {total} €</p>
+            <div className="flex flex-col items-center mt-6">
+              <button className="flex justify-center items-center bg-black  rounded-md p-4 mt-4 w-80" onClick={handlePay}>
+                <ion-icon style={{color:"white"}} name="card-outline"></ion-icon> 
+                <p className="ml-4 font-bold text-white">
+                  PAGAR
+                </p>
+              </button>
+              <a className="flex justify-center items-center bg-black  rounded-md p-4 mt-4 w-80" href="https://www.paypal.com/checkoutnow?cmd=_express-checkout&token=EC-6G927306LJ3954746&useraction=continue">
+                <img className="w-24 bg-white p-2  rounded-md" src={paypalImage} alt="paypal" />
+              </a>
+          </div>
         </div>
       </div>
     </div>

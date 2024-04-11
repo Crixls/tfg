@@ -87,8 +87,8 @@ const ModalEditUser = ({ user, open, closeModal }) => {
         <div className="cursor-pointer" onClick={closeModal}>
           <ion-icon name="close"></ion-icon>
         </div>
-        <form onSubmit={handleSubmit} className='bg-green-100 flex flex-col justify-center items-center p-4'>
-          <label htmlFor="username">Username *</label>
+        <form onSubmit={handleSubmit} className='bg-gray-500 flex flex-col justify-center items-center p-4'>
+          <label htmlFor="username" className='font-bold text-white'>Username *:</label>
           <input
             id="username"
             type="text"
@@ -98,7 +98,7 @@ const ModalEditUser = ({ user, open, closeModal }) => {
             onChange={(event) => setUsername(event.target.value)}
           />
 
-          <label htmlFor="email">Email *</label>
+          <label htmlFor="email" className='font-bold text-white'>Email *</label>
           <input
             id="email"
             type="email"
@@ -108,7 +108,7 @@ const ModalEditUser = ({ user, open, closeModal }) => {
             onChange={(event) => setEmail(event.target.value)}
           />
 
-          <label htmlFor="roles">Roles *</label>
+          <label htmlFor="roles" className='font-bold text-white'>Roles *</label>
           <textarea
             id="roles"
             style={{ marginBottom: '1rem' }}
@@ -116,12 +116,13 @@ const ModalEditUser = ({ user, open, closeModal }) => {
             onChange={(event) => setRoles(event.target.value.split(',').map(role => role.trim()))} // Convertimos la cadena a un array al cambiar el valor
           />
 
-          <label htmlFor="password">Password *</label>
+          <label htmlFor="password" className='font-bold text-white'>Password *</label>
           <div className='flex flex-col items-center justify-center'>
             <input
               id="password"
               type="password"
               placeholder="********"
+              className='text-white'
               style={{ marginBottom: '0.5rem', color: passwordValid ? 'green' : 'gray' }}
               value={password}
               onChange={handlePasswordChange}
@@ -136,10 +137,10 @@ const ModalEditUser = ({ user, open, closeModal }) => {
               />
             {!passwordsMatch && <p style={{ color: 'red', fontSize: '0.8rem' }}>Las contraseñas no coinciden</p>}
           </div>
-          <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#6f6f6f' }}>
+          <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'white' }}>
             Los campos marcados con * son obligatorios.
           </p>
-          <button type="submit">Actualizar</button>
+          <button type="submit" className='p-4 bg-white font-medium rounded-md mt-6'>Actualizar</button>
         </form>
       </div>
     </div>

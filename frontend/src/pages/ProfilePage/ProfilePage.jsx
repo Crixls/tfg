@@ -97,8 +97,10 @@ const ProfilePage = () => {
 
   return (
     <>
-        <div className='p-10'>
-            <p className='font-bold text-2xl'>MI CUENTA</p>
+        <div >
+        <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+            <p className='font-bold text-2xl text-white'>MI CUENTA</p>
+          </div>
             <div className=" m-10 ">
                 <form onSubmit={handleSubmit} className='flex flex-col  p-4'>
                 <label className="text-lg font-bold ml-2 mb-2" htmlFor="username">Username *</label>

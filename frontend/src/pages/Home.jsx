@@ -117,15 +117,15 @@ const Home = () => {
     <div className="">
       {search ? <ProductsSearch></ProductsSearch>:""}
       <div className="mt-10 flex justify-between">
-        <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD>
+        {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}
         <img className="w-1/2 pl-10" src={airjordan} alt="zapatos" />
       </div>
       <div className="flex justify-end mt-20 mb-40">
         <img className="w-1/2 p-10" src={circuit} alt="circuito" />
-        <ObjectThreeD  carpeta="shoe2" file="brown_sneakers.fbx"></ObjectThreeD>
+        {/* <ObjectThreeD  carpeta="shoe2" file="brown_sneakers.fbx"></ObjectThreeD> */}
       </div>
       <div className="flex">
-        <img   src={miImagen} alt="shoe1" />
+        <img src={miImagen} alt="shoe1" />
       </div>
       <div className="grid grid-cols-2 gap-4 m-20">
         {products.map((womanShoe, index) => (

@@ -82,12 +82,12 @@ import Swal from 'sweetalert2';
 
   return (
       <div className='flex justify-center items-center h-full m-20'>
-          <form onSubmit={handleSubmit} className='flex justify-center items-center flex-col bg-green-100 w-80 p-4'>
+          <form onSubmit={handleSubmit} className='flex justify-center items-center flex-col border-2 bg-gray-200 w-80 p-8 rounded-md'>
               <p style={{ marginBottom: '1rem' }}>
               A continuación usted va a registrar un nuevo usuario en su empresa.
               </p>
               <div>
-              <label htmlFor="username">Username *</label>
+              <label className='font-bold' htmlFor="username">Username *: </label>
               <input
                   id="username"
                   type="text"
@@ -99,7 +99,7 @@ import Swal from 'sweetalert2';
               />
               </div>
               <div>
-              <label htmlFor="email">Email *</label>
+              <label className='font-bold' htmlFor="email">Email *: </label>
               <input
                   id="email"
                   type="email"
@@ -110,7 +110,7 @@ import Swal from 'sweetalert2';
                   required
               />
               </div>
-              <label htmlFor="password">Password *</label>
+              <label className='font-bold' htmlFor="password">Password *: </label>
               <div className='flex flex-col items-center justify-center'>
 
               <input
@@ -138,7 +138,7 @@ import Swal from 'sweetalert2';
               <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#6f6f6f' }}>
               Los campos marcados con * son obligatorios.
               </p>
-              <button type="submit">Enviar</button>
+              <button className='p-2  mt-4 rounded-md bg-white ' type="submit">Enviar</button>
           </form>
 
       </div>

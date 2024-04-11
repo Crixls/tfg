@@ -104,7 +104,7 @@ const LoginPage = () => {
                 </div>
               ) : (
                 <>
-                  <button className="bg-indigo-500 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" onClick={handleLogin}>
+                  <button className="bg-gray-500 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" onClick={handleLogin}>
                     Iniciar Sesión
                   </button>
                   <div className="pt-8 flex justify-center">

@@ -84,9 +84,10 @@ export const deleteMethod = async (endpoint) => {
 
 
 export const deleteProduct = async (productId) => {
+  console.log({apiUrl});
   try {
-    const apiUrl = `${apiUrl}/api/products/`;
-    const endpoint = `${apiUrl}${productId}`;
+    const apiUrl2 = `${apiUrl}/api/products/`;
+    const endpoint = `${apiUrl2}${productId}`;
 
     const myHeaders = new Headers();
     myHeaders.append("Accept", "application/ld+json");
@@ -114,8 +115,8 @@ export const deleteProduct = async (productId) => {
 
 export const deleteOrderLine = async (orderLineId) => {
   try {
-    const apiUrl = `${apiUrl}/api/order_lines/`;
-    const endpoint = `${apiUrl}${orderLineId}`;
+    const apiUrl2 = `${apiUrl}/api/order_lines/`;
+    const endpoint = `${apiUrl2}${orderLineId}`;
 
     const myHeaders = new Headers();
     myHeaders.append("Accept", "application/ld+json");
@@ -143,8 +144,8 @@ export const deleteOrderLine = async (orderLineId) => {
 
 export const deleteUser = async (userId) => {
   try {
-    const apiUrl = `${apiUrl}/api/users/`;
-    const endpoint = `${apiUrl}${userId}`;
+    const apiUrl2 = `${apiUrl}/api/users/`;
+    const endpoint = `${apiUrl2}${userId}`;
 
     const myHeaders = new Headers();
     myHeaders.append("Accept", "application/ld+json");

@@ -23,11 +23,11 @@ const AdminPage = () => {
     return (
         <div className="h-1/2" style={{ backgroundImage: 'url(/src/assets/tex2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
            <div className="flex justify-center items-center m-20" >
-                <button className="mr-40 bg-green-200 p-2" onClick={handleProduct}>Productos</button>
-                <button className="ml-40 bg-green-200 p-2" onClick={handleUsuarios}>Usuarios</button>
+                <button className="mr-40 bg-gray-500 border rounded-md text-white p-4 font-medium" onClick={handleProduct}>Productos</button>
+                <button className="ml-40 bg-gray-500 border rounded-md p-4 text-white font-medium" onClick={handleUsuarios}>Usuarios</button>
            </div>
            <div className="m-40 flex justify-center items-center ">
-                <button className="rounded-md border-none bg-blue-400 text-white text-lg w-40" onClick={handleReturn}>
+                <button className="rounded-md border-none bg-black p-2 font-medium text-white text-lg w-40" onClick={handleReturn}>
                     Volver inicio
                 </button>
             </div>

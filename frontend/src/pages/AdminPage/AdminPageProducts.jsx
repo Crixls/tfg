@@ -57,9 +57,11 @@ const AdminPageProducts = () => {
 
     return (
         <>
-            <h1 className='text-2xl p-4 text-white font-bold bg-blue-800'>Productos</h1>
-            <div className="flex justify-center">
-                <button onClick={handleCrearProducto} className="bg-red-200 p-2 m-2">Crear producto</button>
+            <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+                <p className="text-white flex w-full text-2xl font-bold">PRODUCTOS</p>
+            </div>
+            <div className="flex justify-center pt-10">
+                <button onClick={handleCrearProducto} className="bg-gray-300 font-medium rounded-lg p-4 m-2">Crear producto</button>
             </div>
             <div className="flex justify-center">
                 {open && <ModalNewProduct open={open} closeModal={handleCloseModal}/>}
@@ -72,12 +74,12 @@ const AdminPageProducts = () => {
                 {allShoes.map((manShoe, index) => (
                     <div key={index} className="flex justify-center flex-col items-center">
                         <CardShoes typeShoe={manShoe} />
-                        <button className="bg-green-200 p-2 m-2" onClick={() => handleEditarProducto(manShoe)}>Editar producto</button>
-                        <button className="bg-purple-200 p-2 m-2" onClick={() => handleEliminarProducto(manShoe.id)}>Eliminar producto</button>
+                        <button className="bg-black rounded-lg text-white font-medium p-4 m-2" onClick={() => handleEditarProducto(manShoe)}>Editar producto</button>
+                        <button className="border-2 border-red-600 p-4 text-red-600 rounded-lg font-medium m-2" onClick={() => handleEliminarProducto(manShoe.id)}>Eliminar producto</button>
                     </div>
                 ))}
             </div>
-            <button className='bg-purple-200 p-2' onClick={handleReturn}>Volver</button>
+            <button className='border-2 border-black rounded-lg m-4 font-medium p-2' onClick={handleReturn}>Volver</button>
         </>
     )
 }
