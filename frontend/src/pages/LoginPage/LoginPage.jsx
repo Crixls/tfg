@@ -1,6 +1,7 @@
 import  { useState, useEffect } from "react";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useNavigate } from "react-router-dom";
+import Loaderanimated from "../../components/Loaderanimated";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const LoginPage = () => {
@@ -64,15 +65,16 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="bg-gray-900">
+      <div className="bg-black">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-white text-3xl lg:text-4xl font-bold">Login</h1>
         </div>
       </div>
 
-      <div className="bg-white">
+      
+      <div className="bg-white h-screen " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_302M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="container mx-auto px-4 py-8">
-          <div className="max-w-md mx-auto bg-gray-100 p-8 rounded-lg shadow-lg">
+          <div className="max-w-xl mx-auto mt-40 bg-gray-100 p-8 rounded-lg shadow-lg">
             <div className="mb-6">
               <input
                 type="text"
@@ -94,14 +96,8 @@ const LoginPage = () => {
               />
             </div>
             <div className="text-center">
-              {loading ? (
-                <div className="inline-block px-6 py-3 mr-4 mb-4 leading-none border border-solid border-transparent rounded-full text-white bg-indigo-500">
-                  <span className="mr-2">Loading</span>
-                  <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 013.709 7H1.187a10 10 0 009.436 11H7.708zm12-5.291a8 8 0 01-8 8v4c6.627 0 12-5.373 12-12h-4zm-14 0C5.373 16 0 20.627 0 24h4a8 8 0 018-8V7H1.708z"></path>
-                  </svg>
-                </div>
+                  {loading ? (
+                <Loaderanimated/>
               ) : (
                 <>
                   <button className="bg-gray-500 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" onClick={handleLogin}>
@@ -116,8 +112,8 @@ const LoginPage = () => {
             </div>
           </div>
         
+          </div>
         </div>
-      </div>
 
     </>
   );

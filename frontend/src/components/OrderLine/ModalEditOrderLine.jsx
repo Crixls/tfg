@@ -13,8 +13,6 @@ const ModalEditOrderLine = ({ order, open, closeModal, product2 }) => {
     const [unitPrice, setPrice] = useState(null); 
     const [unit_price, setunit_price] = useState(null); 
     const [product, setProduct] = useState(''); 
-
-      console.log(product2);
     
 
 
@@ -99,34 +97,33 @@ const ModalEditOrderLine = ({ order, open, closeModal, product2 }) => {
     };
 
     return (
-        <div>
-            <div className={`modal ${open ? 'open' : 'closed'}  bg-green-200 `}>
-                <div className="modal-content">
-                    <span className="close " onClick={closeModal}>&times;</span>
-                    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-80">
+      <div className={`modal ${open ? 'open' : 'closed'} m-4`}>
+      <div className="cursor-pointer" onClick={closeModal}>
+            <ion-icon name="close"></ion-icon>
+          </div>                    
+            <div className={`modal ${open ? 'open' : 'closed'}  bg-gray-200 m-4 rounded-md `}>
+                <div className="modal-content p-4">
+        <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-80">
                         
-                        <label htmlFor="color">Color:</label>
+                        <label className='font-bold' htmlFor="color">Color:</label>
                         <div className="flex ">
                           {product2.color.map((col, index) => {
-                            return <p className="bg-red-100 m-4 p-2" onClick={() => handleClickColor(col)} key={index}>{col}</p>;
+                            return <button className="bg-black rounded-md text-white m-4 p-2" onClick={() => handleClickColor(col)} key={index}>{col}</button>;
                           })}
                         </div>
-
-                        {/* <label htmlFor="color">Color:</label>
-                        <input type="text" id="color" value={unitColor} onChange={(e) => {setunit_color(e.target.value); setColor(e.target.value)} }/>
-                         */}
-                        <label htmlFor="size">Size:</label>
+                     
+                        <label className='font-bold ' htmlFor="size">Size:</label>
                         <div className="flex">
                           {product2.size.map((siz, index) => {
-                            return <p className="p-4" onClick={() => handleClickSize(siz)} key={index}>{siz}</p>;
+                            return <button className="p-2 rounded-md border-2  bg-red-200 m-2" onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
                           })}
                         </div>
                         {/* <input type="text" id="size" value={unitSize} onChange={(e) => { setUnitSize(e.target.value); setunit_size(e.target.value); }} /> */}
                         
-                        <label htmlFor="amount">Amount:</label>
-                        <input type="number" id="amount" value={amount} onChange={(e) => setAmount(parseInt(e.target.value, 10))} />
+                        <label className='font-bold' htmlFor="amount">Amount:</label>
+                        <input className='rounded-md' type="number" id="amount" value={amount} onChange={(e) => setAmount(parseInt(e.target.value, 10))} />
                         
-                        <button className="bg-gray-300 mt-4 mb-4 p-2" type="submit">Actualizar</button>
+                        <button className="bg-white border-2 border-black rounded-md mt-4 mb-4 p-2" type="submit">Actualizar</button>
                     </form>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { deleteFavorite2, getFavorite, getProduct } from '../../api/useCases';
 
 const FavoriteCard = ({favorito}) => {

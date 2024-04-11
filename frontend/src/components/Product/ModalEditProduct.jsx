@@ -70,69 +70,62 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
     }
   };
 
-  // const handleImageChange = (event) => {
-  //   const selectedImage = event.target.files[0];
-  //   setImageFile(selectedImage);
-  // };
-  
+
 
   return (
-    <div className={`modal ${open ? 'open' : 'closed'}  bg-green-200 `}>
-      <div className="modal-content">
-        <span className="close " onClick={closeModal}>&times;</span>
-        <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-80">
-          <label className="mb-4" htmlFor="name">Nombre</label>
-          <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-          
-          <label className="mt-4 mb-4" htmlFor="description">Descripción</label>
-          <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-          
-          <label className="mt-4 mb-4" htmlFor="price">Precio</label>
-          <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
-          
-          <label htmlFor="size">Tamaño (separados por comas)</label>
-          <input
-            type="text"
-            id="size"
-            value={size.join(',')}
-            onChange={(e) => setSize(e.target.value.split(','))}
-          />
+    <div className={`modal ${open ? 'open' : 'closed'}`}>
+      <div className="cursor-pointer" onClick={closeModal}>
+        <ion-icon name="close"></ion-icon>
+      </div>        
+      <div className={`modal ${open ? 'open' : 'closed'}  bg-gray-500 `}>
+        <div className="modal-content">
+          <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-80">
+            <label className="mb-4 font-bold text-white" htmlFor="name">Nombre</label>
+            <input className="m-2 rounded-md" type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+            
+            <label className="mb-4 font-bold text-white" htmlFor="description">Descripción</label>
+            <input className="m-2 rounded-md" type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+            
+            <label className="mb-4 font-bold text-white" htmlFor="price">Precio</label>
+            <input className="m-2 rounded-md" type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
+            
+            <label className="mb-4 font-bold text-white" htmlFor="size">Tamaño (separados por comas)</label>
+            <input className="m-2 rounded-md"
+              type="text"
+              id="size"
+              value={size.join(',')}
+              onChange={(e) => setSize(e.target.value.split(','))}
+            />
 
-          <label className="mt-4 mb-4" htmlFor="brand">Marca</label>
-          <input type="text" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} />
-          
-          <label className="mt-4 mb-4" htmlFor="category">Categoria</label>
-          <input type="text" id="category" value={category} onChange={(e) => setCategory(e.target.value)} />
-          
-          <label className="mt-4 mb-4" htmlFor="new">Nuevo</label>
-          <input type="number" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} />
-          
-          <label htmlFor="color">Color (separados por comas)</label>
-          <input
-            type="text"
-            id="color"
-            value={color.join(',')}
-            onChange={(e) => setColor(e.target.value.split(','))}
-          />
-          <label htmlFor="deporte">Deporte (separados por comas)</label>
-          <input
-            type="text"
-            id="deporte"
-            value={deporte.join(',')}
-            onChange={(e) => setDeporte(e.target.value.split(','))}
-          />
-          {/* <input
-            type="file"
-            id="imageFile"
-            accept="image/*" // Acepta solo archivos de imagen
-            onChange={handleImageChange}
-            required
-          /> */}
-          
-          <button className="bg-gray-300 mt-4 mb-4 p-2" type="submit">Actualizar</button>
-        </form>
+            <label className="mb-4 font-bold text-white" htmlFor="brand">Marca</label>
+            <input className="m-2 rounded-md" type="text" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} />
+            
+            <label className="mb-4 font-bold text-white" htmlFor="category">Categoria</label>
+            <input className="m-2 rounded-md" type="text" id="category" value={category} onChange={(e) => setCategory(e.target.value)} />
+            
+            <label className="mb-4 font-bold text-white" htmlFor="new">Nuevo</label>
+            <input className="m-2 rounded-md" type="number" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} />
+            
+            <label className="mb-4 font-bold text-white" htmlFor="color ">Color (separados por comas)</label>
+            <input className="m-2 rounded-md"
+              type="text"
+              id="color"
+              value={color.join(',')}
+              onChange={(e) => setColor(e.target.value.split(','))}
+            />
+            <label className="mb-4 font-bold text-white" htmlFor="deporte">Deporte (separados por comas)</label>
+            <input className="m-2 rounded-md"
+              type="text"
+              id="deporte"
+              value={deporte.join(',')}
+              onChange={(e) => setDeporte(e.target.value.split(','))}
+            />
+      
+            <button type="submit" className='p-2 m-4 bg-white font-medium rounded-md mt-6'>Actualizar</button>
+          </form>
+        </div>
       </div>
-    </div>
+      </div>
   );
 };
 

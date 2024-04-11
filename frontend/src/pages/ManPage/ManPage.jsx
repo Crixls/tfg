@@ -6,7 +6,7 @@ import CardShoes from "../../components/CardShoes";
 import ProductsSearch from "../../components/ProductsSearch";
 import { useEntitiesContext } from "../../context/useEntitiesContext";
 
-import hombreimg from '../../assets/hombre/posterhombre.jpg';
+import hombreimg from '../../assets/hombre/poster-hombre.webp';
 
 
 

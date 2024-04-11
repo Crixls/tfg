@@ -158,19 +158,19 @@ const ShoePage = () => {
         <p className="mb-4 text-lg font-bold mt-8">Colores</p>
         <div className="flex ">
           {dataDetails.color.map((col, index) => {
-            return <button className="bg-red-100 m-4 p-2" onClick={() => handleClickColor(col)} key={index}>{col}</button>;
+            return <button className="bg-red-400 border-2 border-black rounded-md m-4 p-2" onClick={() => handleClickColor(col)} key={index}>{col}</button>;
           })}
         </div>
         <p className="mb-4 text-lg font-bold">Selecciona la talla</p>
         <div className="flex">
           {dataDetails.size.map((siz, index) => {
-            return <button className="p-2 bg-blue-200 m-4 " onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
+            return <button className="p-2 bg-red-400 border-2 border-black rounded-md m-4 " onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
           })}
         </div>
 
-        <form onSubmit={handleSubmit} className='bg-green-100 flex flex-col justify-center items-center p-4'>
-          <label htmlFor="cantidad">Cantidad del producto</label>
-          <input
+        <form onSubmit={handleSubmit} className='flex flex-col'>
+          <label className="text-lg font-bold pb-4" htmlFor="cantidad">Cantidad del producto</label>
+          <input className="ml-4 w-80"
             id="catidad"
             type="number"
             placeholder="0"
@@ -193,7 +193,7 @@ const ShoePage = () => {
 
         </div>
         <p className="mb-4 text-lg font-bold">Descripción</p>
-        <p className="mb-4 text-md ">{dataDetails.description} </p>
+        <p className="mb-4 ml-4 text-md ">{dataDetails.description} </p>
       </div>
     </div>
   );

@@ -2,8 +2,7 @@ import  { useState } from 'react'
 import { post2 } from '../../api/api';
 import Swal from 'sweetalert2';
 
-  const ModalNewUser = ({props}) => {
-    // const { open, closeModal } = props;
+  const ModalNewUser = ({open, closeModal}) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -81,14 +80,20 @@ import Swal from 'sweetalert2';
 
 
   return (
-      <div className='flex justify-center items-center h-full m-20'>
-          <form onSubmit={handleSubmit} className='flex justify-center items-center flex-col border-2 bg-gray-200 w-80 p-8 rounded-md'>
-              <p style={{ marginBottom: '1rem' }}>
+    <div className={`modal ${open ? 'open' : 'closed'}`}>
+          <div className="cursor-pointer" onClick={closeModal}>
+            <ion-icon name="close"></ion-icon>
+          </div>
+      <div className='flex justify-center items-center '>
+          <form onSubmit={handleSubmit} className=' flex-col border-2 bg-gray-200 w-80 p-8 rounded-md'>
+          <div  className='p-4'>
+             <p style={{ marginBottom: '1rem' }}>
               A continuación usted va a registrar un nuevo usuario en su empresa.
               </p>
               <div>
               <label className='font-bold' htmlFor="username">Username *: </label>
               <input
+                  className='rounded-md'
                   id="username"
                   type="text"
                   placeholder="e.g. johndoe123"
@@ -101,6 +106,7 @@ import Swal from 'sweetalert2';
               <div>
               <label className='font-bold' htmlFor="email">Email *: </label>
               <input
+                  className='rounded-md'
                   id="email"
                   type="email"
                   placeholder="e.g. example@example.com"
@@ -114,6 +120,7 @@ import Swal from 'sweetalert2';
               <div className='flex flex-col items-center justify-center'>
 
               <input
+                  className='rounded-md'
                   id="password"
                   type="password"
                   placeholder="********"
@@ -124,6 +131,7 @@ import Swal from 'sweetalert2';
                   // invalid={!passwordsMatch}
               />
               <input
+                  className='rounded-md'
                   id="confirmPassword"
                   type="password"
                   placeholder="********"
@@ -138,10 +146,14 @@ import Swal from 'sweetalert2';
               <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#6f6f6f' }}>
               Los campos marcados con * son obligatorios.
               </p>
-              <button className='p-2  mt-4 rounded-md bg-white ' type="submit">Enviar</button>
+              <div className='flex justify-center items-center'>
+                <button className='p-2  mt-4 rounded-md bg-white border-2 border-black font-medium' type="submit">Enviar</button>
+              </div>
+          </div>
           </form>
-
+    
       </div>
+    </div>
   )
 
 }

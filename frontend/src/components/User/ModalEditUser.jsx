@@ -89,7 +89,7 @@ const ModalEditUser = ({ user, open, closeModal }) => {
         </div>
         <form onSubmit={handleSubmit} className='bg-gray-500 flex flex-col justify-center items-center p-4'>
           <label htmlFor="username" className='font-bold text-white'>Username *:</label>
-          <input
+          <input className="rounded-md"
             id="username"
             type="text"
             placeholder="e.g. johndoe123"
@@ -99,7 +99,7 @@ const ModalEditUser = ({ user, open, closeModal }) => {
           />
 
           <label htmlFor="email" className='font-bold text-white'>Email *</label>
-          <input
+          <input className="rounded-md"
             id="email"
             type="email"
             placeholder="e.g. example@example.com"
@@ -109,7 +109,8 @@ const ModalEditUser = ({ user, open, closeModal }) => {
           />
 
           <label htmlFor="roles" className='font-bold text-white'>Roles *</label>
-          <textarea
+          <textarea 
+            className='rounded-md'
             id="roles"
             style={{ marginBottom: '1rem' }}
             value={roles.join(', ')} // Convertimos el array a una cadena para mostrar en el textarea
@@ -118,16 +119,15 @@ const ModalEditUser = ({ user, open, closeModal }) => {
 
           <label htmlFor="password" className='font-bold text-white'>Password *</label>
           <div className='flex flex-col items-center justify-center'>
-            <input
+            <input className="rounded-md"
               id="password"
               type="password"
               placeholder="********"
-              className='text-white'
               style={{ marginBottom: '0.5rem', color: passwordValid ? 'green' : 'gray' }}
               value={password}
               onChange={handlePasswordChange}
               />
-            <input
+            <input className="rounded-md"
               id="confirmPassword"
               type="password"
               placeholder="********"

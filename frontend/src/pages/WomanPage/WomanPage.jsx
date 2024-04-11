@@ -3,7 +3,7 @@ import { getProducts } from "../../api/useCases";
 import CardShoes from "../../components/CardShoes";
 import { useEntitiesContext } from "../../context/useEntitiesContext";
 import ProductsSearch from "../../components/ProductsSearch";
-import mujerimg from '../../assets/mujer/mujer.png';
+import mujerimg from '../../assets/mujer/mujer.webp';
 
 
 

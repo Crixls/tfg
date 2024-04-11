@@ -3,7 +3,7 @@ import { getProducts } from "../../api/useCases";
 import CardShoes from "../../components/CardShoes";
 import { useEntitiesContext } from "../../context/useEntitiesContext";
 import ProductsSearch from "../../components/ProductsSearch";
-import niñaimg from '../../assets/niña/niños.png';
+import niñaimg from '../../assets/niña/niños.webp';
 
 
 const KidsPage = () => {
@@ -31,7 +31,7 @@ const KidsPage = () => {
   return (
     <>
       {search ? <ProductsSearch></ProductsSearch>:""}
-      <div className="mt-20 flex justify-center bg-black p-10" style={{ backgroundImage: 'url(/src/assets/textu.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="mt-20 flex justify-center bg-black p-10">
         <img className="w-2/3 pl-10" src={niñaimg} alt="hombres" />
       </div>
       <div className="grid grid-cols-3 gap-4 m-20">
