@@ -6,10 +6,11 @@ import { useAuthContext } from "../context/useAuthContext";
 import CardShoes from "../components/CardShoes";
 import ProductsSearch from "../components/ProductsSearch";
 import { useEntitiesContext } from '../context/useEntitiesContext';
-import miImagen from '../assets/home/zapa2.png';
-import airjordan from '../assets/airjordan.jpg';
-import circuit from '../assets/circuit-last.jpg';
+import miImagen from '../assets/home/zapa2.webp';
+import airjordan from '../assets/home/airjordan.webp';
+import circuit from '../assets/home/circuit-last.webp';
 import ObjectThreeD from "../components/ThreeD/ObjectThreeD";
+import Render from "../components/Render";
 
 
 const Home = () => {
@@ -116,14 +117,22 @@ const Home = () => {
   return (
     <div className="">
       {search ? <ProductsSearch></ProductsSearch>:""}
-      <div className="mt-10 flex justify-between">
         {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}
-        <img className="w-1/2 pl-10" src={airjordan} alt="zapatos" />
+      {/* <div className="mt-10 flex justify-between"> */}
+        {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}
+        {/* <img src={airjordan} alt="zapatos" />
+      </div> */}
+      <div style={{ maxWidth: '50%', padding:'20px',marginTop:'40px', display:"flex" }}>
+        <img src={airjordan} alt="hombres" />
+        <Render></Render>
+
       </div>
-      <div className="flex justify-end mt-20 mb-40">
-        <img className="w-1/2 p-10" src={circuit} alt="circuito" />
+
+      <div style={{ maxWidth: '50%', padding:'20px',marginTop:'40px', display:"flex", marginBottom:"20px" }}>
+          <Render ></Render>
+            <img  src={circuit} alt="circuito" />
+      </div>
         {/* <ObjectThreeD  carpeta="shoe2" file="brown_sneakers.fbx"></ObjectThreeD> */}
-      </div>
       <div className="flex">
         <img src={miImagen} alt="shoe1" />
       </div>

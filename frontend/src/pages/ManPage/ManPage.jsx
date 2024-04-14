@@ -34,8 +34,8 @@ const ManPage = () => {
   return (
     <>
       {search ? <ProductsSearch></ProductsSearch>:""}
-      <div className="mt-20 flex justify-center bg-black p-20">
-        <img className="w-3/4 pl-10" src={hombreimg} alt="hombres" />
+      <div className="mt-12 flex justify-center bg-black pr-60 pl-60">
+        <img src={hombreimg} alt="hombres" />
       </div>
 
       <div className="grid grid-cols-3 gap-4 m-20">

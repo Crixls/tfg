@@ -15,7 +15,7 @@ function ObjectThreeD(props) {
       scene = new THREE.Scene();
       scene.background = new THREE.Color(0xffffff);
 
-      camera = new THREE.PerspectiveCamera(75, containerRef.current.clientWidth / containerRef.current.clientHeight, 0.1, 1000);
+      camera = new THREE.PerspectiveCamera(75, containerRef.current.clientWidth / containerRef.current.clientHeight, 0.1, 900);
       camera.position.z = 5;
 
       const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);

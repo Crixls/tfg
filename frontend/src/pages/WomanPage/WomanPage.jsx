@@ -30,8 +30,8 @@ const WomanPage = () => {
   return (
     <>
     {search ? <ProductsSearch></ProductsSearch>:""}
-    <div className="mt-20 flex justify-center bg-black p-10">
-      <img className="w-2/3 pl-10" src={mujerimg} alt="hombres" />
+    <div className="mt-12 flex justify-center bg-black pr-60 pl-60">
+      <img src={mujerimg} alt="mujer" />
     </div>
     <div className="grid grid-cols-3 gap-4 m-20">
       {womanShoes.map((womanShoe, index) => (

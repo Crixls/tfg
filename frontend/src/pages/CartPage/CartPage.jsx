@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { getOneProduct, getOrderEntities, getOrderLines } from "../../api/useCases";
 import { useAuthContext } from "../../context/useAuthContext";
 import { deleteOrderLine } from "../../api/api";
@@ -17,7 +17,6 @@ const CartPage = () => {
   const { userLogged } = useAuthContext();
   const apiUrl = import.meta.env.VITE_API_URL;
   const [open, setOpen] = useState(false);
-  const [open2, setOpen2] = useState(false);
   const [selectOrder, setselectOrder] = useState(null);
   const [selectProduct, setselectProduct] = useState(null);
 
@@ -27,7 +26,7 @@ const CartPage = () => {
 
 
   const handleCloseModal2 = () => {
-    setOpen2(false);
+    setOpen(false);
   };
 
   const handlePay = () => {
