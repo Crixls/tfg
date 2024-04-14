@@ -1,20 +1,31 @@
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
 import BrownSneakers from "../models/BrownSneakers";
+import NikeSneakers from "../models/NikeSneakers";
 
 
-function Render() {
+function Render(props) {
+
+  const {type} = props;
+
   return (
-    <section className="w-full h-screen relative">
+    <section style={{height:"60vh"}} className="w-full  relative">
 
         <Canvas 
             className="w-80 h-screen bg-transparent m-20"
             camera={{near:0.1,far:1000}}
         >
             <PresentationControls speed={1.5} global zoom={0.3} polar={[-0.1, Math.PI / 4]}>
-            <Stage environment={'night'}>
+              {type === "nike"? 
+                <Stage environment={'forest'}>
+                  <NikeSneakers></NikeSneakers>
+                </Stage>
+              :
+              <Stage environment={'night'}>
                 <BrownSneakers></BrownSneakers>
-            </Stage>
+                </Stage>
+              }
+                
             </PresentationControls>
         </Canvas>
     </section>

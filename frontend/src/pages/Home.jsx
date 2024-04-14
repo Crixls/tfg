@@ -122,15 +122,18 @@ const Home = () => {
         {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}
         {/* <img src={airjordan} alt="zapatos" />
       </div> */}
-      <div style={{ maxWidth: '50%', padding:'20px',marginTop:'40px', display:"flex" }}>
-        <img src={airjordan} alt="hombres" />
-        <Render></Render>
-
+      <div className="items-center flex p-10 " >
+        <img className="w-1/2" src={airjordan} alt="hombres" />
+        <div className="w-2/5">
+          <Render type="nike"></Render>
+        </div>
       </div>
 
-      <div style={{ maxWidth: '50%', padding:'20px',marginTop:'40px', display:"flex", marginBottom:"20px" }}>
-          <Render ></Render>
-            <img  src={circuit} alt="circuito" />
+      <div className="items-center flex p-10 justify-between " >
+        <div className="w-2/5">
+          <Render type="puma" ></Render>
+        </div>
+        <img className="w-1/2"  src={circuit} alt="circuito" />
       </div>
         {/* <ObjectThreeD  carpeta="shoe2" file="brown_sneakers.fbx"></ObjectThreeD> */}
       <div className="flex">
