@@ -74,17 +74,17 @@ const Home = () => {
         const filteredOrder = data.filter(order => {
           const userId = parseInt(order.user.split('/').pop(), 10);
           const foundUser = allUsers.find(user => user.username === useLogged.login);
-          setIdUser(parseInt(foundUser.id,10));
-          setUserLogged(parseInt(foundUser.id,10));
+          console.log(foundUser);
+          setIdUser(parseInt(foundUser.id, 10));
+          setUserLogged(parseInt(foundUser.id, 10));
           return userId === foundUser?.id;
         });
-
+  
         setorderUser(filteredOrder);
         console.log("Orders:", filteredOrder);
-        
-
+  
         // Crear pedido aquí si orderUser no está vacío
-        if (filteredOrder.length === 0 ){
+        if (filteredOrder.length === 0 && idUser !== null) {
           console.log(idUser);
           const orderEntityData = {
             user: `/api/users/${idUser}`, // Se asume que foundUser está definido aquí
@@ -92,9 +92,9 @@ const Home = () => {
             state: 0,
             total: 0
           };
-
+  
           const response = await postOrderEntity(orderEntityData);
-
+  
           if (response) {
             Swal.fire({
               icon: 'success',
@@ -109,11 +109,10 @@ const Home = () => {
         console.log("Error:", error);
       }
     };
-
-    fetchApi();
-  }, [allUsers, useLogged]);
   
-
+    fetchApi();
+  }, [allUsers, useLogged, idUser]);
+  
   return (
     <div className="">
       {search ? <ProductsSearch></ProductsSearch>:""}

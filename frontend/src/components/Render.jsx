@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
+import {  Stage, PresentationControls } from "@react-three/drei";
 import BrownSneakers from "../models/BrownSneakers";
 import NikeSneakers from "../models/NikeSneakers";
 
@@ -21,7 +21,7 @@ function Render(props) {
                   <NikeSneakers></NikeSneakers>
                 </Stage>
               :
-              <Stage environment={'night'}>
+              <Stage environment={'forest'}>
                 <BrownSneakers></BrownSneakers>
                 </Stage>
               }

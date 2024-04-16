@@ -151,7 +151,7 @@ const ShoePage = () => {
   return (
     <div className="grid grid-cols-2">
       <div className="p-10 flex justify-center items-center"><img className="w-1/2" src={`${apiUrl}${dataDetails.contentUrl}`} alt="imagen" /></div>
-      <div className="mt-20 mr-10">
+      <div className="mt-10 mr-10 p-10 m-10 rounded-md bg-gray-100">
         <p className="mb-4 text-2xl font-bold">{dataDetails.name}</p>
         <p className="mb-4 text-xl font-bold">{dataDetails.brand}</p>
         <p className="mb-4 text-xl font-bold">{dataDetails.price} €</p>
@@ -170,7 +170,7 @@ const ShoePage = () => {
 
         <form onSubmit={handleSubmit} className='flex flex-col'>
           <label className="text-lg font-bold pb-4" htmlFor="cantidad">Cantidad del producto</label>
-          <input className="ml-4 w-80"
+          <input className="ml-4 w-80 border-2 border-black rounded-md "
             id="catidad"
             type="number"
             placeholder="0"

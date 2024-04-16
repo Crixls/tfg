@@ -23,7 +23,7 @@ function NikeSneakers(props) {
         geometry={nodes.Object_9.geometry}
         material={materials.shoe}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={100}
+        scale={90}
       />
       <mesh
         castShadow
@@ -31,7 +31,7 @@ function NikeSneakers(props) {
         geometry={nodes.Object_12.geometry}
         material={materials.shoelace}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={100}
+        scale={90}
       />
         </a.group>
     )

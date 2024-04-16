@@ -6,13 +6,13 @@ const RegisterPage = () => {
 
   
   return (
-    <>
-      <UserRegisterForm
-        open={open}
-      
-      >
-      </UserRegisterForm>
-    </>
+   
+      <div  style={{ backgroundImage: 'url(/src/assets/registerfondo.webp)', backgroundSize: 'cover', backgroundPosition: 'center', padding:"49px" }}>
+        <UserRegisterForm
+          open={open}
+        >
+        </UserRegisterForm>
+      </div>
   );
 };
 

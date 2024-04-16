@@ -48,29 +48,6 @@ export const EntitiesProvider = (props) => {
     };
 
 
-    
-
-    // const addUser = async (userDTO) => {
-    //     try {
-    //         const data = await createUser(userDTO);
-    //         console.log(data);
-    //         if (!data) throw new Error(`Error en addUser: no se creó el usuario`);
-    //         const newArrayUsers = [
-    //             ...users,
-    //             {
-    //                 id: data.id,
-    //                 password: data.password,
-    //                 username: data.username,
-    //                 email: data.email,
-    //             },
-    //         ];
-    //         setUsers(newArrayUsers);
-    //         return data;
-    //     } catch (error) {
-    //         console.error("Error al crear usuario:", error);
-    //     }
-    // };
-
     const addFavorite = async (productId, userId) => {
       console.log(productId, userId);
         try {

@@ -9,6 +9,7 @@ import { useEntitiesContext } from '../context/useEntitiesContext';
 const Header = () => {
   const {logged, logout } = useAuthContext();
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpenSports, setModalOpenSports] = useState(false);
   const [useLogged, setUseLogged] = useState(false);
   const [adminLogged, setAdminLogged] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
@@ -48,6 +49,21 @@ const Header = () => {
 
 
 
+  const handleOpenSports = () => {
+    setModalOpenSports(true);
+  };
+
+
+  const handleCloseSports = () => {
+    setModalOpenSports(false);
+  };
+
+  const handleDoubleSports = () => {
+    setModalOpenSports(false); 
+  };
+
+
+
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -59,6 +75,7 @@ const Header = () => {
   const handleDoubleClick = () => {
     setModalOpen(false); 
   };
+
 
   const handlePanel=()=>{
     navigate("/admin");
@@ -112,6 +129,47 @@ const Header = () => {
           <li >
             <Link to="/kids" className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md">Niña/o</Link>
           </li>
+          <li >
+            <button className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md" onClick={handleOpenSports} onDoubleClick={handleDoubleSports}>Deportes</button>
+          </li>
+          {modalOpenSports && (
+            <div className="fixed top-40 right-0  flex justify-center items-center">
+              <div className="bg-black p-6 ">
+                <ul>
+                  <li className='p-2'>
+                    <Link to="/futbol" onClick={handleCloseSports}>
+                      <p className='noto-sans'>Fútbol</p>
+                    </Link>
+                  </li>
+                  <li className='p-2'>
+                    <Link to="/basket" onClick={handleCloseSports}>
+                      <p className='noto-sans'>Baloncesto</p>
+                    </Link>
+                  </li>
+                  <li className='p-2'>
+                    <Link to="/badminton" onClick={handleCloseSports}>
+                      <p className='noto-sans'>Badminton</p>
+                    </Link>
+                  </li>
+                  <li className='p-2'>
+                    <Link to="/running" onClick={handleCloseSports}>
+                      <p className='noto-sans'>Running</p>
+                    </Link>
+                  </li>
+                  <li className='p-2'>
+                    <Link to="/fitness" onClick={handleCloseSports}>
+                      <p className='noto-sans'>Fitness</p>
+                    </Link>
+                  </li>
+                  <li className='p-2'>
+                    <Link to="/tenis" onClick={handleCloseSports}>
+                      <p className='noto-sans'>Tenis</p>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
           <li className="custom-cursor-pointer flex items-center " onClick={handleSearch}>
             <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
           </li> 

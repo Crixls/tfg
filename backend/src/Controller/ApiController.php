@@ -160,12 +160,13 @@ class ApiController extends AbstractController
 
 
 
-    #[Route('/products/{id}', name: 'edit_product', methods: ['PUT'])]
+    #[Route('/productazo/{id}', name: 'edit_product', methods: ['PUT'])]
     public function editProduct(Request $request, $id): JsonResponse
     {
         // Obtener el producto existente por su ID
         $product = $this->entityManager->getRepository(Product::class)->find($id); 
 
+        
         // Si no se encuentra el producto, devolver una respuesta 404
         if (!$product) {
             return new JsonResponse(['message' => 'Product not found'], 404);

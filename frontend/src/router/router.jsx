@@ -16,6 +16,12 @@ import AdminPageUsers from "../pages/AdminPage/AdminPageUsers";
 import ShoePage from "../pages/ShoePage/ShoePage";
 import PayPage from "../pages/PayPage/PayPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import FutbolPage from "../pages/FutbolPage/FutbolPage";
+import BasketPage from "../pages/BasketPage/BasketPage";
+import BadmintonPage from "../pages/BadmintonPage/BadmintonPage";
+import RunningPage from "../pages/RunningPage.jsx/RunningPage";
+import FitnessPage from "../pages/FitnessPage.jsx/FitnessPage";
+import TenisPage from "../pages/TenisPage/TenisPage";
 
 
 const router = createBrowserRouter([
@@ -29,8 +35,16 @@ const router = createBrowserRouter([
       { path: "/woman", element: <WomanPage /> },
       { path: "/kids", element: <KidsPage /> },
       { path: "/cart", element: <CartPage /> },
-      { path: "/favorites", element: <FavoritePage /> },
       { path: "/shoe", element: <ShoePage /> },
+      { path: "/futbol", element: <FutbolPage /> },
+      { path: "/basket", element: <BasketPage /> },
+      { path: "/badminton", element: <BadmintonPage /> },
+      { path: "/running", element: <RunningPage /> },
+      { path: "/fitness", element: <FitnessPage /> },
+      { path: "/tenis", element: <TenisPage /> },
+
+
+      { path: "/favorites", element: <FavoritePage /> },
       { path: "/payment", element: <PayPage /> },
       { path: "/profile", element: <ProfilePage /> }
     ],

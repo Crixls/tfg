@@ -208,8 +208,10 @@ export const deleteFav = async (endpoint2) => {
 // Función para actualizar un producto
 export const updateProduct = async (productId, updatedProductData) => {
   try {
-    const apiUrl2 = `${apiUrl}/products/`;
-    const endpoint = `${apiUrl2}${productId}`;
+    // const apiUrl2 = `${apiUrl}/products/`;
+    // const endpoint = `${apiUrl2}${productId}`;
+    const endpoint2=`${apiUrl}/productazo/${productId}`;
+
     
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json"); // Cambiado a "application/json"
@@ -221,7 +223,7 @@ export const updateProduct = async (productId, updatedProductData) => {
       redirect: "follow"
     };
 
-    const response = await fetch(endpoint, requestOptions);
+    const response = await fetch(endpoint2, requestOptions);
     if (!response.ok) {
       throw new Error(`Error en la solicitud PUT: ${response.status} ${response.statusText}`);
     }

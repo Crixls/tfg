@@ -12,10 +12,6 @@ import brownDiffuseTexture from '../assets/sneaker2/sneaker_brown_diffuse.png';
 import brownRoughnessTexture from '../assets/sneaker2/sneaker_brown_roughness.png';
 import brownSpecularTexture from '../assets/sneaker2/sneaker_brown_spec.png';
 
-
-
-
-
  
 function BrownSneakers(props) {
     const brownRef = useRef();
