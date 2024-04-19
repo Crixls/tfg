@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../../api/useCases";
 import CardShoes from "../../components/CardShoes";
-import ProductsSearch from "../../components/ProductsSearch";
 import { useEntitiesContext } from "../../context/useEntitiesContext";
 
 import hombreimg from '../../assets/hombre/poster-hombre.webp';
@@ -14,7 +13,7 @@ import hombreimg from '../../assets/hombre/poster-hombre.webp';
 const ManPage = () => {
   const [manShoes, setManShoes] = useState([]);
 
-  const {search,handleUnload}= useEntitiesContext();
+  const {handleUnload}= useEntitiesContext();
 
 
   useEffect(() => {
@@ -33,7 +32,6 @@ const ManPage = () => {
 
   return (
     <>
-      {search ? <ProductsSearch></ProductsSearch>:""}
       <div className="mt-12 flex justify-center bg-black pr-60 pl-60">
         <img src={hombreimg} alt="hombres" />
       </div>

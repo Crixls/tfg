@@ -19,9 +19,8 @@ const Home = () => {
   const [orderUser, setorderUser] = useState(null);
   const [useLogged, setUseLogged] = useState(false);
   const [idUser, setIdUser] = useState(null);
-  const {setUserLogged } = useAuthContext();
+  const {setUserLogged,setUsers2 } = useAuthContext();
 
-  const {search}= useEntitiesContext();
 
 
   useEffect(() => {
@@ -29,6 +28,7 @@ const Home = () => {
       try {
         const usersData = await getUsers();
         setallUsers(usersData);
+        setUsers2(usersData);
         console.log("Users:", usersData);
 
         const storedUser = localStorage.getItem('UserToken');
@@ -115,7 +115,6 @@ const Home = () => {
   
   return (
     <div className="">
-      {search ? <ProductsSearch></ProductsSearch>:""}
         {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}
       {/* <div className="mt-10 flex justify-between"> */}
         {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}

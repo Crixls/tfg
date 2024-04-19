@@ -5,6 +5,7 @@ import { useAuthContext } from '../context/useAuthContext';
 import { getUsers } from '../api/useCases';
 // import ProductsSearch from './ProductsSearch';
 import { useEntitiesContext } from '../context/useEntitiesContext';
+import ProductsSearch from './ProductsSearch';
 
 const Header = () => {
   const {logged, logout } = useAuthContext();
@@ -12,11 +13,12 @@ const Header = () => {
   const [modalOpenSports, setModalOpenSports] = useState(false);
   const [useLogged, setUseLogged] = useState(false);
   const [adminLogged, setAdminLogged] = useState(false);
+  // const [search, setsearch] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
 
   const navigate = useNavigate();
 
-  const {changeSearch} = useEntitiesContext();
+  const {changeSearch,search} = useEntitiesContext();
 
 
 
@@ -90,6 +92,7 @@ const Header = () => {
 
   const handleSearch=() => {
     changeSearch(true);
+    // setsearch(true);
   }
 
 
@@ -105,7 +108,7 @@ const Header = () => {
 
 
   return (
-    <header className=" text-white ml-4 pr-4 flex justify-between items-center font-bold font-sans " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <header className=" text-white flex justify-between items-center font-bold font-sans " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="flex items-center bg-white m-0 p-0">
         <Link to="/">
           <img src={logo} alt="Logo React" className="w-40 h-40 mx-2" />
@@ -130,49 +133,64 @@ const Header = () => {
             <Link to="/kids" className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md">Niña/o</Link>
           </li>
           <li >
-            <button className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md" onClick={handleOpenSports} onDoubleClick={handleDoubleSports}>Deportes</button>
+            <button 
+              className="noto-sans text-black p-1 rounded-md hover:text-gray-400" 
+              onMouseEnter={handleOpenSports} 
+              onMouseLeave={handleCloseSports} 
+            >
+              Deportes
+            </button>
           </li>
           {modalOpenSports && (
-            <div className="fixed top-40 right-0  flex justify-center items-center">
-              <div className="bg-black p-6 ">
-                <ul>
-                  <li className='p-2'>
+            <div className="fixed top-0 left-0 right-0  h-96 flex justify-center items-center " onMouseEnter={handleOpenSports} onMouseLeave={handleCloseSports}>
+              <div className="bg-gray-200 w-1/2 p-6  rounded-md ">
+                <ul className='flex items-center justify-center'>
+                  <li className='pr-10'>
                     <Link to="/futbol" onClick={handleCloseSports}>
-                      <p className='noto-sans'>Fútbol</p>
+                      <p className='noto-sans text-black text-lg'>Fútbol</p>
                     </Link>
                   </li>
-                  <li className='p-2'>
+                  <li className='pr-10'>
                     <Link to="/basket" onClick={handleCloseSports}>
-                      <p className='noto-sans'>Baloncesto</p>
+                      <p className='noto-sans text-black text-lg'>Baloncesto</p>
                     </Link>
                   </li>
-                  <li className='p-2'>
+                  <li className='pr-10'>
                     <Link to="/badminton" onClick={handleCloseSports}>
-                      <p className='noto-sans'>Badminton</p>
+                      <p className='noto-sans text-black text-lg'>Badminton</p>
                     </Link>
                   </li>
-                  <li className='p-2'>
+                  <li className='pr-10'>
                     <Link to="/running" onClick={handleCloseSports}>
-                      <p className='noto-sans'>Running</p>
+                      <p className='noto-sans text-black text-lg'>Running</p>
                     </Link>
                   </li>
-                  <li className='p-2'>
+                  <li className='pr-10'>
                     <Link to="/fitness" onClick={handleCloseSports}>
-                      <p className='noto-sans'>Fitness</p>
+                      <p className='noto-sans text-black text-lg'>Fitness</p>
                     </Link>
                   </li>
-                  <li className='p-2'>
+                  <li className='pr-10'>
                     <Link to="/tenis" onClick={handleCloseSports}>
-                      <p className='noto-sans'>Tenis</p>
+                      <p className='noto-sans text-black text-lg'>Tenis</p>
                     </Link>
                   </li>
                 </ul>
               </div>
             </div>
           )}
-          <li className="custom-cursor-pointer flex items-center " onClick={handleSearch}>
-            <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
-          </li> 
+
+         
+          {search ? 
+            <li>
+              <ProductsSearch></ProductsSearch>
+            </li>
+          : 
+            <li className="custom-cursor-pointer flex items-center " onClick={handleSearch}>
+              <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
+            </li> 
+          }
+
           <li className="custom-cursor-pointer ">
             <Link to="/favorites" className='flex items-center'>
               <ion-icon name="heart-circle-outline" style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>

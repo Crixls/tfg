@@ -97,13 +97,13 @@ const ModalEditOrderLine = ({ order, open, closeModal, product2 }) => {
     };
 
     return (
-      <div className={`modal ${open ? 'open' : 'closed'} m-4`}>
-      <div className="cursor-pointer" onClick={closeModal}>
-            <ion-icon name="close"></ion-icon>
+        <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center`} style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
+            <div className="cursor-pointer absolute top-4 right-4" onClick={closeModal}>
+            <ion-icon style={{color:"white"}} size="large" name="close"></ion-icon>
           </div>                    
-            <div className={`modal ${open ? 'open' : 'closed'}  bg-gray-200 m-4 rounded-md `}>
+            <div className={`modal ${open ? 'open' : 'closed'}  bg-gray-200 m-4 rounded-md p-6 `}>
                 <div className="modal-content p-4">
-        <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-80">
+                    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-80">
                         
                         <label className='font-bold' htmlFor="color">Color:</label>
                         <div className="flex ">
@@ -121,7 +121,7 @@ const ModalEditOrderLine = ({ order, open, closeModal, product2 }) => {
                         {/* <input type="text" id="size" value={unitSize} onChange={(e) => { setUnitSize(e.target.value); setunit_size(e.target.value); }} /> */}
                         
                         <label className='font-bold' htmlFor="amount">Amount:</label>
-                        <input className='rounded-md' type="number" id="amount" value={amount} onChange={(e) => setAmount(parseInt(e.target.value, 10))} />
+                        <input className='rounded-md' type="number" id="amount" value={amount || ''} onChange={(e) => setAmount(parseInt(e.target.value, 10))} />
                         
                         <button className="bg-white border-2 border-black rounded-md mt-4 mb-4 p-2" type="submit">Actualizar</button>
                     </form>

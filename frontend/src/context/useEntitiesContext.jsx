@@ -8,6 +8,7 @@ export const EntitiesProvider = (props) => {
     const [products, setProducts] = useState([]);
     const [users] = useState([]);
     const [favorites, setFavorites] = useState([]);
+    const [searchProducts, setsearchProducts] = useState([]);
     const [dataDetails, setDataDetails] = useState(null);
     const [search, setSearch] = useState(false);
 
@@ -44,7 +45,7 @@ export const EntitiesProvider = (props) => {
     }
 
     const handleUnload = () => {
-        changeSearch(false);
+        setSearch(false);
     };
 
 
@@ -87,7 +88,9 @@ export const EntitiesProvider = (props) => {
                 dataDetails,
                 search,
                 changeSearch,
-                handleUnload
+                handleUnload,
+                setsearchProducts,
+                searchProducts
             }}
         >
             {children}

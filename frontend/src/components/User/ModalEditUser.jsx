@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import { updateProduct, updateUser } from '../../api/api';
+import {  updateUser } from '../../api/api';
 
 const ModalEditUser = ({ user, open, closeModal }) => {
   const [username, setUsername] = useState('');
@@ -82,65 +82,69 @@ const ModalEditUser = ({ user, open, closeModal }) => {
   };
 
   return (
-    <div className={`modal ${open ? 'open' : 'closed'}`}>
-      <div className=" m-10 ">
-        <div className="cursor-pointer" onClick={closeModal}>
-          <ion-icon name="close"></ion-icon>
-        </div>
-        <form onSubmit={handleSubmit} className='bg-gray-500 flex flex-col justify-center items-center p-4'>
-          <label htmlFor="username" className='font-bold text-white'>Username *:</label>
-          <input className="rounded-md"
-            id="username"
-            type="text"
-            placeholder="e.g. johndoe123"
-            style={{ marginBottom: '1rem' }}
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
+    <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center `} onClick={closeModal} style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
+      <div className=" ">
+        <div className="cursor-pointer absolute top-4 right-4" onClick={closeModal}>
+          <ion-icon style={{color:"white"}} size="large" name="close"></ion-icon>
+        </div>                    
+        <form onSubmit={handleSubmit} className='bg-gray-500  p-10 rounded-md'>
+          <div className='flex flex-col'>
+            <label htmlFor="username" className='font-bold m-2 text-white'>Username *:</label>
+            <input className="rounded-md m-2"
+              id="username"
+              type="text"
+              placeholder="e.g. johndoe123"
+              style={{ marginBottom: '1rem' }}
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
 
-          <label htmlFor="email" className='font-bold text-white'>Email *</label>
-          <input className="rounded-md"
-            id="email"
-            type="email"
-            placeholder="e.g. example@example.com"
-            style={{ marginBottom: '1rem' }}
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
+            <label htmlFor="email" className='m-2 font-bold text-white'>Email *</label>
+            <input className="rounded-md m-2"
+              id="email"
+              type="email"
+              placeholder="e.g. example@example.com"
+              style={{ marginBottom: '1rem' }}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
 
-          <label htmlFor="roles" className='font-bold text-white'>Roles *</label>
-          <textarea 
-            className='rounded-md'
-            id="roles"
-            style={{ marginBottom: '1rem' }}
-            value={roles.join(', ')} // Convertimos el array a una cadena para mostrar en el textarea
-            onChange={(event) => setRoles(event.target.value.split(',').map(role => role.trim()))} // Convertimos la cadena a un array al cambiar el valor
-          />
+            <label htmlFor="roles" className='m-2 font-bold text-white'>Roles *</label>
+            <textarea 
+              className='rounded-md m-2'
+              id="roles"
+              style={{ marginBottom: '1rem' }}
+              value={roles.join(', ')} // Convertimos el array a una cadena para mostrar en el textarea
+              onChange={(event) => setRoles(event.target.value.split(',').map(role => role.trim()))} // Convertimos la cadena a un array al cambiar el valor
+            />
 
-          <label htmlFor="password" className='font-bold text-white'>Password *</label>
-          <div className='flex flex-col items-center justify-center'>
-            <input className="rounded-md"
-              id="password"
-              type="password"
-              placeholder="********"
-              style={{ marginBottom: '0.5rem', color: passwordValid ? 'green' : 'gray' }}
-              value={password}
-              onChange={handlePasswordChange}
-              />
-            <input className="rounded-md"
-              id="confirmPassword"
-              type="password"
-              placeholder="********"
-              style={{ marginBottom: '0.5rem' }}
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              />
-            {!passwordsMatch && <p style={{ color: 'red', fontSize: '0.8rem' }}>Las contraseñas no coinciden</p>}
+            <label htmlFor="password" className='m-2 font-bold text-white'>Password *</label>
+            <div className='flex flex-col m-2 justify-center'>
+              <input className="rounded-md"
+                id="password"
+                type="password"
+                placeholder="********"
+                style={{ marginBottom: '0.5rem', color: passwordValid ? 'green' : 'gray' }}
+                value={password}
+                onChange={handlePasswordChange}
+                />
+              <input className="rounded-md"
+                id="confirmPassword"
+                type="password"
+                placeholder="********"
+                style={{ marginBottom: '0.5rem' }}
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                />
+              {!passwordsMatch && <p style={{ color: 'red', fontSize: '0.8rem' }}>Las contraseñas no coinciden</p>}
+            </div>
+            <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'white' }}>
+              Los campos marcados con * son obligatorios.
+            </p>
           </div>
-          <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'white' }}>
-            Los campos marcados con * son obligatorios.
-          </p>
-          <button type="submit" className='p-4 bg-white font-medium rounded-md mt-6'>Actualizar</button>
+          <div className='flex justify-center item'>
+            <button type="submit" className='p-2 pl-20 pr-20 bg-white font-medium rounded-md mt-6'>Actualizar</button>
+          </div>
         </form>
       </div>
     </div>

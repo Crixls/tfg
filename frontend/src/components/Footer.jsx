@@ -1,9 +1,13 @@
+import StickyFooter from "./StickyFooter"
+
 
 const Footer = () => {
   return (
-    <div className="h-20" style={{ backgroundImage: 'url(/src/assets/mapa.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <p>Hola</p>
-    </div>
+    <StickyFooter>
+      <div  className="relative bottom-0 left-0 w-full h-20 bg-cover bg-center" style={{backgroundImage: 'url(/src/assets/mapa.webp)'}}>
+      </div>
+    </StickyFooter>
+
   )
 }
 

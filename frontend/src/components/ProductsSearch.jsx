@@ -1,10 +1,18 @@
 import  { useEffect, useState } from 'react'
 import { getProducts } from '../api/useCases';
 import CardShoes from './CardShoes';
+import { useEntitiesContext } from '../context/useEntitiesContext';
+import { useNavigate } from 'react-router-dom';
 
 const ProductsSearch = () => {
 
     const [products, setProducts] = useState([]);
+
+    const {setsearchProducts}= useEntitiesContext();
+
+    const navigate = useNavigate();
+
+
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -24,7 +32,10 @@ const ProductsSearch = () => {
 
     }, [])
 
-    console.log(products);
+    function handlePageSearch(){
+      navigate("/search")
+    }
+
   
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -35,7 +46,6 @@ const ProductsSearch = () => {
       setSearchQuery(searchTerm);
   
       if (searchTerm.trim() === "") {
-        // entonces guardo en el filtrado de películas el estado inicial. [];
         setFilteredProducts([]); //
       } else {
         const filteredResults = products?.filter((product) =>
@@ -50,9 +60,9 @@ const ProductsSearch = () => {
       setFilteredProducts([]);
     }
     return (
-      <div className="flex flex-col items-center justify-center my-4">
+      <div className="flex  items-center justify-center my-4">
         <form
-          className="w-960 border border-gray-300  p-4 rounded-lg flex items-center"
+          className="w-960 flex items-center"
           onSubmit={handleSearch}
         >
           <input
@@ -65,9 +75,11 @@ const ProductsSearch = () => {
           <button
             type="submit"
             className="ml-2 bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-none"
+            onClick={handlePageSearch}
           >
             Buscar
           </button>
+          
   
           {searchQuery && (
             <button
@@ -78,14 +90,9 @@ const ProductsSearch = () => {
             </button>
           )}
         </form>
-        <hr />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-10 w-5/6">
           {/* {loading && <Spinner />} */}
           {/* {error && <h1>Esto es un error</h1>} */}
-          {(searchQuery ? filteredProducts : []).map((product) => (
-            <CardShoes key={product.id} typeShoe={product} />
-          ))}
-        </div>
+          {(searchQuery ? setsearchProducts(filteredProducts) : "")}
       </div>
     );
 }

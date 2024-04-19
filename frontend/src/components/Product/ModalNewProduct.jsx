@@ -75,13 +75,13 @@ const ModalNewProduct = ({  open, closeModal }) => {
   };
 
   return (
-    <div className={`modal ${open ? 'open' : 'closed'}`}>
-       <div className="cursor-pointer" onClick={closeModal}>
-          <ion-icon name="close"></ion-icon>
-        </div>
-      <div className="flex flex-col bg-gray-200 justify-center items-center">
+    <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center`} onClick={closeModal} style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
+      <div className="cursor-pointer absolute top-4 right-4" onClick={closeModal}>
+        <ion-icon style={{color:"white"}} size="large" name="close"></ion-icon>
+      </div>    
+      <div className="flex flex-col bg-gray-200 justify-center items-center rounded-md">
         <form className="flex flex-col p-4" onSubmit={handleSubmit}>
-          <label htmlFor="name" className="font-bold">Nombre</label>
+          <label htmlFor="name" className="font-bold m-2">Nombre</label>
           <input
             className="rounded-md m-2"
             type="text"
@@ -90,7 +90,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setName(e.target.value)}
             required
           />
-          <label htmlFor="description" className="font-bold">Descripción</label>
+          <label htmlFor="description" className="font-bold m-2">Descripción</label>
           <input
             className="rounded-md m-2"
             type="text"
@@ -99,7 +99,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setDescription(e.target.value)}
             required
           />
-          <label htmlFor="price" className="font-bold">Precio</label>
+          <label htmlFor="price" className="font-bold m-2">Precio</label>
           <input
             className="rounded-md m-2"
             type="text"
@@ -108,7 +108,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setPrice(parseFloat(e.target.value))}
             required
           />
-          <label htmlFor="brand" className="font-bold">Marca</label>
+          <label htmlFor="brand" className="font-bold m-2">Marca</label>
           <input
             className="rounded-md m-2"
             type="text"
@@ -117,7 +117,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setBrand(e.target.value)}
             required
           />
-          <label htmlFor="category" className="font-bold">Categoría</label>
+          <label htmlFor="category" className="font-bold m-2">Categoría</label>
           <input
             className="rounded-md m-2"
             type="text"
@@ -126,7 +126,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setCategory(e.target.value)}
             required
           />
-          <label htmlFor="new" className="font-bold">Nuevo</label>
+          <label htmlFor="new" className="font-bold m-2">Nuevo</label>
           <input
             className="rounded-md m-2"
             type="text"
@@ -135,7 +135,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setNewProduct(e.target.value)}
             required
           />
-          <label htmlFor="size" className="font-bold">Tamaño (separados por comas)</label>
+          <label htmlFor="size" className="font-bold m-2">Tamaño (separados por comas)</label>
           <input
             className="rounded-md m-2"
             type="text"
@@ -144,7 +144,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setSize(e.target.value.split(','))}
             required
           />
-          <label htmlFor="color" className="font-bold">Color (separados por comas)</label>
+          <label htmlFor="color" className="font-bold m-2">Color (separados por comas)</label>
           <input 
             className="rounded-md m-2"
             type="text"
@@ -153,7 +153,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setColor(e.target.value.split(','))}
             required
           />
-          <label htmlFor="deporte" className="font-bold">Deporte (separados por comas)</label>
+          <label htmlFor="deporte" className="font-bold m-2">Deporte (separados por comas)</label>
           <input
             className="rounded-md m-2"
             type="text"
@@ -162,8 +162,9 @@ const ModalNewProduct = ({  open, closeModal }) => {
             onChange={(e) => setDeporte(e.target.value.split(','))}
             required
           />
-          <label htmlFor="imageFile" className="font-bold">Seleccionar imagen:</label>
+          <label htmlFor="imageFile" className="font-bold m-2">Seleccionar imagen:</label>
           <input
+            className="m-2"
             type="file"
             id="imageFile"
             accept="image/*" // Acepta solo archivos de imagen

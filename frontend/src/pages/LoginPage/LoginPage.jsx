@@ -11,6 +11,8 @@ const LoginPage = () => {
   const { login } = useAuthContext();
   const navigate = useNavigate();
 
+
+
   useEffect(() => {
     const token = localStorage.getItem("UserToken");
     if (token) {
@@ -43,6 +45,7 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data)
         await login(data.token);
         localStorage.setItem(
           "UserToken",
@@ -80,17 +83,17 @@ const LoginPage = () => {
                 type="text"
                 id="username"
                 placeholder="Nombre de Usuario"
-                className="block w-full py-3 px-4 mb-4 leading-tight rounded border-gray-300 focus:outline-none focus:border-indigo-500"
+                className="block w-full py-3 px-4 mb-4 leading-tight rounded border-gray-300 focus:outline-none focus:border-gray-500"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="mb-6">
               <input
-                type="password"
+                type="passwosrd"
                 id="password"
                 placeholder="Contraseña"
-                className="block w-full py-3 px-4 mb-4 leading-tight rounded border-gray-300 focus:outline-none focus:border-indigo-500"
+                className="block w-full py-3 px-4 mb-4 leading-tight rounded border-gray-300 focus:outline-none focus:border-gray-500"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />

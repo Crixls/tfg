@@ -80,10 +80,10 @@ import Swal from 'sweetalert2';
 
 
   return (
-    <div className={`modal ${open ? 'open' : 'closed'}`}>
-          <div className="cursor-pointer" onClick={closeModal}>
-            <ion-icon name="close"></ion-icon>
-          </div>
+    <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center`} onClick={closeModal} style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
+      <div className="cursor-pointer absolute top-4 right-4" onClick={closeModal}>
+        <ion-icon style={{color:"white"}} size="large" name="close"></ion-icon>
+      </div>    
       <div className='flex justify-center items-center '>
           <form onSubmit={handleSubmit} className=' flex-col border-2 bg-gray-200 w-80 p-8 rounded-md'>
           <div  className='p-4'>
@@ -91,51 +91,48 @@ import Swal from 'sweetalert2';
               A continuación usted va a registrar un nuevo usuario en su empresa.
               </p>
               <div>
-              <label className='font-bold' htmlFor="username">Username *: </label>
+              <label className='font-bold m-2' htmlFor="username">Username *: </label>
               <input
-                  className='rounded-md'
+                  className='rounded-md m-2'
                   id="username"
                   type="text"
                   placeholder="e.g. johndoe123"
-                  style={{ marginBottom: '1rem' }}
                   value={username}
                   onChange={(event) => setUsername(event.target.value)}
                   required
               />
               </div>
               <div>
-              <label className='font-bold' htmlFor="email">Email *: </label>
+              <label className='font-bold m-2' htmlFor="email">Email *: </label>
               <input
-                  className='rounded-md'
+                  className='rounded-md m-2'
                   id="email"
                   type="email"
                   placeholder="e.g. example@example.com"
-                  style={{ marginBottom: '1rem' }}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   required
               />
               </div>
-              <label className='font-bold' htmlFor="password">Password *: </label>
-              <div className='flex flex-col items-center justify-center'>
+              <label className='font-bold m-2' htmlFor="password">Password *: </label>
+              <div className='flex flex-col  justify-center'>
 
               <input
-                  className='rounded-md'
+                  className='rounded-md m-2'
                   id="password"
                   type="password"
                   placeholder="********"
-                  style={{ marginBottom: '0.5rem', color: passwordValid ? 'green' : 'gray' }}
+                  style={{ color: passwordValid ? 'green' : 'gray' }}
                   value={password}
                   onChange={handlePasswordChange}
                   required
                   // invalid={!passwordsMatch}
               />
               <input
-                  className='rounded-md'
+                  className='rounded-md m-2'
                   id="confirmPassword"
                   type="password"
                   placeholder="********"
-                  style={{ marginBottom: '0.5rem' }}
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
                   required
@@ -147,7 +144,7 @@ import Swal from 'sweetalert2';
               Los campos marcados con * son obligatorios.
               </p>
               <div className='flex justify-center items-center'>
-                <button className='p-2  mt-4 rounded-md bg-white border-2 border-black font-medium' type="submit">Enviar</button>
+                <button className='pl-24 pr-24 p-2  mt-6 rounded-md bg-white border-2 border-black font-medium' type="submit">Enviar</button>
               </div>
           </div>
           </form>
