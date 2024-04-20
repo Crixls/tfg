@@ -1,4 +1,6 @@
 const apiUrl = import.meta.env.VITE_API_URL;
+import Swal from 'sweetalert2';
+
 
 const replacer = (key, value) => {
   if (typeof value === "number") {
@@ -109,6 +111,10 @@ export const deleteProduct = async (productId) => {
     return result;
   } catch (error) {
     console.error("Error en la eliminación del producto:", error);
+    Swal.fire(
+      'Error',
+      'Debes eliminar este producto de la lista de favoritos para eliminarlo.',
+    );
     throw error;
   }
 };

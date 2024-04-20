@@ -18,9 +18,9 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="h-screen" style={{ backgroundImage: 'url(/src/assets/admin.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div className="bg-black">
-        <div className="container mx-auto px-4 py-8">
+    <div className="h-20vh" style={{ backgroundImage: 'url(/src/assets/admin.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="bg-black relative">
+        <div className=" bg-black w-full container px-4 p-8">
           <h1 className="text-white text-3xl lg:text-4xl font-bold">Admin Page</h1>
         </div>
       </div>

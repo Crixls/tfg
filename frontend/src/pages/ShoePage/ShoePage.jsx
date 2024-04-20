@@ -3,6 +3,7 @@ import { useEntitiesContext } from "../../context/useEntitiesContext";
 import { getFavorites, getOrderEntities, getUsers } from "../../api/useCases";
 import { postOrderLine } from "../../api/api";
 import Swal from "sweetalert2";
+import ImgComponent from "../../components/ImgComponent";
 
 const ShoePage = () => {
   const { dataDetails } = useEntitiesContext();
@@ -20,6 +21,8 @@ const ShoePage = () => {
   const [amount, setAmount] = useState('');
   const [orderEntity_id, setOrderEntity_id] = useState('');
   const [unitSize, setUnitSize] = useState('');
+  const [imageColor, setImageColor] = useState('');
+  
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -134,7 +137,10 @@ const ShoePage = () => {
   };
 
   const handleClickColor = (color) => {
+
     setColor(color);
+    setImageColor(color);
+
   }
 
   const handleClickSize = (size) => {
@@ -150,7 +156,9 @@ const ShoePage = () => {
 
   return (
     <div className="grid grid-cols-2">
-      <div className="p-10 flex justify-center items-center"><img className="w-1/2" src={`${apiUrl}${dataDetails.contentUrl}`} alt="imagen" /></div>
+      {imageColor?<ImgComponent brand={`${dataDetails.brand}`} color={`${imageColor}`}></ImgComponent>
+      :      <div className="p-10 flex justify-center items-center"><img className="w-1/2" src={`${apiUrl}${dataDetails.contentUrl}`} alt="imagen" /></div>    }
+      
       <div className="mt-10 mr-10 p-10 m-10 rounded-md bg-gray-100">
         <p className="mb-4 text-2xl font-bold">{dataDetails.name}</p>
         <p className="mb-4 text-xl font-bold">{dataDetails.brand}</p>

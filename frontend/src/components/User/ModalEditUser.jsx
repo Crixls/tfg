@@ -82,7 +82,7 @@ const ModalEditUser = ({ user, open, closeModal }) => {
   };
 
   return (
-    <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center `} onClick={closeModal} style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
+    <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center `}  style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
       <div className=" ">
         <div className="cursor-pointer absolute top-4 right-4" onClick={closeModal}>
           <ion-icon style={{color:"white"}} size="large" name="close"></ion-icon>

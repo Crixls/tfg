@@ -32,6 +32,7 @@ export const EntitiesProvider = (props) => {
                     new: data.new,
                     color: data.color,
                     deporte: data.deporte,
+                    imageFiles:data.imageFiles
                 },
             ]);
             return data;
