@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SportsComponent from '../../components/Sports/SportsComponent'
 import { useEntitiesContext } from '../../context/useEntitiesContext';
 
+
 const FutbolPage = () => {
     const {handleUnload}= useEntitiesContext();
+
 
     useEffect(() => {
       handleUnload();

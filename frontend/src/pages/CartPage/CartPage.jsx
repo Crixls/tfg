@@ -4,6 +4,10 @@ import { useAuthContext } from "../../context/useAuthContext";
 import { deleteOrderLine } from "../../api/api";
 import ModalEditOrderLine from "../../components/OrderLine/ModalEditOrderLine";
 import { useNavigate } from "react-router-dom";
+import Loaderanimated from "../../components/Loaderanimated";
+import { LazyLoadImage} from 'react-lazy-load-image-component';
+
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 
@@ -19,6 +23,7 @@ const CartPage = () => {
   const [open, setOpen] = useState(false);
   const [selectOrder, setselectOrder] = useState(null);
   const [selectProduct, setselectProduct] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate= useNavigate();
 
@@ -46,6 +51,8 @@ const CartPage = () => {
   useEffect(() => {
     const fetchOrderEntities = async () => {
       try {
+        setLoading(true);
+
         const data = await getOrderEntities();
         const filteredOrder = data.filter(order => {
           const userId = parseInt(order.user.split('/').pop(), 10);
@@ -53,6 +60,8 @@ const CartPage = () => {
           return userId === parseInt(userLogged, 10);
         });
         setOrderEntity(filteredOrder);
+        setLoading(false);
+
       } catch (error) {
         console.log("Error:", error);
       }
@@ -120,6 +129,11 @@ const CartPage = () => {
     <div className="flex justify-center">
         {open && <ModalEditOrderLine product2={selectProduct}  open={open} closeModal={handleCloseModal2} order={selectOrder}/>}
     </div>
+    {loading ? (
+          <div className="flex justify-center items-center mt-60">
+          <Loaderanimated />
+        </div>
+      ):(
     <div className="grid grid-cols-2">
       <div className="m-10">
         <div className="p-4 mt-16" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
@@ -129,7 +143,7 @@ const CartPage = () => {
           <div key={index} className="m-10">
             <div className="grid grid-cols-2 border p-6 rounded-md">
               <div>
-                <img src={`${apiUrl}${products[index]?.contentUrl}`} alt={products[index]?.name} />
+                <LazyLoadImage effect="blur" src={`${apiUrl}${products[index]?.contentUrl}`} alt={products[index]?.name} />
               </div>
               <div className="ml-8">
                 <div className="flex justify-between">
@@ -166,6 +180,7 @@ const CartPage = () => {
         </div>
       </div>
     </div>
+      )}
     </>
   );
 };

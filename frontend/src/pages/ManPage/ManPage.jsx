@@ -6,6 +6,8 @@ import CardShoes from "../../components/CardShoes";
 import { useEntitiesContext } from "../../context/useEntitiesContext";
 
 import hombreimg from '../../assets/hombre/poster-hombre.webp';
+import Loaderanimated from "../../components/Loaderanimated";
+
 
 
 
@@ -14,18 +16,24 @@ const ManPage = () => {
   const [manShoes, setManShoes] = useState([]);
 
   const {handleUnload}= useEntitiesContext();
+  const [loading, setLoading] = useState(false);
+
 
 
   useEffect(() => {
     handleUnload();
     const fetchApi = async () => {
       try {
+        setLoading(true);
+
         const data = await getProducts();
         setManShoes(data.filter(product => product.category === "H"));
         console.log("Productos hombre:", data);
       } catch (error) {
         console.log("Error:", error);
       }
+      setLoading(false);
+
     };
     fetchApi();
   }, []);
@@ -36,6 +44,12 @@ const ManPage = () => {
         <img src={hombreimg} alt="hombres" />
       </div>
 
+      {loading ? (
+          <div className="flex justify-center items-center mt-60">
+          <Loaderanimated />
+        </div>
+      ):(
+
       <div className="grid grid-cols-3 gap-4 m-20">
         {manShoes.map((manShoe, index) => (
           <div key={index} className="flex justify-center">
@@ -43,6 +57,8 @@ const ManPage = () => {
           </div>
         ))}
       </div>
+      )}
+
       
     </>
   );

@@ -4,6 +4,8 @@ import { getFavorites, getOrderEntities, getUsers } from "../../api/useCases";
 import { postOrderLine } from "../../api/api";
 import Swal from "sweetalert2";
 import ImgComponent from "../../components/ImgComponent";
+import {  useNavigate } from 'react-router-dom';
+
 
 const ShoePage = () => {
   const { dataDetails } = useEntitiesContext();
@@ -23,6 +25,13 @@ const ShoePage = () => {
   const [unitSize, setUnitSize] = useState('');
   const [imageColor, setImageColor] = useState('');
   
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedColor2, setSelectedColor2] = useState('');
+  const [selectedSize, setSelectedsize] = useState('');
+
+  const navigate= useNavigate();
+
+
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -137,14 +146,26 @@ const ShoePage = () => {
   };
 
   const handleClickColor = (color) => {
-
+    setSelectedColor(color);
     setColor(color);
     setImageColor(color);
 
   }
+  const handleClickColor2 = (color) => {
+    setSelectedColor2(color);
+    setColor(color);
+    // setImageColor(color);
+
+
+  }
 
   const handleClickSize = (size) => {
+    setSelectedsize(size);
     setSize(size);
+  }
+
+  const handleReturn=()=>{
+    navigate("../")
   }
 
   useEffect(() => {
@@ -156,8 +177,13 @@ const ShoePage = () => {
 
   return (
     <div className="grid grid-cols-2">
-      {imageColor?<ImgComponent brand={`${dataDetails.brand}`} color={`${imageColor}`}></ImgComponent>
-      :      <div className="p-10 flex justify-center items-center"><img className="w-1/2" src={`${apiUrl}${dataDetails.contentUrl}`} alt="imagen" /></div>    }
+      
+      {imageColor?
+        <div className="flex justify-center items-center p-10">
+          <ImgComponent brand={`${dataDetails.brand}`} color={`${imageColor}`} name={`${dataDetails.name}`}></ImgComponent>
+        </div>
+      :      
+      <div className="p-10 flex justify-center items-center"><img className="w-3/5" src={`${apiUrl}${dataDetails.contentUrl}`} alt="imagen" /></div>    }
       
       <div className="mt-10 mr-10 p-10 m-10 rounded-md bg-gray-100">
         <p className="mb-4 text-2xl font-bold">{dataDetails.name}</p>
@@ -165,14 +191,29 @@ const ShoePage = () => {
         <p className="mb-4 text-xl font-bold">{dataDetails.price} €</p>
         <p className="mb-4 text-lg font-bold mt-8">Colores</p>
         <div className="flex ">
-          {dataDetails.color.map((col, index) => {
-            return <button className="bg-gray-500 text-white border-2 border-black rounded-md m-4 p-2" onClick={() => handleClickColor(col)} key={index}>{col}</button>;
-          })}
+        {dataDetails.color.map((col, index) => (
+          dataDetails.color.length >= 2 ? 
+          
+            <button 
+              className={` text-white border-2 border-black rounded-md m-4 p-2 ${selectedColor === col ? 'bg-red-600' : 'bg-gray-500'}`} 
+              onClick={() => handleClickColor(col)} 
+              key={index}
+            >
+              {col}
+            </button> :
+            <button 
+              className={` text-white border-2 border-black rounded-md m-4 p-2 ${selectedColor2 === col ? 'bg-red-600' : 'bg-gray-500'}`} 
+              onClick={() => handleClickColor2(col)} 
+              key={index}
+            >
+              {col}
+            </button>
+        ))}
         </div>
         <p className="mb-4 text-lg font-bold">Selecciona la talla</p>
         <div className="flex">
           {dataDetails.size.map((siz, index) => {
-            return <button className="p-2 bg-gray-500 text-white border-2 border-black rounded-md m-4 " onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
+            return <button className={`p-2 bg-gray-500 text-white border-2 border-black rounded-md m-4  ${selectedSize === siz ? 'bg-red-600' : 'bg-gray-500'}`} onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
           })}
         </div>
 
@@ -203,6 +244,8 @@ const ShoePage = () => {
         <p className="mb-4 text-lg font-bold">Descripción</p>
         <p className="mb-4 ml-4 text-md ">{dataDetails.description} </p>
       </div>
+      <button className='border-2 border-black rounded-lg m-4 font-medium p-2 w-40' onClick={handleReturn}>Volver</button>
+
     </div>
   );
 };

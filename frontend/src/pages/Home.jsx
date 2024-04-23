@@ -11,6 +11,7 @@ import airjordan from '../assets/home/airjordan.webp';
 import circuit from '../assets/home/circuit-last.webp';
 import ObjectThreeD from "../components/ThreeD/ObjectThreeD";
 import Render from "../components/Render";
+import Loaderanimated from "../../src/components/Loaderanimated";
 
 
 const Home = () => {
@@ -20,6 +21,8 @@ const Home = () => {
   const [useLogged, setUseLogged] = useState(false);
   const [idUser, setIdUser] = useState(null);
   const {setUserLogged,setUsers2 } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+
 
 
 
@@ -48,11 +51,14 @@ const Home = () => {
     const fetchApi = async () => {
 
       try {
+        setLoading(true);
         const products=await getProducts();
           setProducts(products.filter(product => product.new === 1));
       }catch(err) {
           console.log("Error:", err);
       }
+      setLoading(false);
+
     };
     fetchApi();
 
@@ -137,13 +143,19 @@ const Home = () => {
       <div className="flex">
         <img src={miImagen} alt="shoe1" />
       </div>
-      <div className="grid grid-cols-2 gap-4 m-20">
-        {products.map((womanShoe, index) => (
-          <div key={index} className="flex justify-center" >
-            <CardShoes typeShoe={womanShoe} />
+        {loading ? (
+          <div className="flex justify-center items-center mt-60">
+              <Loaderanimated />
           </div>
-        ))}
-      </div>
+      ):(
+        <div className="grid grid-cols-2 gap-4 m-20  justify-center items-center">
+          {products.map((womanShoe, index) => (
+            <div key={index} className="flex justify-center" >
+              <CardShoes typeShoe={womanShoe} />
+            </div>
+          ))}
+          </div>
+        )}
       
     </div>
   );
