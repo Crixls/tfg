@@ -12,6 +12,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 import paypalImage from "../../assets/paypal.png";
+import StripeContainer from "../../components/Payment/StripeContainer";
 
 const CartPage = () => {
   const [orderLines, setOrderLines] = useState([]);
@@ -24,6 +25,9 @@ const CartPage = () => {
   const [selectOrder, setselectOrder] = useState(null);
   const [selectProduct, setselectProduct] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showItem, setShowItem] = useState(false);
+  const [user, setUser] = useState("");
+  const [date, setdate] = useState("");
 
   const navigate= useNavigate();
 
@@ -59,6 +63,9 @@ const CartPage = () => {
         
           return userId === parseInt(userLogged, 10);
         });
+        console.log(filteredOrder);
+        setUser(filteredOrder[0].user);
+        setdate(filteredOrder[0].date);
         setOrderEntity(filteredOrder);
         setLoading(false);
 
@@ -104,6 +111,10 @@ const CartPage = () => {
       return acc + price * amount;
     }, 0);
   };
+
+  const handleShowItem =()=>{
+    setShowItem(true);
+  }
   
 
   useEffect(() => {
@@ -123,12 +134,13 @@ const CartPage = () => {
     fetchProducts();
   }, [orderLines]);
 
-
+console.log(user);
   return (
     <>
     <div className="flex justify-center">
         {open && <ModalEditOrderLine product2={selectProduct}  open={open} closeModal={handleCloseModal2} order={selectOrder}/>}
     </div>
+    {showItem ? <StripeContainer date={date} user={user} order={orderEntity[0]?.id} total={total}></StripeContainer>:""}
     {loading ? (
           <div className="flex justify-center items-center mt-60">
           <Loaderanimated />
@@ -167,9 +179,9 @@ const CartPage = () => {
         <div className="p-24" style={{backgroundColor: "rgba(128, 128, 128, 0.8)"}}>
             <p className="text-lg font-bold text-white ">Total: {total} €</p>
             <div className="flex flex-col items-center mt-6">
-              <button className="flex justify-center items-center bg-black  rounded-md p-4 mt-4 w-80" onClick={handlePay}>
+              <button className="flex justify-center items-center bg-black  rounded-md p-4 mt-4 w-80" onClick={handleShowItem}>
                 <ion-icon style={{color:"white"}} name="card-outline"></ion-icon> 
-                <p className="ml-4 font-bold text-white">
+                <p className="ml-4 font-bold text-white" >
                   PAGAR
                 </p>
               </button>

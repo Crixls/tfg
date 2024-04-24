@@ -392,6 +392,38 @@ export const updateUser = async (userId, updatedUserData) => {
   
 };
 
+export const editOrderEntity = async (entityId,updateOrder) => {
+
+  const apiUrl2 = `${apiUrl}/api/order_entities`;
+  const endpoint = `${apiUrl2}/${entityId}`;
+    
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/ld+json");
+  myHeaders.append("Content-Type", "application/json");
+
+
+  const requestOptions = {
+    method: "PUT",
+    headers: myHeaders,
+    body: JSON.stringify(updateOrder),
+    redirect: "follow",
+  };
+  console.log(requestOptions);
+  
+  try {
+    const response = await fetch(endpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+    throw error;
+  }
+
+};
+
 export const post2 = async (formData) => {
   const myHeaders = new Headers();
   myHeaders.append("Accept", "application/ld+json");

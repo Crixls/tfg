@@ -22,6 +22,7 @@ const Home = () => {
   const [idUser, setIdUser] = useState(null);
   const {setUserLogged,setUsers2 } = useAuthContext();
   const [loading, setLoading] = useState(false);
+  
 
 
 
@@ -111,6 +112,38 @@ const Home = () => {
             console.error("Error al actualizar usuario");
           }
         }
+
+        const allOrdersStateOne = filteredOrder.every(order => order.state === 1);
+        if (allOrdersStateOne) {
+          try {
+            // Crear una nueva orderentitydata si todos los pedidos tienen estado 1
+            const orderEntityData = {
+              user: `/api/users/${idUser}`, // Suponiendo que order.user es la URL del usuario
+              date: new Date().toISOString(),
+              state: 0,
+              total: 0
+            }
+            // Hacer la llamada para crear una nueva orderentitydata
+            const response = await postOrderEntity(orderEntityData);
+
+            if (response) {
+              Swal.fire({
+                icon: 'success',
+                title: '¡Tenemos el carrito correctamente!',
+                text: `El usuario ${idUser} ha sido actualizado exitosamente.`,
+              });
+            } else {
+              console.error("Error al actualizar usuario");
+            }
+          } catch (error) {
+            console.error("Error al crear una nueva orderentitydata:", error);
+          }
+        } else {
+          console.log("Todos los pedidos a 1");
+        }
+
+
+
       } catch (error) {
         console.log("Error:", error);
       }
