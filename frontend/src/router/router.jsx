@@ -47,7 +47,8 @@ const router = createBrowserRouter([
       
       { path: "/favorites", element: <FavoritePage /> },
       { path: "/payment", element: <PayPage /> },
-      { path: "/profile", element: <ProfilePage /> }
+      { path: "/profile", element: <ProfilePage /> },
+      { path: "/error", element: <ErrorCommercePage /> }
     ],
   },
   
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
-  },
+  }
 ]);
 
 

@@ -13,6 +13,7 @@ export const AuthProvider = (props) => {
 
   // Estado del usuario autenticado y el token
   const [logged, setLogged] = useState(null);
+  const [userL, setuserL] = useState(null);
   const [userLogged, setUserLogged]= useState(null);
   const [users2, setUsers2]= useState([]);
   const [token, setToken] = useState(null);
@@ -73,7 +74,7 @@ export const AuthProvider = (props) => {
   };
   
   return (
-    <AuthContext.Provider value={{ logged, login, logout, token ,setLogged , userLogged, setUserLogged, users2, setUsers2}}>
+    <AuthContext.Provider value={{ logged, login, logout, token ,setLogged , userLogged, setUserLogged, users2, setUsers2,userL,setuserL}}>
       {children}
     </AuthContext.Provider>
   );

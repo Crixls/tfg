@@ -19,6 +19,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const {changeSearch,search} = useEntitiesContext();
+  const {setuserL} = useAuthContext();
 
 
 
@@ -27,6 +28,7 @@ const Header = () => {
     const storedUser = localStorage.getItem('UserToken');
     if (storedUser) {
       setUseLogged(JSON.parse(storedUser));
+      setuserL(JSON.parse(storedUser));
     }
   }, []);
 
