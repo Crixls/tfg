@@ -58,7 +58,7 @@ console.log(user);
                 </div>
                 :
                 <div>
-                    <h2 className='text-lg font-bold'>Perfecto has realizado tu compra con éxito</h2>
+                    <h2 className='text-xl pl-10 pt-10 font-bold'>Has realizado tu compra con éxito</h2>
                 </div>
             }
         </>

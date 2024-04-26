@@ -23,6 +23,8 @@ import RunningPage from "../pages/RunningPage.jsx/RunningPage";
 import FitnessPage from "../pages/FitnessPage.jsx/FitnessPage";
 import TenisPage from "../pages/TenisPage/TenisPage";
 import SearchPage from "../pages/SearchPage/SearchPage";
+import OrdersPage from "../pages/OrdersPage/OrdersPage";
+import AdminEstadisticas from "../pages/AdminPage/AdminEstadisticas";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +50,8 @@ const router = createBrowserRouter([
       { path: "/favorites", element: <FavoritePage /> },
       { path: "/payment", element: <PayPage /> },
       { path: "/profile", element: <ProfilePage /> },
-      { path: "/error", element: <ErrorCommercePage /> }
+      { path: "/orders", element: <OrdersPage /> }
+
     ],
   },
   
@@ -62,6 +65,7 @@ const router = createBrowserRouter([
           { index: true, element: <AdminPage /> },
           { path: "products", element: <AdminPageProducts /> }, 
           { path: "users", element: <AdminPageUsers /> }, 
+          { path: "estadisticas", element: <AdminEstadisticas /> }, 
         ]
       }
       

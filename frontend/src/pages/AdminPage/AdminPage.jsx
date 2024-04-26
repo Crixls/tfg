@@ -12,6 +12,9 @@ const AdminPage = () => {
   const handleUsuarios = () => {
     navigate("/admin/users");
   };
+  const handleEstadisticas = () => {
+    navigate("/admin/estadisticas");
+  };
 
   const handleReturn = () => {
     navigate("/");
@@ -27,7 +30,8 @@ const AdminPage = () => {
       <div className="h-screen flex flex-col justify-center items-center">
         <div className="m-20">
           <button className="mr-40 bg-gray-500  rounded-md text-white p-8 font-medium text-lg" onClick={handleProduct}>Productos</button>
-          <button className="ml-40 bg-gray-500  rounded-md p-8 text-white font-medium text-lg" onClick={handleUsuarios}>Usuarios</button>
+          <button className="ml-40 mr-40 bg-gray-500  rounded-md p-8 text-white font-medium text-lg" onClick={handleUsuarios}>Usuarios</button>
+          <button className="ml-40 bg-gray-500  rounded-md p-8 text-white font-medium text-lg" onClick={handleEstadisticas}>Estadísticas</button>
         </div>
         <div className="m-40">
           <button className="rounded-md  bg-black p-8 pl-12 pr-12 font-medium text-white text-lg " onClick={handleReturn}>

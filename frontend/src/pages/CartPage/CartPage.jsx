@@ -53,28 +53,32 @@ const CartPage = () => {
   }
 
   useEffect(() => {
-    const fetchOrderEntities = async () => {
-      try {
-        setLoading(true);
+  const fetchOrderEntities = async () => {
+    try {
+      setLoading(true);
 
-        const data = await getOrderEntities();
-        const filteredOrder = data.filter(order => {
-          const userId = parseInt(order.user.split('/').pop(), 10);
-        
-          return userId === parseInt(userLogged, 10);
-        });
-        console.log(filteredOrder);
-        setUser(filteredOrder[0].user);
-        setdate(filteredOrder[0].date);
-        setOrderEntity(filteredOrder);
-        setLoading(false);
+      const data = await getOrderEntities();
+      const filteredOrder = data.filter(order => {
+        const userId = parseInt(order.user.split('/').pop(), 10);
+        const userState = order.state; // Acceder al estado del usuario
+        console.log(order.user);
+        // Comprobar que el ID del usuario sea igual al del usuario loggeado y que el estado sea 0
+        return userId === parseInt(userLogged, 10) && userState === 0;
+      });
 
-      } catch (error) {
-        console.log("Error:", error);
-      }
-    };
-    fetchOrderEntities();
-  }, [userLogged]);
+      console.log(filteredOrder);
+      setUser(filteredOrder[0].user);
+      setdate(filteredOrder[0].date);
+      setOrderEntity(filteredOrder);
+      setLoading(false);
+
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+  fetchOrderEntities();
+}, [userLogged]);
+
 
   useEffect(() => {
     const fetchOrderLines = async () => {

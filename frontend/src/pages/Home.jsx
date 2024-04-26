@@ -81,7 +81,6 @@ const Home = () => {
         const filteredOrder = data.filter(order => {
           const userId = parseInt(order.user.split('/').pop(), 10);
           const foundUser = allUsers.find(user => user.username === useLogged.login);
-          console.log(foundUser);
           setIdUser(parseInt(foundUser.id, 10));
           setUserLogged(parseInt(foundUser.id, 10));
           return userId === foundUser?.id;
@@ -138,9 +137,7 @@ const Home = () => {
           } catch (error) {
             console.error("Error al crear una nueva orderentitydata:", error);
           }
-        } else {
-          console.log("Todos los pedidos a 1");
-        }
+        } 
 
 
 
