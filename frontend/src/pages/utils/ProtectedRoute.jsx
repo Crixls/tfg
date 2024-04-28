@@ -22,8 +22,6 @@ const ProtectedRoute = ({ redirect }) => {
   }, []);
 
   const user =users.filter((user)=>{
-    console.log(user.username);
-
     if(user.roles.includes("ROLE_ADMIN") && user.username===userLogged){
       console.log(user);
       return user

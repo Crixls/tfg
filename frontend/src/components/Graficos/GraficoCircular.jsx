@@ -1,22 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { getFavorites } from '../../api/useCases';
-import { useAuthContext } from '../../context/useAuthContext';
-import { Pie, PieChart, ResponsiveContainer } from 'recharts';
 
-const GraficoCircular = ({favorites}) => {
+import ReactECharts from "echarts-for-react";
+
+const GraficoCircular = ({ data }) => {
+    // Inicializa un objeto para almacenar el recuento de cada idproduct
+
+    const option = {
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          top: '5%',
+          left: 'center'
+        },
+        series: [
+          {
+            name: 'Access From',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              show: false,
+              position: 'center'
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: 'bold'
+              }
+            },
+            labelLine: {
+              show: false
+            },
+            data: data
+          }
+        ]
+      };
+    
 
 
     return (
-        <div className='w-full h-1/2'>
-            <ResponsiveContainer>
-                <PieChart>
-                    <Pie 
-                        dataKey="value"
-                        data={favorites}
-                    />
-                </PieChart>
-            </ResponsiveContainer>
-        </div>
+        <ReactECharts option={option}></ReactECharts>
     );
 };
 
