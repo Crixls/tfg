@@ -213,6 +213,7 @@ export const deleteFav = async (endpoint2) => {
 
 // Función para actualizar un producto
 export const updateProduct = async (productId, updatedProductData) => {
+  {console.log(productId,updatedProductData)}
   try {
     // const apiUrl2 = `${apiUrl}/products/`;
     // const endpoint = `${apiUrl2}${productId}`;

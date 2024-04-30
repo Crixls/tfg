@@ -2,7 +2,7 @@ import  { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { updateProduct } from '../../api/api';
 
-const ModalEditProduct = ({ product, open, closeModal }) => {
+const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(null); // Inicializando con null
@@ -51,15 +51,19 @@ const ModalEditProduct = ({ product, open, closeModal }) => {
       };
 
       console.log(updatedProductData);
+
+      const idProduct = parseInt(product.id, 10);
   
-      const response = await updateProduct(product.id, updatedProductData);
+      const response = await updateProduct(idProduct, updatedProductData);
   
+      onProductUpdated(response); // Llama a la función onProductCreated con el nuevo producto
       if (response) {
         Swal.fire({
           icon: 'success',
           title: 'Producto actualizado correctamente!',
           text: `El producto ${name} ha sido actualizado exitosamente.`,
         });
+
       } else {
         console.error("Error en la respuesta");
       }

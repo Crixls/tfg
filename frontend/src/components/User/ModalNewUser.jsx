@@ -2,7 +2,7 @@ import  { useState } from 'react'
 import { post2 } from '../../api/api';
 import Swal from 'sweetalert2';
 
-  const ModalNewUser = ({open, closeModal}) => {
+  const ModalNewUser = ({open, closeModal, onUserCreated}) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -56,6 +56,8 @@ import Swal from 'sweetalert2';
             title: '¡Usuario creado correctamente!',
             text: `El usuario ${username} ha sido creado exitosamente.`,
           });
+          onUserCreated(response); // Llama a la función onProductCreated con el nuevo producto
+
         } else {
           console.error("Error al registrar usuario");
         }

@@ -1,6 +1,6 @@
 import  { useEffect, useState } from 'react'
 import { getProducts } from '../../api/useCases';
-import { deleteProduct } from '../../api/api';
+import { deleteProduct, postProduct, updateProduct } from '../../api/api';
 import ModalNewProduct from '../../components/Product/ModalNewProduct';
 import ModalEditProduct from '../../components/Product/ModalEditProduct';
 import CardShoes from '../../components/CardShoes';
@@ -14,43 +14,57 @@ const AdminPageProducts = () => {
     const navigate= useNavigate();
 
 
-
     useEffect(() => {
-        const fetchApi = async () => {
-            try {
-                const data = await getProducts();
-                setAllShoes(data);
-                console.log("Productos:", data);
-            } catch (error) {
-                console.log("Error:", error);
-            }
-        };
-        fetchApi();
+        fetchProducts(); // Llama a fetchProducts para cargar los productos iniciales
     }, []);
+
+    const fetchProducts = async () => {
+        try {
+            const data = await getProducts();
+            setAllShoes(data);
+            console.log("Productos:", data);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    };
   
     const handleCrearProducto = () => {
         setOpen(true);
         setOpen2(false); // Asegúrate de cerrar ModalEditProduct si está abierto
     }
 
-    const handleEditarProducto = (product) => {
+    const handleEditarProducto = (product,onProductEdited) => {
         setSelectedProduct(product); // Establecer el producto seleccionado
         setOpen2(true);
         setOpen(false); // Asegúrate de cerrar ModalNewProduct si está abierto
     }
 
-    const handleCloseModal = () => {
+    const handleCloseModal =  () => {
         setOpen(false);
     };
   
+    const handleEliminarProducto = async (id) => {
+        await deleteProduct(id);
+        fetchProducts(); // Actualiza la lista de productos después de eliminar uno
+    }
     const handleCloseModal2 = () => {
+       
         setOpen2(false);
     };
 
-    const handleEliminarProducto =(id)=>{
-        deleteProduct(id);
+    const handleProductCreated = async (newProductData) => {
+        await postProduct(newProductData); // Crea el nuevo producto
+        fetchProducts(); // Actualiza la lista de productos después de crear uno
+        setOpen(false); // Cierra el modal después de crear un producto
     }
 
+    const handleProductUpdated = async (updatedProductData) => {
+        await updateProduct(updatedProductData); // Edita el producto
+        fetchProducts(); // Actualiza la lista de productos después de editar uno
+        setOpen2(false); // Cierra el modal después de editar un producto
+    }
+
+    
     const handleReturn =()=>{
         navigate("../")
     }
@@ -64,10 +78,10 @@ const AdminPageProducts = () => {
                 <button onClick={handleCrearProducto} className="bg-gray-300 font-medium rounded-lg p-4 m-2">Crear producto</button>
             </div>
             <div className="flex justify-center">
-                {open && <ModalNewProduct open={open} closeModal={handleCloseModal}/>}
+                {open && <ModalNewProduct open={open} closeModal={handleCloseModal} onProductCreated={handleProductCreated} />}
             </div>
             <div className="flex justify-center">
-                {open2 && <ModalEditProduct open={open2} closeModal={handleCloseModal2} product={selectedProduct}/>}
+                {open2 && <ModalEditProduct open={open2} closeModal={handleCloseModal2} product={selectedProduct} onProductUpdated={handleProductUpdated} />}
             </div>
             
             <div className="grid grid-cols-3 gap-4 ">

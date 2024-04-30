@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import {  updateUser } from '../../api/api';
 
-const ModalEditUser = ({ user, open, closeModal }) => {
+const ModalEditUser = ({ user, open, closeModal, onUserUpdated }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -71,6 +71,7 @@ const ModalEditUser = ({ user, open, closeModal }) => {
           title: '¡Usuario actualizado correctamente!',
           text: `El usuario ${username} ha sido actualizado exitosamente.`,
         });
+        onUserUpdated(response);
       } else {
         console.error("Error al actualizar usuario");
       }

@@ -20,7 +20,7 @@ const Home = () => {
   const [orderUser, setorderUser] = useState(null);
   const [useLogged, setUseLogged] = useState(false);
   const [idUser, setIdUser] = useState(null);
-  const {setUserLogged,setUsers2 } = useAuthContext();
+  const {setUserLogged,setUsers2,userfinal } = useAuthContext();
   const [loading, setLoading] = useState(false);
   
 
@@ -70,6 +70,7 @@ const Home = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem('UserToken');
     if (storedUser) {
+     
       setUseLogged(JSON.parse(storedUser));
     }
   }, []);
@@ -87,6 +88,7 @@ const Home = () => {
         });
   
         setorderUser(filteredOrder);
+
         console.log("Orders:", filteredOrder);
   
         // Crear pedido aquí si orderUser no está vacío

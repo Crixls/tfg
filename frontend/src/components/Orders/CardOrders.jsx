@@ -26,7 +26,7 @@ const CardOrders = ({ order }) => {
     return (
         <>
             {open &&  <ModalCardOrder  open={open} closeModal={handleCloseModal2}  order={selectedOrder}></ModalCardOrder>}
-            <div className='p-10 m-40 border-2 rounded-lg' onClick={handleClick}>
+            <div className='p-10 m-40 border-2 rounded-lg cursor-pointer' onClick={handleClick}>
                 <p className='text-lg'>Fecha: {formatDate(order.date)}</p>
                 <br />
                 <p className='text-xl font-bold'>Total: {order.total}</p>

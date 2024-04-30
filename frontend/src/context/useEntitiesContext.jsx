@@ -11,6 +11,7 @@ export const EntitiesProvider = (props) => {
     const [searchProducts, setsearchProducts] = useState([]);
     const [dataDetails, setDataDetails] = useState(null);
     const [search, setSearch] = useState(false);
+    
 
 
     const addProduct = async (product) => {

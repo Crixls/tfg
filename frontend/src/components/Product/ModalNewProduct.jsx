@@ -2,7 +2,7 @@ import { useState } from "react";
 import Swal from 'sweetalert2';
 import { postProduct } from "../../api/api";
 
-const ModalNewProduct = ({  open, closeModal }) => {
+const ModalNewProduct = ({  open, closeModal,onProductCreated  }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -39,6 +39,7 @@ const ModalNewProduct = ({  open, closeModal }) => {
 
       const response = await postProduct(formData);
 
+      onProductCreated(response);
       if (response) {
         Swal.fire({
           icon: 'success',

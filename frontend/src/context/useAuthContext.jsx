@@ -17,6 +17,7 @@ export const AuthProvider = (props) => {
   const [userLogged, setUserLogged]= useState(null);
   const [users2, setUsers2]= useState([]);
   const [token, setToken] = useState(null);
+  const [userfinal, setuserfinal] = useState(null);
 
 
   // Obtiene el estado inicial del token de usuario desde el almacenamiento local
@@ -25,6 +26,7 @@ export const AuthProvider = (props) => {
     if (initialState) {
       setToken(initialState.token);
       setLogged(initialState.login);
+      setUserLogged(initialState.login);
     }
   }, []);
 
@@ -74,7 +76,7 @@ export const AuthProvider = (props) => {
   };
   
   return (
-    <AuthContext.Provider value={{ logged, login, logout, token ,setLogged , userLogged, setUserLogged, users2, setUsers2,userL,setuserL}}>
+    <AuthContext.Provider value={{ logged, login, logout, token ,setLogged , userLogged, setUserLogged, users2, setUsers2,userL,setuserL,userfinal,setuserfinal}}>
       {children}
     </AuthContext.Provider>
   );
