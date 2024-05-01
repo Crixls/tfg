@@ -150,7 +150,7 @@ console.log(user);
           <Loaderanimated />
         </div>
       ):(
-    <div className="grid grid-cols-2">
+    <div className="lg:grid lg:grid-cols-2 ">
       <div className="m-10">
         <div className="p-4 mt-16" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
           <p className="text-xl font-bold text-white">CESTA DE COMPRAS - {orderLines.length}</p>

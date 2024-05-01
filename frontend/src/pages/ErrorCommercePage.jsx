@@ -1,4 +1,6 @@
 import  { useEffect } from 'react';
+import errorimg from '../../src/assets/error/error.webp';
+
 
 const ErrorCommercePage = () => {
   useEffect(() => {
@@ -7,8 +9,8 @@ const ErrorCommercePage = () => {
   }, []);
 
   return (
-    <div>
-      error
+    <div className=" bg-black h-screen flex justify-center" > 
+      <img src={errorimg} alt="image" className='w-2/3' />
     </div>
   );
 }

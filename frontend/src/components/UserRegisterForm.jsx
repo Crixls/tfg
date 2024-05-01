@@ -2,6 +2,7 @@ import  { useState } from 'react'
 import Swal from 'sweetalert2';
 import { useEntitiesContext } from '../context/useEntitiesContext';
 import { post2 } from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
 const UserRegisterForm = (props) => {
     const { open, closeModal } = props;
@@ -11,6 +12,7 @@ const UserRegisterForm = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordsMatch, setPasswordsMatch] = useState(true);
     const [passwordValid, setPasswordValid] = useState(false);
+    const navigate= useNavigate();
 
   
     const handlePasswordChange = (e) => {
@@ -53,6 +55,8 @@ const UserRegisterForm = (props) => {
       
           const response = await post2(formData);
 
+          navigate("/login");
+
           console.log(response);
           if (response) {
             // Si el usuario se creó correctamente, mostrar una alerta de éxito
@@ -67,7 +71,7 @@ const UserRegisterForm = (props) => {
         } catch (error) {
           console.error("Error en la solicitud de registro:", error);
         } finally {
-        //   handleModalClose(); // Cerrar el modal después de enviar el formulario
+          navigate("/login");
         }
     };
 

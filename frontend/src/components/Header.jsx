@@ -11,16 +11,31 @@ const Header = () => {
   const {logged, logout } = useAuthContext();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenSports, setModalOpenSports] = useState(false);
+  const [modalOpenHambur, setModalOpenHambur] = useState(false);
   const [useLogged, setUseLogged] = useState(false);
   const [adminLogged, setAdminLogged] = useState(false);
   // const [search, setsearch] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
 
   const navigate = useNavigate();
 
   const {changeSearch,search} = useEntitiesContext();
   const {setuserL} = useAuthContext();
 
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
 
 
@@ -108,44 +123,102 @@ const Header = () => {
     localStorage.setItem('isAdmin', isAdmin);
   }, [allUsers, useLogged]);
 
+  const handleOpenHambur =()=>{
+    setModalOpenHambur(true);
+  }
+
+  const handleCloseHambur =()=>{
+    setModalOpenHambur(false);
+  }
+
+  
+
 
   return (
-    <header className=" text-white flex justify-between items-center font-bold font-sans " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-    <div className="flex items-center bg-white m-0 p-0">
-        <Link to="/">
-          <img src={logo} alt="Logo React" className="w-40 h-40 mx-2" />
-        </Link>
-        <span className="text-4xl font-bold mx-5 timmana-regular text-center pt-4">
-          <span className="text-black">STREET</span>
-          <span className="text-red-500">PULSE</span>
-        </span>
+    <header className=" lg:text-white lg:flex lg:justify-between lg:items-center md:text-white md:flex md:justify-between md:items-center font-bold font-sans " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="lg:flex lg:items-center lg:bg-white lg:m-0 lg:p-0  md:justify-center  md:flex md:items-center md:bg-white md:m-0 md:p-0">
+        <div>
+          <Link to="/">
+            <img src={logo} alt="Logo React" className="lg:w-40 lg:h-40 lg:mx-2 lg:max-w-40 md:max-w-32 md:w-40 md:h-40 md:mx-2" />
+          </Link>
+        </div>
+        <div>
+          <span className="lg:text-4xl md:text-2xl lg:font-bold lg:mx-5 timmana-regular lg:text-center lg:pt-4 md:mx-1 md:flex md:justify-center md: items-center">
+            <span className="text-black ">STREET</span>
+            <span className="text-red-500 ">PULSE</span>
+          </span>
+        </div>
       </div>
       {/* Enlaces a distintas partes de la web */}
       <nav>
-        <ul className="flex space-x-12 mx-10 justify-center items-center bg-white p-1 pl-2 pr-2 rounded-md">
-          <li>
-            <Link to="/man" className="hover:text-gray-400 noto-sans text-black p-1 rounded-md">
-              Hombre
-            </Link>
-          </li>
-          <li>
-            <Link to="/woman" className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md">Mujer</Link>
-          </li>
-          <li >
-            <Link to="/kids" className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md">Niña/o</Link>
-          </li>
-          <li >
-            <button 
-              className="noto-sans text-black p-1 rounded-md hover:text-gray-400" 
-              onMouseEnter={handleOpenSports} 
-              onMouseLeave={handleCloseSports} 
-            >
-              Deportes
-            </button>
-          </li>
+        <ul className="lg:flex lg:space-x-12 lg:mx-10 lg:justify-center lg:items-center lg:bg-white lg:p-1 lg:pl-2 lg:pr-2 lg:rounded-md md:mx-4 md:p-1 md:justify-center md:items-center md:m-2 md:bg-white md:flex md:rounded-md  ">
+        {windowWidth > 769 ? (
+            <>
+               <li>
+                  <Link to="/man" className="hover:text-gray-400 noto-sans text-black p-1 rounded-md">
+                    Hombre
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/woman" className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md">Mujer</Link>
+                </li>
+                <li >
+                  <Link to="/kids" className="hover:text-gray-400 noto-sans  text-black p-1 rounded-md">Niña/o</Link>
+                </li>
+                <li >
+                  <button 
+                    className="noto-sans text-black p-1 rounded-md hover:text-gray-400" 
+                    onClick={handleOpenSports} 
+                    onMouseLeave={handleCloseSports} 
+                  >
+                    Deportes
+                  </button>
+                </li>
+            
+            </>
+         
+          ):(
+            <>
+              <li className='flex md:ml-4 md:mr-4'>
+                <ion-icon style={{color:"black"}} name="menu-outline"  onClick={handleOpenHambur}  onMouseLeave={handleCloseHambur} ></ion-icon>
+              </li>
+
+            </>
+            
+          )}
+          {modalOpenHambur && (
+            <div className="fixed top-0 left-0 right-0  h-96 flex justify-center items-center " onMouseEnter={handleOpenHambur} onMouseLeave={handleCloseHambur}>
+              <div className="bg-black w-screen p-6 mt-20  ">
+                <ul className='flex items-center justify-center flex-col'>
+                  <li className='p-1'>
+                    <Link to="/man" className="hover:text-gray-400 noto-sans font-bold text-white  rounded-md">
+                      Hombre
+                    </Link>
+                  </li>
+                  <li className='p-1'>
+                    <Link to="/woman" className="hover:text-gray-400 noto-sans font-bold text-white  rounded-md">Mujer</Link>
+                  </li>
+                  <li className='p-1'>
+                    <Link to="/kids" className="hover:text-gray-400 noto-sans font-bold text-white  rounded-md">Niña/o</Link>
+                  </li>
+                  <li >
+                    <button 
+                      className="noto-sans text-white p-1 rounded-md font-bold hover:text-gray-400" 
+                      onMouseEnter={handleOpenSports} 
+                      onMouseLeave={handleCloseSports} 
+                    >
+                      Deportes
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+
           {modalOpenSports && (
-            <div className="fixed top-0 left-0 right-0  h-96 flex justify-center items-center " onMouseEnter={handleOpenSports} onMouseLeave={handleCloseSports}>
-              <div className="bg-gray-200 w-1/2 p-6  rounded-md ">
+            <div className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:h-96 lg:flex lg:justify-center lg:items-center  md:fixed md:top-0 md:left-0 md:right-0 md:h-96 md:flex md:justify-center md:items-center md:mt-40 lg:mt-1" onMouseEnter={handleOpenSports} onMouseLeave={handleCloseSports}>
+              <div className="lg:bg-gray-200 lg:w-1/2 lg:p-6  lg:rounded-md md:bg-gray-200 md:w-screen md:p-5">
                 <ul className='flex items-center justify-center'>
                   <li className='pr-10'>
                     <Link to="/futbol" onClick={handleCloseSports}>
@@ -188,17 +261,17 @@ const Header = () => {
               <ProductsSearch></ProductsSearch>
             </li>
           : 
-            <li className="custom-cursor-pointer flex items-center " onClick={handleSearch}>
+            <li className="lg:custom-cursor-pointer lg:flex lg:items-center  md:custom-cursor-pointer md:flex md:items-center md:ml-4 md:mr-4" onClick={handleSearch}>
               <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
             </li> 
           }
 
           <li className="custom-cursor-pointer ">
-            <Link to="/favorites" className='flex items-center'>
+            <Link to="/favorites" className='lg:flex lg:items-center md:flex md:items-center md:ml-4 md:mr-4 '>
               <ion-icon name="heart-circle-outline" style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
             </Link>
           </li>
-          <li  className="custom-cursor-pointer flex items-center">
+          <li  className="custom-cursor-pointer flex items-center md:flex md:items-center md:ml-4 md:mr-4">
             <Link to="/cart" className='flex items-center'>
               <ion-icon name="bag-outline"  style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>   
             </Link>
@@ -207,7 +280,7 @@ const Header = () => {
           {logged ? (
               <>
                 <div className='flex justify-content items-center'>
-                  <div className='mr-8 custom-cursor-pointer flex items-center'>
+                  <div className='mr-8 custom-cursor-pointer flex items-center md:flex md:items-center md:ml-2 md:mr-4'>
                     <ion-icon name="person-circle-outline" style={{color:"black", padding:"1px", borderRadius: "0.375rem"}} onClick={handleOpenModal} onDoubleClick={handleDoubleClick} className="cursor-pointer"></ion-icon>
                   </div>
                   <p className='noto-sans text-black p-1 rounded-md'>Hola {useLogged && useLogged.login}</p>
@@ -240,7 +313,7 @@ const Header = () => {
                 </div>
               </>
             ): (
-              <Link to="/login" className='flex items-center'>
+              <Link to="/login" className='flex items-center md:ml-4 md:mr-4'>
                 <ion-icon name="person-circle-outline"  style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
               </Link>
             )}

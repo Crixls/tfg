@@ -86,16 +86,16 @@ const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
           <form onSubmit={handleSubmit} className=" w-80">
             <div className=" justify-start p-8 pl-12 pr-12 flex flex-col">
               <label className=" font-bold m-2 text-white" htmlFor="name">Nombre</label>
-              <input className="m-2 rounded-md " type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+              <input className="ml-2 mr-2 rounded-md " type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
               
               <label className=" font-bold m-2 text-white" htmlFor="description">Descripción</label>
-              <input className="m-2 rounded-md" type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+              <input className="ml-2 mr-2 rounded-md" type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
               
               <label className="m-2 font-bold text-white" htmlFor="price">Precio</label>
-              <input className="m-2 rounded-md" type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
+              <input className="ml-2 mr-2 rounded-md" type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
               
               <label className=" font-bold m-2 text-white" htmlFor="size">Tamaño (separados por comas)</label>
-              <input className="m-2 rounded-md"
+              <input className="ml-2 mr-2 rounded-md"
                 type="text"
                 id="size"
                 value={size.join(',')}
@@ -103,23 +103,23 @@ const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
               />
 
               <label className=" font-bold m-2 text-white" htmlFor="brand">Marca</label>
-              <input className="m-2 rounded-md" type="text" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} />
+              <input className="ml-2 mr-2 rounded-md" type="text" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} />
               
               <label className=" font-bold m-2 text-white" htmlFor="category">Categoria</label>
-              <input className="m-2 rounded-md" type="text" id="category" value={category} onChange={(e) => setCategory(e.target.value)} />
+              <input className="ml-2 mr-2 rounded-md" type="text" id="category" value={category} onChange={(e) => setCategory(e.target.value)} />
               
               <label className=" font-bold m-2 text-white" htmlFor="new">Nuevo</label>
-              <input className="m-2 rounded-md" type="number" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} />
+              <input className="ml-2 mr-2 rounded-md" type="number" id="new" value={newProduct} onChange={(e) => setNewProduct(e.target.value)} />
               
               <label className=" font-bold m-2 text-white" htmlFor="color ">Color (separados por comas)</label>
-              <input className="m-2 rounded-md"
+              <input className="ml-2 mr-2 rounded-md"
                 type="text"
                 id="color"
                 value={color.join(',')}
                 onChange={(e) => setColor(e.target.value.split(','))}
               />
               <label className=" font-bold m-2 text-white" htmlFor="deporte">Deporte (separados por comas)</label>
-              <input className="m-2 rounded-md"
+              <input className="ml-2 mr-2 rounded-md"
                 type="text"
                 id="deporte"
                 value={deporte.join(',')}

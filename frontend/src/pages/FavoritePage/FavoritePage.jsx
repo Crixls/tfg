@@ -55,7 +55,7 @@ const FavoritePage = () => {
         </div>
       ):(
       <div className="flex justify-center">
-        <div className="grid grid-cols-3 gap-10 p-8">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid  md:mt-10">
           {favorites.map((favorite, index) => (
             <div key={index} className="flex justify-center  ">
               <FavoriteCard favorito={favorite}></FavoriteCard>

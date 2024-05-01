@@ -127,8 +127,11 @@ const AdminEstadisticas = () => {
 
     return (
         <>
+            <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+                <p className="text-white flex w-full text-2xl font-bold">ESTADÍSTICAS</p>
+            </div>
             <div className='h-screen '>
-                <div className='grid grid-cols-3'>
+            <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid  md:mt-10">
                     <div className=' m-10'>
                         <p className='text-2xl font-semibold pl-16 p-10 '>EL PRODUCTO MÁS VECES FAVORITO</p>
                         {favorites.length > 0 && <GraficoCircular data={data} />} {/* Pasar los datos al componente GraficoCircular */}
@@ -137,8 +140,8 @@ const AdminEstadisticas = () => {
                         <p className='text-2xl font-semibold p-10 pl-32 '>VENTAS MENSUALES</p>
                         {dataBar.length > 0 && <GraficoBarras dataBar={dataBar} />} {/* Pasar los datos al componente GraficoCircular */}
                     </div>
-                    <div className='m-10'>
-                        <p className='text-2xl font-semibold p-10 pl-32 '>PRODUCTOS MÁS PEDIDO</p>
+                    <div className='m-10 md:flex md:justify-center items-center flex-col'>
+                        <p className='text-2xl font-semibold p-10 lg:pl-32 '>PRODUCTOS MÁS PEDIDO</p>
                         {dataProductos.length > 0 && <GraficoProductos dataProductos={dataProductos} />} {/* Pasar los datos al componente GraficoCircular */}
                     </div>
                 </div>

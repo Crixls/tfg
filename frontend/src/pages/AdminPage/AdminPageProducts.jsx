@@ -84,7 +84,7 @@ const AdminPageProducts = () => {
                 {open2 && <ModalEditProduct open={open2} closeModal={handleCloseModal2} product={selectedProduct} onProductUpdated={handleProductUpdated} />}
             </div>
             
-            <div className="grid grid-cols-3 gap-4 ">
+            <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid  md:mt-10">
                 {allShoes.map((manShoe, index) => (
                     <div key={index} className="flex justify-center flex-col items-center">
                         <CardShoes typeShoe={manShoe} />
