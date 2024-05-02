@@ -13,7 +13,7 @@ import negro6 from '../assets/zapatillas/adidas/negro6.webp'
 import azul3 from '../assets/zapatillas/balance/azul3.webp'
 import rojo3 from '../assets/zapatillas/balance/rojo3.webp'
 
-const ImgComponent = ({color,brand,name}) => {
+const ImgComponent = ({color,name}) => {
   let imageSrc;
   console.log(name);
   name==="NIKE AL8" && color==="blanco"?imageSrc=blanco8:name==="NIKE AL8"?imageSrc=light8:"";
@@ -25,7 +25,7 @@ const ImgComponent = ({color,brand,name}) => {
   name==="GEL-DEDICATE" && color==="azul"?imageSrc=azulAsics:  name==="GEL-DEDICATE" ?imageSrc=blancoAsics:"";
 
     return (
-        <img className="w-3/5" src={imageSrc} alt="image" />
+        <img className="lg:w-3/5 " src={imageSrc} alt="image" />
     );
 }
 

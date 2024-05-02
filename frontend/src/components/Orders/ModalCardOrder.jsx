@@ -49,11 +49,11 @@ const ModalCardOrder = ({ order, closeModal, open }) => {
             <div className="cursor-pointer absolute top-4 right-4" onClick={closeModal}>
                 <ion-icon style={{color:"white"}} size="large" name="close"></ion-icon>
             </div>     
-            <div className={`modal ${open ? 'open' : 'closed'} bg-gray-400 rounded-md w-1/4 m-40`}>
-                <div className="modal-content">
+            <div className={`modal ${open ? 'open' : 'closed'} bg-gray-400 rounded-md w-1/4 m-40 sm:w-2/3  sm:mt-80`}>
+                <div className="modal-content" style={{ overflowY: 'auto' }}> {/* Añade overflowY: 'auto' para la barra deslizadora */}
                     {filterOrderLines.map((product, index) => (
                         <div className="flex justify-center items-center" key={index}>
-                            <div className="p-20">
+                            <div className="lg:p-20 sm:pt-10 sm:pl-10 sm:pr-10">
                                 {relatedProducts[parseInt(product.product.split('/').pop(), 10)] && (
                                     <>
                                         <p className="text-white p-1 text-lg pb-8">{`Nombre del producto: ${relatedProducts[parseInt(product.product.split('/').pop(), 10)].name}`}</p>
@@ -73,6 +73,7 @@ const ModalCardOrder = ({ order, closeModal, open }) => {
             </div>
         </div>
     );
+    
 };
 
 export default ModalCardOrder;

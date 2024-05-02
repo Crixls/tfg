@@ -9,10 +9,10 @@ function Render(props) {
   const {type} = props;
 
   return (
-    <section style={{height:"60vh"}} className="w-full  relative">
+    <section style={{height:"60vh"}}  >
 
         <Canvas 
-            className="w-80 h-screen bg-transparent lg:m-20"
+            className="w-80 h-screen bg-transparent lg:m-20 sm:flex sm:justify-center"
             camera={{near:0.1,far:1000}}
         >
             <PresentationControls speed={1.5} global zoom={0.3} polar={[-0.1, Math.PI / 4]}>

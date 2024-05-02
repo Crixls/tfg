@@ -167,11 +167,11 @@ const Home = () => {
       {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}
       {/* <img src={airjordan} alt="zapatos" />
       </div> */}
-      <div className="lg:items-center lg:flex lg:p-10 md:p-10 md:flex md:flex-col md:justify-center md:items-center">
+      <div className="lg:items-center lg:flex lg:p-10 md:p-10 md:flex md:flex-col md:justify-center md:items-center   sm:p-10 sm:flex sm:flex-col sm:justify-center sm:items-center" >
       {windowWidth > 769 ? (
         <>
            <div className="items-center flex p-10 " >
-            <img className="w-1/2" src={airjordan} alt="hombres" />
+            <img className="w-1/2 " src={airjordan} alt="hombres" />
             <div className="w-2/5">
               <Render type="nike"></Render>
             </div>
@@ -179,8 +179,10 @@ const Home = () => {
         </>
       ):(
         <>
-          <img className="lg:w-1/2 md:w-5/6" src={airjordan} alt="hombres" />
-          <div className="lg:w-2/5 md:w-2/3  md:flex md:flex-col md:justify-center md:items-center">
+          <div className="items-center flex justify-between  md:flex md:justify-center " >
+            <img className="lg:w-1/2 md:w-5/6 " src={airjordan} alt="hombres" />
+          </div>
+          <div className="lg:w-2/5 md:w-2/3  md:flex md:flex-col md:justify-center md:items-center sm:w-3/4 sm:flex sm:justify-center  sm:items-center">
             <Render type="nike"></Render>
           </div>
         </>
@@ -192,18 +194,20 @@ const Home = () => {
         {windowWidth > 769 ? (
           <>
           <div className="items-center flex p-10 justify-between " >
-            <div className="w-2/5">
+            <div className="md:w-2/5 sm:w-3/4">
               <Render type="puma" ></Render>
             </div>
-            <img className="w-1/2"  src={circuit} alt="circuito" />
+            <img className="w-1/2 sm:w-1/2"  src={circuit} alt="circuito" />
           </div>
           </>
         ) : (
           <>
-            <img className="md:w-5/6 " src={circuit} alt="circuito" />
-            <div className=" md:w-2/3 ">
-              <Render type="puma" />
+            <div className="items-center flex p-10 justify-between  md:flex md:justify-center " >
+              <img className="md:w-5/6 " src={circuit} alt="circuito" />
             </div>
+              <div className="lg:w-2/5 md:w-2/3  md:flex md:flex-col md:justify-center md:items-center sm:pl-48 sm:flex sm:justify-center sm:items-center sm:w-3/4">
+                <Render type="puma" />
+              </div>
           </>
         )}
       </div>
@@ -217,9 +221,9 @@ const Home = () => {
           <Loaderanimated />
         </div>
       ) : (
-        <div className="lg:grid lg:grid-cols-2 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-1 md:grid">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid sm:grid sm:grid-col-1 ">
           {products.map((womanShoe, index) => (
-            <div key={index} className="flex justify-center" >
+            <div key={index} className="flex justify-center sm:ml-40 sm:mr-40 sm:mt-28 sm:mb-28 sm:gap-2" >
               <CardShoes typeShoe={womanShoe} />
             </div>
           ))}

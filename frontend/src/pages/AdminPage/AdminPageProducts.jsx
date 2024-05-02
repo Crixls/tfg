@@ -84,9 +84,10 @@ const AdminPageProducts = () => {
                 {open2 && <ModalEditProduct open={open2} closeModal={handleCloseModal2} product={selectedProduct} onProductUpdated={handleProductUpdated} />}
             </div>
             
-            <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid  md:mt-10">
+            <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid md:mt-10">
                 {allShoes.map((manShoe, index) => (
-                    <div key={index} className="flex justify-center flex-col items-center">
+                    <div key={index} className="flex justify-center flex-col items-center  sm:ml-40 sm:mr-40 sm:mt-28 sm:mb-28 sm:gap-2">
+
                         <CardShoes typeShoe={manShoe} />
                         <button className="bg-black rounded-lg text-white font-medium p-4 m-2" onClick={() => handleEditarProducto(manShoe)}>Editar producto</button>
                         <button className="border-2 border-red-600 p-4 text-red-600 rounded-lg font-medium m-2" onClick={() => handleEliminarProducto(manShoe.id)}>Eliminar producto</button>
