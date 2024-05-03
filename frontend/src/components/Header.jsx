@@ -135,23 +135,23 @@ const Header = () => {
 
 
   return (
-    <header className=" lg:text-white lg:flex lg:justify-between lg:items-center md:text-white sm:text-white md:flex md:justify-between sm:justify-between md:items-center sm:items-center font-bold font-sans sm:h-28 md:h-40 lg:h-40 sm:flex" style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div className="lg:flex lg:items-center lg:bg-white lg:m-0 lg:p-0  md:justify-center sm:justify-center md:h-40 md:flex md:items-center md:bg-white md:m-0 md:p-0 sm:flex sm:items-center sm:bg-white sm:h-28">
+    <header className=" lg:text-white lg:flex lg:justify-between lg:items-center md:text-white sm:text-white md:flex md:justify-between sm:justify-between md:items-center sm:items-center font-bold font-sans sm:h-28 md:h-40 lg:h-40 sm:flex flex items-center justify-center h-28 text-white " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="lg:flex lg:items-center lg:bg-white lg:m-0 lg:p-0  md:justify-center sm:justify-center md:h-40 md:flex md:items-center md:bg-white md:m-0 md:p-0 sm:flex sm:items-center sm:bg-white sm:h-28 bg-white flex items-center h-28">
         <div>
           <Link to="/">
-            <img src={logo} alt="Logo React" className="lg:w-40 lg:h-40 lg:mx-2 lg:max-w-40 md:max-w-32 md:w-40  md:mx-2 sm:w-32 sm:max-w-32 sm:mx-2 " />
+            <img src={logo} alt="Logo React" className="lg:w-40 lg:h-40 lg:mx-2 lg:max-w-40 md:max-w-32 md:w-40  md:mx-2 sm:w-32 sm:max-w-20 sm:mx-2 w-28 mx-2 max-w-20" />
           </Link>
         </div>
-        <div className='sm:mt-4'>
-          <span className="lg:text-4xl md:text-2xl sm:text-2xl lg:font-bold lg:mx-5 timmana-regular lg:text-center lg:pt-4 md:mx-1 md:flex md:justify-center md: items-center  ">
-            <span className="text-black sm:pl-2">STREET</span>
-            <span className="text-red-500 sm:pr-2">PULSE</span>
+        <div className='sm:mt-4 mt-2'>
+          <span className="lg:text-4xl md:text-2xl sm:text-2xl lg:font-bold lg:mx-5 timmana-regular lg:text-center lg:pt-4 md:mx-1 md:flex md:justify-center md:items-center mx-1 flex justify-center items-center  ">
+            <span className="text-black sm:pl-2 pl-2">STREET</span>
+            <span className="text-red-500 sm:pr-2 pr-2">PULSE</span>
           </span>
         </div>
       </div>
       {/* Enlaces a distintas partes de la web */}
       <nav>
-        <ul className="lg:flex sm:flex-wrap lg:space-x-12 lg:mx-10 lg:justify-center lg:items-center lg:bg-white lg:p-1 lg:pl-2 lg:pr-2 lg:rounded-md md:mx-4 md:p-1 md:justify-center sm:justify-center md:items-center md:m-2 sm:m-2 md:bg-white sm:bg-white md:flex md:rounded-md sm:rounded-md md:flex-wrap sm:flex sm:items-center sm:mx-4 sm:p-1 ">
+        <ul className="lg:flex sm:flex-wrap flex-wrap lg:space-x-12 lg:mx-10 lg:justify-center lg:items-center lg:bg-white lg:p-1 lg:pl-2 lg:pr-2 lg:rounded-md md:mx-4 md:p-1 md:justify-center sm:justify-center md:items-center md:m-2 sm:m-2 md:bg-white sm:bg-white justify-center  bg-white md:flex md:rounded-md sm:rounded-md rounded-md md:flex-wrap sm:flex flex sm:items-center items-center sm:mx-4 mx-4 sm:p-1 p-1">
         {windowWidth > 769 ? (
             <>
                <li>
@@ -262,13 +262,13 @@ const Header = () => {
               <ProductsSearch></ProductsSearch>
             </li>
           : 
-            <li className="lg:custom-cursor-pointer lg:flex lg:items-center  md:custom-cursor-pointer sm:p-1 md:flex sm:flex sm:items-center md:items-center md:ml-4 md:mr-4" onClick={handleSearch}>
+            <li className="lg:custom-cursor-pointer lg:flex lg:items-center  md:custom-cursor-pointer sm:p-1 md:flex sm:flex sm:items-center md:items-center md:ml-4 md:mr-4 flex items-center ml-1 mr-1" onClick={handleSearch}>
               <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
             </li> 
           }
 
           <li className="custom-cursor-pointer ">
-            <Link to="/favorites" className='lg:flex sm:flex sm:items-center lg:items-center sm:mr-1 sm:p-1 md:flex md:items-center md:ml-4 md:mr-4 '>
+            <Link to="/favorites" className='lg:flex sm:flex sm:items-center lg:items-center sm:mr-1 sm:p-1 md:flex md:items-center md:ml-4 md:mr-4  flex items-center'>
               <ion-icon name="heart-circle-outline" style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
             </Link>
           </li>

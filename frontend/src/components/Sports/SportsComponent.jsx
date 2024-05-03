@@ -39,9 +39,9 @@ const SportsComponent = ({type}) => {
           <Loaderanimated />
         </div>
       ):(
-        <div className="lg:grid lg:grid-cols-2 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid sm:grid sm:grid-col-1 ">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid sm:grid sm:grid-col-1 ">
             {products.map((product, index) => (
-              <div key={index} className="flex justify-center sm:ml-40 sm:mr-40 sm:mt-28 sm:mb-28 sm:gap-2" >
+              <div key={index} className="flex justify-center  sm:gap-2" >
                 <CardShoes typeShoe={product}></CardShoes>
               </div>
             ))}

@@ -41,7 +41,7 @@ const ManPage = () => {
   return (
     <>
       <div className="mt-12 lg:flex lg:justify-center lg:bg-black lg:pr-60 lg:pl-60">
-        <img src={hombreimg} className="md:max-w-2xl lg:max-w-5xl sm:max-w-2xl" alt="hombres" />
+        <img src={hombreimg} className="lg:max-w-5xl  " alt="hombres" />
       </div>
 
       {loading ? (
@@ -52,7 +52,7 @@ const ManPage = () => {
 
         <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid  md:mt-10">
         {manShoes.map((manShoe, index) => (
-          <div key={index} className="flex justify-center  sm:m-40 sm:gap-2">
+          <div key={index} className="flex justify-center m-10   sm:gap-2">
             <CardShoes typeShoe={manShoe} />
           </div>
         ))}

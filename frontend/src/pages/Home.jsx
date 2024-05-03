@@ -167,10 +167,10 @@ const Home = () => {
       {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}
       {/* <img src={airjordan} alt="zapatos" />
       </div> */}
-      <div className="lg:items-center lg:flex lg:p-10 md:p-10 md:flex md:flex-col md:justify-center md:items-center   sm:p-10 sm:flex sm:flex-col sm:justify-center sm:items-center" >
+      <div className="lg:items-center lg:flex lg:p-10 md:p-10 md:flex md:flex-col md:justify-center md:items-center   sm:p-10 sm:flex sm:flex-col sm:justify-center sm:items-center p-8" >
       {windowWidth > 769 ? (
         <>
-           <div className="items-center flex p-10 " >
+           <div className="items-center flex sm:p-10 sm:pt-4 p-10" >
             <img className="w-1/2 " src={airjordan} alt="hombres" />
             <div className="w-2/5">
               <Render type="nike"></Render>
@@ -180,7 +180,7 @@ const Home = () => {
       ):(
         <>
           <div className="items-center flex justify-between  md:flex md:justify-center " >
-            <img className="lg:w-1/2 md:w-5/6 " src={airjordan} alt="hombres" />
+            <img className="lg:w-1/2 md:w-5/6  " src={airjordan} alt="hombres" />
           </div>
           <div className="lg:w-2/5 md:w-2/3  md:flex md:flex-col md:justify-center md:items-center sm:w-3/4 sm:flex sm:justify-center  sm:items-center">
             <Render type="nike"></Render>
@@ -190,7 +190,7 @@ const Home = () => {
        
       </div>
 
-      <div className="lg:items-center lg:flex lg:p-10 lg:justify-between md:flex md:flex-col md:justify-center md:items-center">
+      <div className="lg:items-center lg:flex lg:p-10 lg:justify-between md:flex md:flex-col md:justify-center md:items-center ">
         {windowWidth > 769 ? (
           <>
           <div className="items-center flex p-10 justify-between " >
@@ -223,7 +223,7 @@ const Home = () => {
       ) : (
         <div className="lg:grid lg:grid-cols-2 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid sm:grid sm:grid-col-1 ">
           {products.map((womanShoe, index) => (
-            <div key={index} className="flex justify-center sm:ml-40 sm:mr-40 sm:mt-28 sm:mb-28 sm:gap-2" >
+            <div key={index} className="flex justify-center sm:ml-10 sm:mr-10 sm:mt-28 sm:mb-28 sm:gap-2 " >
               <CardShoes typeShoe={womanShoe} />
             </div>
           ))}

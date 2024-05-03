@@ -9,7 +9,7 @@ function Render(props) {
   const {type} = props;
 
   return (
-    <section style={{height:"60vh"}}  >
+    <section style={{height:"60vh"}} className="40vh" >
 
         <Canvas 
             className="w-80 h-screen bg-transparent lg:m-20 sm:flex sm:justify-center"
