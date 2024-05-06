@@ -180,7 +180,7 @@ console.log(user);
         ))}
       </div>
       <div className="bg-gray-100 m-10 mt-24 p-10 h-1/2 flex flex-col items-center justify-center"  style={{ backgroundImage: 'url(/src/assets/tex1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="p-24" style={{backgroundColor: "rgba(128, 128, 128, 0.8)"}}>
+        <div className="p-10" style={{backgroundColor: "rgba(128, 128, 128, 0.8)"}}>
             <p className="text-lg font-bold text-white ">Total: {total} €</p>
             <div className="flex flex-col items-center mt-6">
               <button className="flex justify-center items-center bg-black  rounded-md p-4 mt-4 w-80" onClick={handleShowItem}>

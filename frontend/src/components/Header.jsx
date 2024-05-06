@@ -8,11 +8,11 @@ import { useEntitiesContext } from '../context/useEntitiesContext';
 import ProductsSearch from './ProductsSearch';
 
 const Header = () => {
-  const {logged, logout } = useAuthContext();
+  const {logged, logout,userfinal } = useAuthContext();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenSports, setModalOpenSports] = useState(false);
   const [modalOpenHambur, setModalOpenHambur] = useState(false);
-  const [useLogged, setUseLogged] = useState(false);
+  const [useLogged, setUseLogged] = useState('');
   const [adminLogged, setAdminLogged] = useState(false);
   // const [search, setsearch] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
@@ -119,6 +119,7 @@ const Header = () => {
   }, [adminLogged]);
 
   useEffect(() => {
+    console.log(useLogged)
     const isAdmin = allUsers.some(user => user.username === useLogged.login && user.roles.includes('ROLE_ADMIN'));
     localStorage.setItem('isAdmin', isAdmin);
   }, [allUsers, useLogged]);
@@ -135,7 +136,7 @@ const Header = () => {
 
 
   return (
-    <header className=" lg:text-white lg:flex lg:justify-between lg:items-center md:text-white sm:text-white md:flex md:justify-between sm:justify-between md:items-center sm:items-center font-bold font-sans sm:h-28 md:h-40 lg:h-40 sm:flex flex items-center justify-center h-28 text-white " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <header className=" lg:text-white lg:flex lg:justify-between lg:items-center md:text-white sm:text-white md:flex md:justify-between sm:justify-between md:items-center sm:items-center font-bold font-sans sm:h-28 md:h-40 lg:h-40 sm:flex flex items-center justify-between  h-28 text-white " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="lg:flex lg:items-center lg:bg-white lg:m-0 lg:p-0  md:justify-center sm:justify-center md:h-40 md:flex md:items-center md:bg-white md:m-0 md:p-0 sm:flex sm:items-center sm:bg-white sm:h-28 bg-white flex items-center h-28">
         <div>
           <Link to="/">
@@ -152,6 +153,17 @@ const Header = () => {
       {/* Enlaces a distintas partes de la web */}
       <nav>
         <ul className="lg:flex sm:flex-wrap flex-wrap lg:space-x-12 lg:mx-10 lg:justify-center lg:items-center lg:bg-white lg:p-1 lg:pl-2 lg:pr-2 lg:rounded-md md:mx-4 md:p-1 md:justify-center sm:justify-center md:items-center md:m-2 sm:m-2 md:bg-white sm:bg-white justify-center  bg-white md:flex md:rounded-md sm:rounded-md rounded-md md:flex-wrap sm:flex flex sm:items-center items-center sm:mx-4 mx-4 sm:p-1 p-1">
+
+          {search ? 
+              <li>
+                <ProductsSearch></ProductsSearch>
+              </li>
+            : 
+              <li className="lg:custom-cursor-pointer lg:flex lg:items-center  md:custom-cursor-pointer sm:p-1 md:flex sm:flex sm:items-center md:items-center md:ml-4 md:mr-4 flex items-center ml-1 mr-1" onClick={handleSearch}>
+                <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
+              </li> 
+            }
+
         {windowWidth > 769 ? (
             <>
                <li>
@@ -218,9 +230,9 @@ const Header = () => {
 
 
           {modalOpenSports && (
-            <div className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:h-96 lg:flex lg:justify-center lg:items-center  md:fixed md:top-0 md:left-0 md:right-0 md:h-96 md:flex md:justify-center md:items-center md:mt-40 lg:mt-1    sm:fixed sm:top-0 sm:left-0 sm:right-0 sm:h-96 sm:flex sm:justify-center sm:items-center sm:mt-32 " onMouseEnter={handleOpenSports} onMouseLeave={handleCloseSports}>
-              <div className="lg:bg-gray-200 lg:w-1/2 lg:p-6   lg:rounded-md md:bg-gray-200 md:w-screen md:p-5 md:rounded-md sm:rounded-md sm:bg-gray-200 sm:w-screen sm:p-5">
-                <ul className='flex items-center justify-center sm:flex-wrap'>
+            <div className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:h-96 lg:flex lg:justify-center lg:items-center  md:fixed md:top-0 md:left-0 md:right-0 md:h-12 md:flex md:justify-center md:items-center md:mt-40 lg:mt-1 sm:fixed sm:top-0 sm:left-0 sm:right-0 sm:h-96 sm:flex sm:justify-center sm:items-center sm:mt-32 fixed top-0 left-0 right-0 h-96 flex justify-center items-center mt-32" onMouseEnter={handleOpenSports} onMouseLeave={handleCloseSports}>
+              <div className="lg:bg-gray-200 lg:w-1/2 lg:p-6   lg:rounded-md md:bg-gray-200 md:w-screen md:p-5 md:rounded-md sm:rounded-md sm:bg-gray-200 sm:w-screen sm:p-5 rounded-md bg-gray-200 w-screen">
+                <ul className='flex items-center justify-center sm:flex-wrap flex-wrap'>
                   <li className='pr-10 pt-2'>
                     <Link to="/futbol" onClick={handleCloseSports}>
                       <p className='noto-sans text-black text-lg'>Fútbol</p>
@@ -257,16 +269,7 @@ const Header = () => {
           )}
 
          
-          {search ? 
-            <li>
-              <ProductsSearch></ProductsSearch>
-            </li>
-          : 
-            <li className="lg:custom-cursor-pointer lg:flex lg:items-center  md:custom-cursor-pointer sm:p-1 md:flex sm:flex sm:items-center md:items-center md:ml-4 md:mr-4 flex items-center ml-1 mr-1" onClick={handleSearch}>
-              <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
-            </li> 
-          }
-
+       
           <li className="custom-cursor-pointer ">
             <Link to="/favorites" className='lg:flex sm:flex sm:items-center lg:items-center sm:mr-1 sm:p-1 md:flex md:items-center md:ml-4 md:mr-4  flex items-center'>
               <ion-icon name="heart-circle-outline" style={{color:"black",padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
@@ -284,7 +287,7 @@ const Header = () => {
                   <div className='lg:mr-8 custom-cursor-pointer flex items-center md:flex md:items-center md:ml-2 md:mr-4'>
                     <ion-icon name="person-circle-outline" style={{color:"black", padding:"1px", borderRadius: "0.375rem"}} onClick={handleOpenModal} onDoubleClick={handleDoubleClick} className="cursor-pointer"></ion-icon>
                   </div>
-                  <p className='noto-sans text-black p-1 sm:pl-1 rounded-md'>Hola {useLogged && useLogged.login}</p>
+                  <p className='noto-sans text-black p-1 sm:pl-1 rounded-md'>Hola {useLogged ? useLogged.login : ''}</p>
                   {modalOpen && (
                     <div className="fixed top-40 right-0  flex justify-center items-center">
                       <div className="bg-black p-6 ">

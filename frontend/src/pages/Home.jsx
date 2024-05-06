@@ -170,9 +170,9 @@ const Home = () => {
       <div className="lg:items-center lg:flex lg:p-10 md:p-10 md:flex md:flex-col md:justify-center md:items-center   sm:p-10 sm:flex sm:flex-col sm:justify-center sm:items-center p-8" >
       {windowWidth > 769 ? (
         <>
-           <div className="items-center flex sm:p-10 sm:pt-4 p-10" >
+           <div className="items-center flex sm:p-10 sm:pt-4 p-10 justify-between" >
             <img className="w-1/2 " src={airjordan} alt="hombres" />
-            <div className="w-2/5">
+            <div className="w-2/5 mr-20">
               <Render type="nike"></Render>
             </div>
           </div>

@@ -8,7 +8,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { login } = useAuthContext();
+  const { login,setuserfinal } = useAuthContext();
   const navigate = useNavigate();
 
 
@@ -61,6 +61,8 @@ const LoginPage = () => {
     setLoading(false);
   };
 
+  setuserfinal(username);
+
   const handleRegister = () => {
     navigate("/register");
   }
@@ -90,7 +92,7 @@ const LoginPage = () => {
             </div>
             <div className="mb-6">
               <input
-                type="passwosrd"
+                type="password"
                 id="password"
                 placeholder="Contraseña"
                 className="block w-full py-3 px-4 mb-4 leading-tight rounded border-gray-300 focus:outline-none focus:border-gray-500"

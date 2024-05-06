@@ -106,14 +106,14 @@ const ModalEditOrderLine = ({ order, open, closeModal, product2 }) => {
                     <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-80">
                         
                         <label className='font-bold' htmlFor="color">Color:</label>
-                        <div className="flex ">
+                        <div className="flex flex-wrap ">
                           {product2.color.map((col, index) => {
                             return <button className="bg-black rounded-md text-white m-4 p-2" onClick={() => handleClickColor(col)} key={index}>{col}</button>;
                           })}
                         </div>
                      
                         <label className='font-bold ' htmlFor="size">Size:</label>
-                        <div className="flex">
+                        <div className="flex flex-wrap">
                           {product2.size.map((siz, index) => {
                             return <button className="p-2 rounded-md border-2  bg-red-200 m-2" onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
                           })}

@@ -55,7 +55,9 @@ const FavoriteCard = ({favorito}) => {
         <div className=' flex flex-col pt-6 pl-0'>
           <p className='font-bold '> {infoFav.name}</p>
           <p className='pt-4 pb-4'>{infoFav.description}</p>
-          <p className="font-bold">{infoFav.price} €</p>
+          <div className='flex justify-center'>
+            <p className="font-bold">{infoFav.price} €</p>
+          </div>
         </div>
         <button className='m-6 mt-8 text-white bg-red-600 p-4 pt-2 pb-2 rounded-md font-medium' onClick={()=>handleClick(favorito)}>Eliminar favorito</button>
     </div>

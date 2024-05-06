@@ -25,6 +25,7 @@ import TenisPage from "../pages/TenisPage/TenisPage";
 import SearchPage from "../pages/SearchPage/SearchPage";
 import OrdersPage from "../pages/OrdersPage/OrdersPage";
 import AdminEstadisticas from "../pages/AdminPage/AdminEstadisticas";
+import ProtectedRoute2 from "../pages/utils/ProtectedRoutes2";
 
 const router = createBrowserRouter([
   {
@@ -46,17 +47,14 @@ const router = createBrowserRouter([
       { path: "/tenis", element: <TenisPage /> },
       { path: "/search", element: <SearchPage /> },
       
-      { path: "/favorites", element: <FavoritePage /> },
-      { path: "/payment", element: <PayPage /> },
-      { path: "/profile", element: <ProfilePage /> },
-      { path: "/orders", element: <OrdersPage /> }
+      
 
     ],
   },
   
   { 
     path: "/admin", 
-    element: <ProtectedRoute redirect="/login" />, 
+    element: <ProtectedRoute redirect="/" />, 
     children: [
       {
         // No necesitamos "/" aquí, ya que estas rutas son relativas a "/admin"
@@ -65,6 +63,22 @@ const router = createBrowserRouter([
           { path: "products", element: <AdminPageProducts /> }, 
           { path: "users", element: <AdminPageUsers /> }, 
           { path: "estadisticas", element: <AdminEstadisticas /> }, 
+        ]
+      }
+      
+    ],
+  },
+  { 
+    path: "/", 
+    element: <ProtectedRoute2 redirect="/login" />, 
+    children: [
+      {
+        // No necesitamos "/" aquí, ya que estas rutas son relativas a "/admin"
+        children:[
+          { path: "/favorites", element: <FavoritePage /> },
+          { path: "/payment", element: <PayPage /> },
+          { path: "/profile", element: <ProfilePage /> },
+          { path: "/orders", element: <OrdersPage /> }
         ]
       }
       

@@ -21,8 +21,8 @@ const CardShoes = ({ typeShoe }) => {
     
 
     return (
-        <div className="lg:flex lg:justify-center lg:items-center lg:flex-col lg:w-1/2 lg:m-4 lg:p-4 border-none rounded-md cursor-pointer   md:justify-center md:flex flex items-center flex-col " onClick={handleFlip}>
-            <div className="lg:flex lg:justify-center lg:items-center lg:flex-col md:flex md:justify-center bg-slate-100 lg:w-80 lg:m-4 lg:p-4 border-none rounded-md md:w-3/4 md:p-4 sm:m-8 sm:p-4 m-10 p-8"  style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_193M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="lg:flex lg:justify-center lg:items-center lg:flex-col lg:w-1/2 lg:m-4 lg:p-4 border-none rounded-md cursor-pointer md:justify-center md:flex flex items-center flex-col " onClick={handleFlip}>
+            <div className="lg:flex lg:justify-center lg:items-center lg:flex-col md:flex md:justify-center bg-slate-100 lg:w-80 lg:m-4 lg:p-4 border-none rounded-md md:w-3/4 md:p-4 sm:m-8 m-10 p-8"  style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_193M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <LazyLoadImage effect="blur"  src={`${apiUrl}${typeShoe.contentUrl}`} alt="productos" className=" md:w-64 lg:max-w-80"/>
             </div>
             <div className=" flex justify-between lg:w-80 md:w-2/3 sm:flex sm:justify-between sm:w-80 sm:m-2 w-80">

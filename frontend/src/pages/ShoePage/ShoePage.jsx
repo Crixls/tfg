@@ -179,13 +179,13 @@ const ShoePage = () => {
     <div className="lg:grid lg:grid-cols-2 md:grid md:grid-col-1 md:p-8  sm:justify-center sm:flex-col sm:items-center">
       
       {imageColor?
-        <div className="lg:flex lg:justify-center lg:items-center lg:p-10 md:p-2 sm:m-8 sm:w-1/2 sm:flex sm:justify-center sm:items-center ">
+        <div className="lg:flex lg:justify-center lg:items-center lg:p-10 md:p-6  sm:flex sm:justify-center sm:items-center p-10 justify-center m-8  ">
           <ImgComponent className="sm:flex" brand={`${dataDetails.brand}`} color={`${imageColor}`} name={`${dataDetails.name}`}></ImgComponent>
         </div>
       :      
-      <div className="lg:p-10 lg:flex lg:justify-center lg:items-center md:flex md:justify-center md:w-screen sm:m-8 sm:flex sm:justify-center sm:items-center "><img className="lg:w-3/5 md:w-1/2 sm:w-1/2" src={`${apiUrl}${dataDetails.contentUrl}`} alt="imagen" /></div>    }
-      <div className="md:flex md:justify-center sm:flex sm:justify-center ">
-        <div className="lg:mt-10 lg:mr-10 lg:p-10 lg:m-10 md:m-4 md:p-6 md:w-2/3 rounded-md md:mt-8 bg-gray-100 sm:w-3/4 sm:p-8">
+      <div className="lg:p-2 lg:flex lg:justify-center lg:items-center md:flex md:justify-center  sm:flex sm:justify-center sm:items-center flex p-10 justify-center"><img className="lg:w-3/5 md:w-1/2 sm:w-1/2" src={`${apiUrl}${dataDetails.contentUrl}`} alt="imagen" /></div>    }
+      <div className="md:flex md:justify-center sm:flex sm:justify-center p-10">
+        <div className="lg:mt-10 lg:mr-10 lg:p-10 lg:m-10 md:m-4 md:p-6 rounded-md md:mt-8 bg-gray-100 sm:w-3/4 sm:p-8 p-4">
           <p className="mb-4 text-2xl font-bold">{dataDetails.name}</p>
           <p className="mb-4 text-xl font-bold">{dataDetails.brand}</p>
           <p className="mb-4 text-xl font-bold">{dataDetails.price} €</p>
@@ -211,15 +211,15 @@ const ShoePage = () => {
           ))}
           </div>
           <p className="mb-4 text-lg font-bold">Selecciona la talla</p>
-          <div className="flex md:flex-wrap sm:flex-wrap">
+          <div className="flex md:flex-wrap sm:flex-wrap flex-wrap ">
             {dataDetails.size.map((siz, index) => {
-              return <button className={`lg:p-2 bg-gray-500 text-white border-2 border-black rounded-md lg:m-4 md:m-4 md:p-3 sm:p-3 sm:m-1 ${selectedSize === siz ? 'bg-red-600' : 'bg-gray-500'}`} onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
+              return <button className={`lg:p-2 bg-gray-500 text-white border-2 border-black rounded-md lg:m-4 md:m-4 md:p-3 sm:p-3 sm:m-1 p-2 m-2 ${selectedSize === siz ? 'bg-red-600' : 'bg-gray-500'}`} onClick={() => handleClickSize(siz)} key={index}>{siz}</button>;
             })}
           </div>
 
           <form onSubmit={handleSubmit} className='flex flex-col'>
             <label className="text-lg font-bold pb-4" htmlFor="cantidad">Cantidad del producto</label>
-            <input className="ml-4 w-80 border-2 border-black rounded-md "
+            <input className="ml-4 w-60 border-2 border-black rounded-md "
               id="catidad"
               type="number"
               placeholder="0"

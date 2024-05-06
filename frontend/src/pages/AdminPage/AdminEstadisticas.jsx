@@ -20,6 +20,7 @@ const AdminEstadisticas = () => {
     }
 
     
+    
     useEffect(() => {
         const fetchApi = async () => {
             try {

@@ -1,40 +1,46 @@
+import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuthContext } from "../../context/useAuthContext";
-import { useEffect, useState } from "react";
 import { getUsers } from "../../api/useCases";
 
 const ProtectedRoute = ({ redirect }) => {
-  const {userLogged, logged} = useAuthContext();
-  const [users, setusers] = useState([]);
-
+  const { userLogged } = useAuthContext();
+  const [users, setUsers] = useState([]);
+  const [userLogin, setUserLogin] = useState(null);
 
   useEffect(() => {
-    const fetchApi = async () => {
+    const fetchUsers = async () => {
       try {
         const data = await getUsers();
-        setusers(data);
-        console.log("Productos hombre:", data);
+        setUsers(data);
       } catch (error) {
         console.log("Error:", error);
       }
     };
-    fetchApi();
+    fetchUsers();
   }, []);
 
-  const user =users.filter((user)=>{
-    if(user.roles.includes("ROLE_ADMIN") && user.username===userLogged){
-      console.log(user);
-      return user
-    }else{
-      console.log("error");
+  console.log(users);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('UserToken');
+    if (storedUser) {
+      setUserLogin(JSON.parse(storedUser));
+      console.log(userLogin);
     }
-  })
+  }, [users]);
 
-  console.log(user);
+  useEffect(() => {
+    console.log("Users:", users);
+  }, [users]);
 
-  const isActive = !!user;
-  console.log(isActive);
-  if (!isActive || null) {
+  // Verifica si el usuario tiene el rol necesario
+  const isActive = users.some(
+    (user) =>
+      user.username === userLogin?.login && user.roles.includes("ROLE_ADMIN")
+  );
+
+  if (!isActive) {
     return <Navigate to={redirect} replace />;
   }
 

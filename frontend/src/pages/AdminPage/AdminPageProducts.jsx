@@ -86,7 +86,7 @@ const AdminPageProducts = () => {
             
             <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid md:mt-10">
                 {allShoes.map((manShoe, index) => (
-                    <div key={index} className="flex justify-center flex-col items-center  sm:ml-40 sm:mr-40 sm:mt-28 sm:mb-28 sm:gap-2">
+                    <div key={index} className="flex justify-center flex-col items-center  sm:mt-28 sm:mb-28 sm:gap-2">
 
                         <CardShoes typeShoe={manShoe} />
                         <button className="bg-black rounded-lg text-white font-medium p-4 m-2" onClick={() => handleEditarProducto(manShoe)}>Editar producto</button>
