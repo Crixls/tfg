@@ -7,7 +7,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const FavoriteCard = ({favorito}) => {
 
-    console.log(favorito);
 
     const [fav, setfav] = useState([]);
     const [infoFav, setinfoFav] = useState([]);
@@ -25,7 +24,6 @@ const FavoriteCard = ({favorito}) => {
     useEffect(() => {
         const fetchApi = async () => {
           try {
-            console.log(fav)
             const data = await deleteFavorite2(fav);
             console.log("Favoritos:", data);
           } catch (error) {
@@ -38,10 +36,8 @@ const FavoriteCard = ({favorito}) => {
     useEffect(() => {
         const fetchApi = async () => {
           try {
-            console.log(fav)
             const data = await getProduct(favorito.product);
             setinfoFav(data);
-            console.log("Favorito:", data);
           } catch (error) {
             console.log("Error:", error);
           }

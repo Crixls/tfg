@@ -74,7 +74,10 @@ export const EntitiesProvider = (props) => {
 
     const updateDetails = (newData) => {
         setDataDetails(newData);
+        localStorage.setItem("productDetails", JSON.stringify(newData));
+
     };
+    
 
     return (
         <EntitiesContext.Provider

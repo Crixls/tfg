@@ -11,10 +11,14 @@ const CardShoes = ({ typeShoe }) => {
     const {updateDetails}= useEntitiesContext();
 
 
-
+    console.log(typeShoe);
   
     const handleFlip = () => {
         updateDetails(typeShoe);
+        localStorage.setItem(
+            "detailsProduct",
+            JSON.stringify({ product: typeShoe })
+          );
         navigate("/shoe");
     }
     

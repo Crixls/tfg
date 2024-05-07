@@ -13,29 +13,34 @@ const AdminPageUsers = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const navigate= useNavigate();
 
-
     useEffect(() => {
-        const fetchApi = async () => {
-            try {
-                const data = await getUsers();
-                setAllUsers(data);
-                console.log("Users:", data);
-            } catch (error) {
-                console.log("Error:", error);
-            }
-        };
-        fetchApi();
+        const intervalId = setInterval(fetchUsers, 5000); // Actualiza cada 5 segundos
+        return () => clearInterval(intervalId); // Limpia el temporizador al desmontar el componente
     }, []);
+
+
+    const fetchUsers = async () => {
+        try {
+            const data = await getUsers();
+            setAllUsers(data);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    };
   
     const handleCreateUser = () => {
         setOpen(true);
-        setOpen2(false); // Asegúrate de cerrar ModalEditProduct si está abierto
+        setOpen2(false);
+        fetchUsers();
+        // Asegúrate de cerrar ModalEditProduct si está abierto
     }
 
     const handleEditUser = (user) => {
         setSelectedUser(user); // Establecer el producto seleccionado
         setOpen2(true);
-        setOpen(false); // Asegúrate de cerrar ModalNewProduct si está abierto
+        setOpen(false);
+        fetchUsers();
+        // Asegúrate de cerrar ModalNewProduct si está abierto
     }
 
     const handleCloseModal = () => {
@@ -48,6 +53,8 @@ const AdminPageUsers = () => {
 
     const handleDeleteUser =(id)=>{
         deleteUser(id);
+        fetchUsers();
+
     }
 
     const handleReturn =()=>{

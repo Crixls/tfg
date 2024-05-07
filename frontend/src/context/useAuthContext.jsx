@@ -7,6 +7,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 // Crea el contexto de autenticación
 const AuthContext = createContext();
 
+
 // Componente proveedor de autenticación
 export const AuthProvider = (props) => {
   const { children } = props;
@@ -52,6 +53,8 @@ export const AuthProvider = (props) => {
     }
   };
 
+  
+
   const login = async (newToken) => {
     try {
       // Llama a `getUserInfo` para obtener la información del usuario
@@ -59,6 +62,7 @@ export const AuthProvider = (props) => {
       setLogged(userObject);
       console.log(userObject);
       setToken(newToken);
+      setuserfinal(userObject);
       // Almacena el token de usuario en el almacenamiento local
       localStorage.setItem(
         "UserToken",
@@ -68,9 +72,10 @@ export const AuthProvider = (props) => {
       console.error("Error en login:", error);
     }
   };
-
+  
   const logout = () => {
     localStorage.removeItem("UserToken");
+    localStorage.removeItem("userId");
     setToken(null);
     setLogged(null);
   };
@@ -86,3 +91,5 @@ export const AuthProvider = (props) => {
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };
+
+

@@ -51,6 +51,7 @@ const LoginPage = () => {
           "UserToken",
           JSON.stringify({ login: username, token: data.token })
         );
+
         navigate("/");
       } else {
         console.error("Credenciales incorrectas");
@@ -62,6 +63,8 @@ const LoginPage = () => {
   };
 
   setuserfinal(username);
+
+  
 
   const handleRegister = () => {
     navigate("/register");

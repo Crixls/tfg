@@ -93,6 +93,7 @@ const Home = () => {
           const foundUser = allUsers.find(user => user.username === useLogged.login);
           setIdUser(parseInt(foundUser.id, 10));
           setUserLogged(parseInt(foundUser.id, 10));
+          localStorage.setItem('userId', foundUser.id); // Almacena el ID del usuario en localStorage
           return userId === foundUser?.id;
         });
 

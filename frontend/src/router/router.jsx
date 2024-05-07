@@ -26,6 +26,7 @@ import SearchPage from "../pages/SearchPage/SearchPage";
 import OrdersPage from "../pages/OrdersPage/OrdersPage";
 import AdminEstadisticas from "../pages/AdminPage/AdminEstadisticas";
 import ProtectedRoute2 from "../pages/utils/ProtectedRoutes2";
+import PrivateRoutes from "../components/routesP/PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,6 @@ const router = createBrowserRouter([
       { path: "/man", element: <ManPage /> },
       { path: "/woman", element: <WomanPage /> },
       { path: "/kids", element: <KidsPage /> },
-      { path: "/cart", element: <CartPage /> },
       { path: "/shoe", element: <ShoePage /> },
       { path: "/futbol", element: <FutbolPage /> },
       { path: "/basket", element: <BasketPage /> },
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
   },
   { 
     path: "/", 
-    element: <ProtectedRoute2 redirect="/login" />, 
+    element: <PrivateRoutes redirect="/login" />, 
     children: [
       {
         // No necesitamos "/" aquí, ya que estas rutas son relativas a "/admin"
@@ -78,7 +78,9 @@ const router = createBrowserRouter([
           { path: "/favorites", element: <FavoritePage /> },
           { path: "/payment", element: <PayPage /> },
           { path: "/profile", element: <ProfilePage /> },
-          { path: "/orders", element: <OrdersPage /> }
+          { path: "/orders", element: <OrdersPage /> },
+          { path: "/cart", element: <CartPage /> },
+
         ]
       }
       

@@ -17,12 +17,13 @@
     "@stripe/stripe-js": "^3.3.0",
     "axios": "^1.6.8",
     "echarts-for-react": "^3.0.2",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lazy-load-image-component": "^1.6.0",
     "react-router-dom": "^6.22.3",
     "recharts": "^2.12.6",
-    "sweetalert2": "^11.10.8",
+    "sweetalert2": "^11.6.13",
     "three": "^0.163.0"
   },
   "devDependencies": {

@@ -15,8 +15,10 @@ const AdminPageProducts = () => {
 
 
     useEffect(() => {
-        fetchProducts(); // Llama a fetchProducts para cargar los productos iniciales
+        const intervalId = setInterval(fetchProducts, 5000); // Actualiza cada 5 segundos
+        return () => clearInterval(intervalId); // Limpia el temporizador al desmontar el componente
     }, []);
+
 
     const fetchProducts = async () => {
         try {

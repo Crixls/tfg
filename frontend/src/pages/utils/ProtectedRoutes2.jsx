@@ -3,51 +3,38 @@ import { useAuthContext } from "../../context/useAuthContext";
 import { useEffect, useState } from "react";
 import { getUsers } from "../../api/useCases";
 
-const ProtectedRoute2 = ({ redirect }) => {
+
+const ProtectedRoute2 = ({ user,redirect }) => {
   const { userLogged } = useAuthContext();
   const [users, setUsers] = useState([]);
-  const [storedUser, setStoredUser] = useState(false);
+  const [storedUser, setStoredUser] = useState(null);
 
-  useEffect(() => {
-    const storedUser2 = localStorage.getItem('UserToken');
-    if (storedUser2) {
-      console.log(storedUser2);
-     // Parse the storedUser string to JSON
-      setStoredUser(JSON.parse(storedUser2));
-    }
-  }, []);
-  console.log(storedUser);
+  console.log(user);
+  const { userfinal } = useAuthContext();
 
-  useEffect(() => {
-    const fetchApi = async () => {
-      try {
-        const data = await getUsers();
-        setUsers(data);
-      } catch (error) {
-        console.log("Error:", error);
-      }
-    };
-    fetchApi();
-  }, [users]);
 
+  console.log(userfinal)
   
 
-  const isActive = !!storedUser;
-  console.log(isActive);
-  if (!isActive || null) {
+
+  const isActive = !!userfinal ;
+
+  if (!isActive) {
     return <Navigate to={redirect} replace />;
   }
 
-  return <Outlet />;
-
-
-  // const user = users.find(
+  // Uncomment this section if you want to check for admin role
+  // const isAdmin = users.find(
   //   (user) =>
-  //     user.username === storedUser?.login && // Access the login property of storedUser
+  //     user.username === storedUser?.login &&
   //     user.roles.includes("ROLE_ADMIN")
   // );
 
-//   return <Outlet />;
+  // if (!isAdmin) {
+  //   return <Navigate to={redirect} replace />;
+  // }
+
+  return <Outlet />;
 };
 
 export default ProtectedRoute2;
