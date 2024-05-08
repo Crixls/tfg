@@ -45,35 +45,34 @@ const ModalCardOrder = ({ order, closeModal, open }) => {
     }, [filterOrderLines]);
 
     return (
-        <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center`} style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
+        <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center  `} style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
             <div className="cursor-pointer absolute top-4 right-4" onClick={closeModal}>
                 <ion-icon style={{color:"white"}} size="large" name="close"></ion-icon>
             </div>     
-            <div className={`modal ${open ? 'open' : 'closed'} bg-gray-400 rounded-md w-1/4 m-40 sm:w-2/3  sm:mt-80`}>
-                <div className="modal-content" style={{ overflowY: 'auto' }}> {/* Añade overflowY: 'auto' para la barra deslizadora */}
+            <div className={`modal ${open ? 'open' : 'closed'} bg-gray-400 rounded-md p-6  sm:w-2/3   `} style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+                <div className="modal-content" >
                     {filterOrderLines.map((product, index) => (
-                        <div className="flex justify-center items-center" key={index}>
-                            <div className="lg:p-20 sm:pt-10 sm:pl-10 sm:pr-10">
+                        <div className="flex items-center " key={index}>
+                            <div >
                                 {relatedProducts[parseInt(product.product.split('/').pop(), 10)] && (
                                     <>
-                                        <p className="text-white p-1 text-lg pb-8">{`Nombre del producto: ${relatedProducts[parseInt(product.product.split('/').pop(), 10)].name}`}</p>
+                                        <p className="text-white text-xs  md:text-base lg:text-lg pb-6">{`Nombre del producto: ${relatedProducts[parseInt(product.product.split('/').pop(), 10)].name}`}</p>
                                     </>
                                 )}
-                                <p className="text-white p-1">{`Cantidad: ${product.amount}`}</p>
-                                <p className="text-white p-1">{`Color: ${product.unitColor}`}</p>
-                                <p className="text-white p-1">{`Precio: ${product.unitPrice}`}</p>
-                                <p className="text-white p-1">{`Tamaño: ${product.unitSize}`}</p>
+                                <p className="text-white text-xs p-1 md:text-base lg:text-lg ">{`Cantidad: ${product.amount}`}</p>
+                                <p className="text-white text-xs p-1 md:text-base lg:text-lg ">{`Color: ${product.unitColor}`}</p>
+                                <p className="text-white text-xs p-1 md:text-base lg:text-lg ">{`Precio: ${product.unitPrice}`}</p>
+                                <p className="text-white text-xs p-1 md:text-base lg:text-lg pb-4 ">{`Tamaño: ${product.unitSize}`}</p>
                             </div>
                         </div>
                     ))}
-                    <div className="flex justify-center items-center p-10">
-                        <p className="text-2xl font-bold text-white">{`Total: ${order.total}€`}</p>
+                    <div className="flex justify-center items-center p-8">
+                        <p className="md:text-2xl lg:text-2xl font-bold text-xl    text-white">{`Total: ${order.total}€`}</p>
                     </div>
                 </div>
             </div>
         </div>
     );
-    
 };
 
 export default ModalCardOrder;

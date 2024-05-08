@@ -11,23 +11,33 @@ const OrdersPage = () => {
     const [orderEntity, setOrderEntity] = useState(null);
     const { userLogged } = useAuthContext();
     const [loading, setLoading] = useState(false);
+    const [userId, setuserId] = useState('');
+
+    useEffect(() => {
+  
+      if (userId) {
+        setuserId(userId);
+      }
+    }, []);
+  
 
 
     useEffect(() => {
         const fetchOrderEntities = async () => {
           try {
-      
+
+            const userId2 = localStorage.getItem('userId');
+
             setLoading(true);
 
             const data = await getOrderEntities();
-            console.log(data);
-            console.log(userLogged);
+            console.log(userId2);
             const filteredOrder = data.filter(order => {
               const userId = parseInt(order.user.split('/').pop(), 10);
               const userState = order.state; // Acceder al estado del usuario
               console.log(order.user);
               // Comprobar que el ID del usuario sea igual al del usuario loggeado y que el estado sea 0
-              return userId === parseInt(userLogged, 10) && userState === 1;
+              return userId === parseInt(userId2, 10) && userState === 1;
             });
             setLoading(false);
 

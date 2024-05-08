@@ -14,25 +14,6 @@ const FavoriteCard = ({favorito}) => {
     const apiUrl = import.meta.env.VITE_API_URL;
 
 
-
-
-
-    const handleClick=(favorite)=>{
-        setfav(favorite);
-    }
-
-    useEffect(() => {
-        const fetchApi = async () => {
-          try {
-            const data = await deleteFavorite2(fav);
-            console.log("Favoritos:", data);
-          } catch (error) {
-            console.log("Error:", error);
-          }
-        };
-        fetchApi();
-    }, [fav]);
-
     useEffect(() => {
         const fetchApi = async () => {
           try {
@@ -55,7 +36,6 @@ const FavoriteCard = ({favorito}) => {
             <p className="font-bold">{infoFav.price} €</p>
           </div>
         </div>
-        <button className='m-6 mt-8 text-white bg-red-600 p-4 pt-2 pb-2 rounded-md font-medium' onClick={()=>handleClick(favorito)}>Eliminar favorito</button>
     </div>
   )
 }

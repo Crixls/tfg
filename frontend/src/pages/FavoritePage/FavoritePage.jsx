@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFavorites } from "../../api/useCases";
+import { deleteFavorite2, getFavorites } from "../../api/useCases";
 import FavoriteCard from "../../components/Favorite/FavoriteCard";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useEntitiesContext } from "../../context/useEntitiesContext";
@@ -9,7 +9,9 @@ const FavoritePage = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
   const { handleUnload } = useEntitiesContext();
-  const { userLogged } = useAuthContext();
+
+  const [fav, setfav] = useState([]);
+
 
   useEffect(() => {
     handleUnload();
@@ -19,6 +21,30 @@ const FavoritePage = () => {
       fetchFavorites(parseInt(userId, 10));
     }
   }, []);
+
+
+  
+
+  const handleClick=(favorite)=>{
+    setfav(favorite);
+  }
+
+  
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      try {
+        const data = await deleteFavorite2(fav);
+        fetchFavorites(parseInt(localStorage.getItem('userId'), 10));
+        console.log("Favoritos:", data);
+      } catch (error) {
+        console.log("Error:", error);
+      }
+    };
+    fetchApi();
+  }, [fav]);
+
+  
 
   const fetchFavorites = async (userId) => {
     try {
@@ -48,8 +74,10 @@ const FavoritePage = () => {
         <div className="flex justify-center">
           <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid  md:mt-10">
             {favorites.map((favorite, index) => (
-              <div key={index} className="flex justify-center  ">
+              <div key={index} className="flex justify-center flex-col  ">
                 <FavoriteCard favorito={favorite}></FavoriteCard>
+                <button className='m-6 mt-8 text-white bg-red-600 p-4 pt-2 pb-2 rounded-md font-medium' onClick={()=>handleClick(favorite)}>Eliminar favorito</button>
+
               </div>
             ))}  
           </div>

@@ -10,6 +10,8 @@ const CardShoes = ({ typeShoe }) => {
     const navigate= useNavigate();
     const {updateDetails}= useEntitiesContext();
 
+    
+
 
     console.log(typeShoe);
   

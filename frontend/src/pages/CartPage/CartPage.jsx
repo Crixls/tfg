@@ -40,8 +40,15 @@ const CartPage = () => {
   const handleEdit = (order, product) => {
     setSelectOrder(order);
     setSelectProduct(product);
+    
     setOpen(true);
   }
+
+  useEffect(() => {
+    const intervalId = setInterval(fetchOrderLines, 5000); // Actualiza cada 5 segundos
+    return () => clearInterval(intervalId); // Limpia el temporizador al desmontar el componente
+}, []);
+
 
   const handleDelete = async (id) => {
     await deleteOrderLine(id);
@@ -79,7 +86,13 @@ const CartPage = () => {
     fetchOrderEntities();
   }, [userId2]);
 
-  useEffect(() => {
+
+  const handleUpdate =()=>{
+    fetchOrderLines();
+
+  }
+
+
     const fetchOrderLines = async () => {
       try {
         if (orderEntity.length > 0) {
@@ -96,7 +109,7 @@ const CartPage = () => {
     };
 
     fetchOrderLines();
-  }, [orderEntity, orderEntity.length]); 
+
 
   const filterOrderLines = (data, entityId) => {
     return data.filter(order => {
@@ -137,7 +150,7 @@ const CartPage = () => {
   return (
     <>
       <div className="flex justify-center">
-        {open && <ModalEditOrderLine product2={selectProduct} open={open} closeModal={handleCloseModal2} order={selectOrder} />}
+        {open && <ModalEditOrderLine update={handleUpdate} product2={selectProduct} open={open} closeModal={handleCloseModal2} order={selectOrder} />}
       </div>
       {showItem ? <StripeContainer date={date} user={user} order={orderEntity[0]?.id} total={total}></StripeContainer> : ""}
       {loading ? (
@@ -173,7 +186,7 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="bg-gray-100 m-10 mt-24 p-10 h-1/2 flex flex-col items-center justify-center" style={{ backgroundImage: 'url(/src/assets/tex1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div className="bg-gray-100 m-10 mt-24 p-10  flex flex-col items-center justify-center" style={{ backgroundImage: 'url(/src/assets/tex1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="p-10" style={{ backgroundColor: "rgba(128, 128, 128, 0.8)" }}>
               <p className="text-lg font-bold text-white ">Total: {total} €</p>
               <div className="flex flex-col items-center mt-6">

@@ -2,7 +2,7 @@ import  { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { updateOrderLine } from '../../api/api';
 
-const ModalEditOrderLine = ({ order, open, closeModal, product2 }) => {
+const ModalEditOrderLine = ({ order, open, closeModal, product2,update }) => {
     
     const [unitColor, setColor] = useState('');
     const [unit_color, setunit_color] = useState('');
@@ -79,6 +79,8 @@ const ModalEditOrderLine = ({ order, open, closeModal, product2 }) => {
             console.log(updateOrderData);
         
             const response = await updateOrderLine(order.id, updateOrderData);
+
+            update();
         
             if (response) {
                 Swal.fire({
