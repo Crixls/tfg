@@ -103,7 +103,7 @@ const ModalNewProduct = ({  open, closeModal,onProductCreated  }) => {
           <label htmlFor="price" className="font-bold m-2">Precio</label>
           <input
             className="rounded-md  ml-2 mr-2"
-            type="text"
+            type="number"
             id="price"
             value={price}
             onChange={(e) => setPrice(parseFloat(e.target.value))}

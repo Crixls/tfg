@@ -12,8 +12,6 @@ const CardShoes = ({ typeShoe }) => {
 
     
 
-
-    console.log(typeShoe);
   
     const handleFlip = () => {
         updateDetails(typeShoe);
