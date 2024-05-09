@@ -33,7 +33,7 @@ const AdminPage = () => {
           <button className=" md:mb-20 bg-gray-500  rounded-md p-8 text-white font-medium text-lg sm:m-8 m-4" onClick={handleUsuarios}>Usuarios</button>
           <button className=" md:mb-10 bg-gray-500  rounded-md p-8 text-white font-medium text-lg sm:m-8 m-4" onClick={handleEstadisticas}>Estadísticas</button>
         </div>
-        <div className="lg:m-40">
+        <div className="lg:m-20">
           <button className="rounded-md  bg-black p-8 pl-12 pr-12 font-medium text-white text-lg " onClick={handleReturn}>
             Volver inicio
           </button>

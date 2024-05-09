@@ -68,23 +68,22 @@ const router = createBrowserRouter([
       
     ],
   },
-  { 
-    path: "/", 
-    element: <PrivateRoutes redirect="/login" />, 
+  {
+    path: "/", // Ruta raíz
+    element: <RootLayout />, // Utiliza RootLayout como contenedor principal
     children: [
       {
-        // No necesitamos "/" aquí, ya que estas rutas son relativas a "/admin"
+        // Rutas secundarias relativas a "/"
+        element: <PrivateRoutes redirect="/login" />, // Protege las rutas secundarias con PrivateRoutes
         children:[
-          { path: "/favorites", element: <FavoritePage /> },
-          { path: "/payment", element: <PayPage /> },
-          { path: "/profile", element: <ProfilePage /> },
-          { path: "/orders", element: <OrdersPage /> },
-          { path: "/cart", element: <CartPage /> },
-
+          { path: "/favorites", element: <FavoritePage /> }, // Ruta para la página de favoritos
+          { path: "/payment", element: <PayPage /> }, // Ruta para la página de pago
+          { path: "/profile", element: <ProfilePage /> }, // Ruta para la página de perfil
+          { path: "/orders", element: <OrdersPage /> }, // Ruta para la página de pedidos
+          { path: "/cart", element: <CartPage /> }, // Ruta para la página de carrito de compras
         ]
       }
-      
-    ],
+    ]
   },
   { path: "/register", element: <RegisterPage />},
 
