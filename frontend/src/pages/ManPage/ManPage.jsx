@@ -7,6 +7,7 @@ import { useEntitiesContext } from "../../context/useEntitiesContext";
 
 import hombreimg from '../../assets/hombre/poster-hombre.webp';
 import Loaderanimated from "../../components/Loaderanimated";
+import catchProducts from "../../components/catchProducts";
 
 
 
@@ -26,7 +27,7 @@ const ManPage = () => {
       try {
         setLoading(true);
 
-        const data = await getProducts();
+        const data = await catchProducts();
         setManShoes(data.filter(product => product.category === "H"));
         console.log("Productos hombre:", data);
       } catch (error) {

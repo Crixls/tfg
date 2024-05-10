@@ -3,6 +3,8 @@ import { getProducts } from '../api/useCases';
 import CardShoes from './CardShoes';
 import { useEntitiesContext } from '../context/useEntitiesContext';
 import { useNavigate } from 'react-router-dom';
+import catchProducts from "../components/catchProducts";
+
 
 const ProductsSearch = () => {
 
@@ -19,7 +21,8 @@ const ProductsSearch = () => {
 
             try {
 
-            const products2=await getProducts();
+            const products2=await catchProducts();
+            console.log(products2)
 
             setProducts(products2);
             }catch(err) {

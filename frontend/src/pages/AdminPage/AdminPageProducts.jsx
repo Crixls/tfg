@@ -5,6 +5,9 @@ import ModalNewProduct from '../../components/Product/ModalNewProduct';
 import ModalEditProduct from '../../components/Product/ModalEditProduct';
 import CardShoes from '../../components/CardShoes';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import catchProducts from '../../components/catchProducts';
+
 
 const AdminPageProducts = () => {
     const [allShoes, setAllShoes] = useState([]);
@@ -22,7 +25,8 @@ const AdminPageProducts = () => {
 
     const fetchProducts = async () => {
         try {
-            const data = await getProducts();
+            // const data = await getProducts();
+            const data= await catchProducts()
             setAllShoes(data);
             console.log("Productos:", data);
         } catch (error) {

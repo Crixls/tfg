@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../../api/useCases";
 import CardShoes from "../CardShoes";
 import Loaderanimated from "../../components/Loaderanimated";
+import catchProducts from "../../components/catchProducts";
 
 
 const SportsComponent = ({type}) => {
@@ -16,7 +17,7 @@ const SportsComponent = ({type}) => {
           try {
             setLoading(true);
 
-            const data = await getProducts();
+            const data = await catchProducts();
             const filteredProducts = data.filter(product => {
               return product.deporte.includes(type);
             });

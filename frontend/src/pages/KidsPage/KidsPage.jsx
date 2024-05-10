@@ -4,6 +4,7 @@ import CardShoes from "../../components/CardShoes";
 import { useEntitiesContext } from "../../context/useEntitiesContext";
 import niñaimg from '../../assets/niña/niños.webp';
 import Loaderanimated from "../../components/Loaderanimated";
+import catchProducts from "../../components/catchProducts";
 
 
 const KidsPage = () => {
@@ -21,7 +22,7 @@ const KidsPage = () => {
       try {
         setLoading(true);
 
-        const data = await getProducts();
+        const data = await catchProducts();
         setWomanShoes(data.filter(product => product.category === "N"));
         console.log("Productos mujer:", data);
       } catch (error) {
