@@ -219,10 +219,10 @@ const ShoePage = () => {
   );
 
   return (
-    <div className="lg:grid lg:grid-cols-2 md:grid md:grid-col-1 md:p-8  sm:justify-center sm:flex-col sm:items-center">
+    <div className="lg:grid lg:grid-cols-2 md:grid md:grid-col-1 md:p-8  sm:justify-center sm:flex-col sm:items-center ">
       
       {imageColor?
-        <div className="lg:flex lg:justify-center lg:items-center  md:p-6  sm:flex sm:justify-center sm:items-center p-10 justify-center m-8  ">
+        <div className="lg:flex lg:justify-center lg:items-center  md:p-6  sm:flex sm:justify-center sm:items-center p-20 justify-center md:m-24 lg:m-2  ">
           <ImgComponent className="sm:flex" brand={`${details.brand}`} color={`${imageColor}`} name={`${details.name}`}></ImgComponent>
         </div>
       :      

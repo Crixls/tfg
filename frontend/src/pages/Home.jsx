@@ -12,6 +12,7 @@ import circuit from '../assets/home/circuit-last.webp';
 import ObjectThreeD from "../components/ThreeD/ObjectThreeD";
 import Render from "../components/Render";
 import Loaderanimated from "../../src/components/Loaderanimated";
+import catchProducts from "../components/catchProducts";
 
 
 const Home = () => {
@@ -62,7 +63,7 @@ const Home = () => {
 
       try {
         setLoading(true);
-        const products = await getProducts();
+        const products = await catchProducts();
         setProducts(products.filter(product => product.new === 1));
       } catch (err) {
         console.log("Error:", err);
