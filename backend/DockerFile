@@ -1,13 +1,30 @@
-FROM php:8.2.0-fpm
+FROM php:8.2.0-apache
 
+
+# Set the working directory in the container
 WORKDIR /var/www/html
 
-COPY ./backend /var/www/html
+# Copy composer.lock and composer.json
+COPY backend/composer.lock backend/composer.json ./
 
+# Install PHP dependencies
 RUN apt-get update && apt-get install -y \
     git \
+    zip \
     unzip \
-    libzip-dev \
-    && docker-php-ext-install zip pdo_mysql
+    && docker-php-ext-install pdo pdo_mysql
 
-CMD ["php-fpm"]
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Symfony CLI
+RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
+# Copy the rest of the application code
+COPY backend/ .
+
+# Expose port 80 to the Docker host
+EXPOSE 80
+
+# Run Apache server
+CMD ["apache2-foreground"]
