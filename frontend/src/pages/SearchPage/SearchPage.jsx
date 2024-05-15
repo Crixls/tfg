@@ -1,9 +1,10 @@
 import { useEntitiesContext } from '../../context/useEntitiesContext';
 import CardShoes from '../../components/CardShoes';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const SearchPage = () => {
     const {searchProducts,handleUnload}= useEntitiesContext();
+
 
     useEffect(() => {
         handleUnload();

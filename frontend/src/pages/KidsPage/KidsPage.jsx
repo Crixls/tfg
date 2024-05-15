@@ -14,25 +14,27 @@ const KidsPage = () => {
 
   const {handleUnload}= useEntitiesContext();
 
-
   useEffect(() => {
     handleUnload();
-
-    const fetchApi = async () => {
+    const fetchProducts = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
-
-        const data = await catchProducts();
-        setWomanShoes(data.filter(product => product.category === "N"));
-        console.log("Productos mujer:", data);
+        const storedProducts = localStorage.getItem('allProducts');
+        if (storedProducts) {
+          setWomanShoes(JSON.parse(storedProducts).filter(product => product.category === "N"));
+        } else {
+          const fetchedProducts = await catchProducts();
+          setWomanShoes(fetchedProducts.filter(product => product.category === "N"));
+        }
       } catch (error) {
         console.log("Error:", error);
       }
       setLoading(false);
-
     };
-    fetchApi();
+
+    fetchProducts();
   }, []);
+
 
   return (
     <>

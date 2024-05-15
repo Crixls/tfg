@@ -19,24 +19,25 @@ const ManPage = () => {
   const {handleUnload}= useEntitiesContext();
   const [loading, setLoading] = useState(false);
 
-
-
   useEffect(() => {
     handleUnload();
-    const fetchApi = async () => {
+    const fetchProducts = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
-
-        const data = await catchProducts();
-        setManShoes(data.filter(product => product.category === "H"));
-        console.log("Productos hombre:", data);
+        const storedProducts = localStorage.getItem('allProducts');
+        if (storedProducts) {
+          setManShoes(JSON.parse(storedProducts).filter(product => product.category === "H"));
+        } else {
+          const fetchedProducts = await catchProducts();
+          setManShoes(fetchedProducts.filter(product => product.category === "H"));
+        }
       } catch (error) {
         console.log("Error:", error);
       }
       setLoading(false);
-
     };
-    fetchApi();
+
+    fetchProducts();
   }, []);
 
   return (

@@ -13,24 +13,28 @@ const SportsComponent = ({type}) => {
 
 
     useEffect(() => {
-        const fetchApi = async () => {
-          try {
-            setLoading(true);
-
-            const data = await catchProducts();
-            const filteredProducts = data.filter(product => {
-              return product.deporte.includes(type);
-            });
-            console.log(filteredProducts);
+      const fetchProducts = async () => {
+        setLoading(true);
+        try {
+          const storedProducts = localStorage.getItem('allProducts');
+          if (storedProducts) {
+            const parsedProducts = JSON.parse(storedProducts);
+            const filteredProducts = parsedProducts.filter(product =>  product.deporte.includes(type));
             setproducts(filteredProducts);
-          } catch (error) {
-            console.log("Error:", error);
+          } else {
+            const fetchedProducts = await catchProducts();
+            const filteredProducts = fetchedProducts.filter(product =>  product.deporte.includes(type));
+            setproducts(filteredProducts);
           }
-          setLoading(false);
-
-        };
-        fetchApi();
-      }, [type]);
+        } catch (error) {
+          console.log("Error:", error);
+        }
+        setLoading(false);
+      };
+    
+      fetchProducts();
+    }, [type]);
+    
       
 
     return (

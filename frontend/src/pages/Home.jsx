@@ -24,6 +24,7 @@ const Home = () => {
   const { setUserLogged, setUsers2, userfinal } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const {handleUnload}= useEntitiesContext();
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,20 +60,25 @@ const Home = () => {
 
 
   useEffect(() => {
-    const fetchApi = async () => {
+    handleUnload();
 
+    const fetchProducts = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
-        const products = await catchProducts();
-        setProducts(products.filter(product => product.new === 1));
-      } catch (err) {
-        console.log("Error:", err);
+        const storedProducts = localStorage.getItem('allProducts');
+        if (storedProducts) {
+          setProducts(JSON.parse(storedProducts).filter(product => product.new === 1));
+        } else {
+          const fetchedProducts = await catchProducts();
+          setProducts(fetchedProducts.filter(product => product.new === 1));
+        }
+      } catch (error) {
+        console.log("Error:", error);
       }
       setLoading(false);
-
     };
-    fetchApi();
 
+    fetchProducts();
   }, []);
 
 
@@ -86,6 +92,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    
     const fetchApi = async () => {
       try {
         const data = await getOrderEntities();
@@ -164,6 +171,7 @@ const Home = () => {
 
   return (
     <div>
+      
       {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}
       {/* <div className="mt-10 flex justify-between"> */}
       {/* <ObjectThreeD  carpeta="shoe1" file="sketchfab_shoe.fbx"></ObjectThreeD> */}

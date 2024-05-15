@@ -15,7 +15,7 @@ const RunningPage = () => {
   return (
     <>
        <div className="p-4 mt-10 flex" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
-            <p className="text-white flex w-full text-2xl font-bold">StreetPulse Running</p>
+            <p className="text-white flex w-full text-2xl font-bold">RUNNING</p>
         </div>
         <div className='flex justify-center items-center'>
           <SportsComponent type="running"></SportsComponent>

@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
 
@@ -30,17 +30,17 @@ services:
     frontend:
         build:
             context: ./frontend
-            dockerfile: dockerfile
+            dockerfile: dockerFile
         
         environment:
-            - VITE_API_URL=${VITE_API_URL}
+            - VITE_API_URL=https://127.0.0.1:8000
              
         
         ports:
             - 3000:3000
         
         volumes:
-            - ./frontend./app/frontend
+            - ./frontend:/app/frontend
         
         depends_on:
             - backend

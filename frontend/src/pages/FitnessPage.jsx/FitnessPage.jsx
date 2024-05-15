@@ -13,7 +13,7 @@ const FitnessPage = () => {
   return (
     <>
         <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
-            <p className="text-white flex w-full text-2xl font-bold">StreetPulse Fitness</p>
+            <p className="text-white flex w-full text-2xl font-bold">FITNESS</p>
         </div>
         <SportsComponent type="fitness"></SportsComponent>
     </>

@@ -1,23 +1,12 @@
-# Use an official Node runtime as a parent image
-FROM node:14-alpine
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY frontend/package*.json ./
-
-# Install frontend dependencies
-RUN npm install
-
-# Copy the rest of the frontend code
-COPY frontend/ .
-
-# Build the React app
-RUN npm run build
-
-# Expose port 3000 to the Docker host
+FROM node:lts-alpine
+ENV NODE_ENV=production
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
+COPY . .
+# Instala las dependencias de desarrollo
+RUN npm install react-scripts --save-dev
 EXPOSE 3000
-
-# Command to run the frontend server
+RUN chown -R node /usr/src/app
+USER node
 CMD ["npm", "start"]

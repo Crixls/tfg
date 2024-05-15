@@ -4,6 +4,9 @@ FROM php:8.2.0-apache
 # Set the working directory in the container
 WORKDIR /var/www/html
 
+COPY . .
+
+
 # Copy composer.lock and composer.json
 COPY backend/composer.lock backend/composer.json ./
 
@@ -21,7 +24,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 # Copy the rest of the application code
-COPY backend/ .
 
 # Expose port 80 to the Docker host
 EXPOSE 80

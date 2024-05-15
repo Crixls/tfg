@@ -14,7 +14,7 @@ const BasketPage = () => {
   return (
     <>
         <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
-            <p className="text-white flex w-full text-2xl font-bold">StreetPulse Baloncesto</p>
+            <p className="text-white flex w-full text-2xl font-bold">BALONCESTO</p>
         </div>
         <SportsComponent type="baloncesto"></SportsComponent>
     </>
