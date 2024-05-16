@@ -21,7 +21,6 @@ import blanco41 from '../assets/zapatillas/puma/blanco41.webp'
 
 const ImgComponent = ({color,name}) => {
   let imageSrc;
-  console.log(name,color);
   name==="NIKE AL8" && color==="blanco"?imageSrc=blanco8:name==="NIKE AL8"?imageSrc=light8:"";
   name==="NIKE DUNK LOW RETRO" && color==="blanco"?imageSrc=blanco10:  name==="NIKE DUNK LOW RETRO" ?imageSrc=negro10:"";
   name==="AIR ZOOM" && color==="azul"?imageSrc=azulNike7:  name==="AIR ZOOM" ?imageSrc=blancoNike7:"";

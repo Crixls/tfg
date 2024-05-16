@@ -60,7 +60,6 @@ export const AuthProvider = (props) => {
       // Llama a `getUserInfo` para obtener la información del usuario
       const userObject = await getUserInfo(newToken);
       setLogged(userObject);
-      console.log(userObject);
       setToken(newToken);
       setuserfinal(userObject);
       // Almacena el token de usuario en el almacenamiento local

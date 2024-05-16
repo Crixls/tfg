@@ -41,7 +41,6 @@ const ShoePage = () => {
       try {
         const data = await getUsers();
         setAllUsers(data);
-        console.log("Users:", data);
       } catch (error) {
         console.log("Error:", error);
       }
@@ -53,9 +52,7 @@ const ShoePage = () => {
     const fetchApi = async () => {
       try {
         const data = await getOrderEntities();
-        console.log(data);
         setOrderEntities(data);
-        console.log("Users:", data);
       } catch (error) {
         console.log("Error:", error);
       }
@@ -67,7 +64,6 @@ const ShoePage = () => {
     // Encuentra el id del usuario logueado
     const foundOrder = allOrderEntities.find(order => order.state === 0 && order.user === `/api/users/${idUser}`);
     if (foundOrder) {
-      console.log(foundOrder);
       setOrderEntity_id(foundOrder.id);
     }
   }, [allOrderEntities, idUser]);
@@ -106,7 +102,6 @@ const ShoePage = () => {
     }
   }, []);
   
-  console.log(details);
   const isFavorite = favorites.includes(details.id);
 
   const handleLike = (idShoe) => {
@@ -124,8 +119,7 @@ const ShoePage = () => {
   const handleCarrito = async () => {
     try {
       const inputValue = document.getElementById('catidad').value; // Obtener el valor del campo de entrada
-      console.log(product_id);
-      console.log(orderEntity_id);
+  
       const datos = {
         product: `/api/products/${product_id}`,
         amount: parseInt(inputValue),

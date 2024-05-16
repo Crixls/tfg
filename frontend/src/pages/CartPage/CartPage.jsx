@@ -74,7 +74,6 @@ const CartPage = () => {
         });
 
         setUser(filteredOrder[0].user);
-        setDate(filteredOrder[0].date);
         setOrderEntity(filteredOrder);
         setLoading(false);
 
@@ -86,6 +85,13 @@ const CartPage = () => {
     fetchOrderEntities();
   }, [userId2]);
 
+  useEffect(() => {
+    // Establece la fecha actual como el valor inicial de date
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+    setDate(formattedDate);
+  }, []);
+  
 
   const handleUpdate =()=>{
     fetchOrderLines();

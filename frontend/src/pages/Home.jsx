@@ -44,7 +44,6 @@ const Home = () => {
         const usersData = await getUsers();
         setallUsers(usersData);
         setUsers2(usersData);
-        console.log("Users:", usersData);
 
         const storedUser = localStorage.getItem('UserToken');
         if (storedUser) {
@@ -107,11 +106,9 @@ const Home = () => {
 
         setorderUser(filteredOrder);
 
-        console.log("Orders:", filteredOrder);
 
         // Crear pedido aquí si orderUser no está vacío
         if (filteredOrder.length === 0 && idUser !== null) {
-          console.log(idUser);
           const orderEntityData = {
             user: `/api/users/${idUser}`, // Se asume que foundUser está definido aquí
             date: new Date().toISOString(),

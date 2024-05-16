@@ -9,13 +9,7 @@ const ProtectedRoute = ({ redirect }) => {
   const [userLogin, setUserLogin] = useState(null);
   const { userfinal,users2,logged,userLogged } = useAuthContext();
 
-  console.log(userfinal);
-  console.log(users2);
-  console.log(logged);
-  console.log(userLogged);
 
-
- 
 
 
   // Verifica si el usuario tiene el rol necesario

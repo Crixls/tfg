@@ -119,7 +119,6 @@ const Header = () => {
   }, [adminLogged]);
 
   useEffect(() => {
-    console.log(useLogged)
     const isAdmin = allUsers.some(user => user.username === useLogged.login && user.roles.includes('ROLE_ADMIN'));
     localStorage.setItem('isAdmin', isAdmin);
   }, [allUsers, useLogged]);

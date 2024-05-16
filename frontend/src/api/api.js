@@ -86,7 +86,6 @@ export const deleteMethod = async (endpoint) => {
 
 
 export const deleteProduct = async (productId) => {
-  console.log({apiUrl});
   try {
     const apiUrl2 = `${apiUrl}/api/products/`;
     const endpoint = `${apiUrl2}${productId}`;
@@ -107,7 +106,6 @@ export const deleteProduct = async (productId) => {
     }
 
     const result = await response.text();
-    console.log(result);
     return result;
   } catch (error) {
     console.error("Error en la eliminación del producto:", error);
@@ -140,7 +138,6 @@ export const deleteOrderLine = async (orderLineId) => {
     }
 
     const result = await response.text();
-    console.log(result);
     return result;
   } catch (error) {
     console.error("Error en la eliminación del producto:", error);
@@ -169,7 +166,6 @@ export const deleteUser = async (userId) => {
     }
 
     const result = await response.text();
-    console.log(result);
     return result;
   } catch (error) {
     console.error("Error en la eliminación del producto:", error);
@@ -182,7 +178,6 @@ export const deleteFav = async (endpoint2) => {
 
     // const apiUrl = import.meta.env.VITE_API_URL;
 
-    console.log(endpoint2);
 
     const endpoint = `${apiUrl}${endpoint2}`;
 
@@ -202,7 +197,6 @@ export const deleteFav = async (endpoint2) => {
     }
 
     const result = await response.text();
-    console.log(result);
     return result;
   } catch (error) {
     console.error("Error en la eliminación del producto:", error);
@@ -213,7 +207,6 @@ export const deleteFav = async (endpoint2) => {
 
 // Función para actualizar un producto
 export const updateProduct = async (productId, updatedProductData) => {
-  {console.log(productId,updatedProductData)}
   try {
     // const apiUrl2 = `${apiUrl}/products/`;
     // const endpoint = `${apiUrl2}${productId}`;
@@ -236,7 +229,6 @@ export const updateProduct = async (productId, updatedProductData) => {
     }
 
     const result = await response.text();
-    console.log(result); // Imprimir la respuesta si es necesario
     return result; // O devolver la respuesta si se necesita en otro lugar
   } catch (error) {
     console.error("Error en la actualización del producto:", error);
@@ -265,7 +257,6 @@ export const updateOrderLine = async (orderLineId, updatedOrderData) => {
     }
 
     const result = await response.text();
-    console.log(result); // Imprimir la respuesta si es necesario
     return result; // O devolver la respuesta si se necesita en otro lugar
   } catch (error) {
     console.error("Error en la actualización del producto:", error);
@@ -285,7 +276,6 @@ export const sendProductFormData = async (formData) => {
     redirect: "follow",
   };
 
-  console.log(requestOptions);
 
   try {
     const response = await fetch(`${apiUrl}/api/products/image`, requestOptions);
@@ -312,7 +302,6 @@ export const postProduct = async (formData) => {
     redirect: "follow",
   };
 
-  console.log(requestOptions);
 
   try {
     const response = await fetch(`${apiUrl}/productsfinales`, requestOptions);
@@ -362,7 +351,6 @@ export const postFav = async (endpoint, userApiPath, productApiPath) => {
 
 
 export const updateUser = async (userId, updatedUserData) => {
-  console.log(updatedUserData);
   try {
     const apiUrl2 = `${apiUrl}/api/users/`;
     const endpoint = `${apiUrl2}${userId}`;
@@ -384,7 +372,6 @@ export const updateUser = async (userId, updatedUserData) => {
     }
     
     const result = await response.text();
-    console.log(result); // Imprimir la respuesta si es necesario
     return result; // O devolver la respuesta si se necesita en otro lugar
   } catch (error) {
     console.error("Error en la actualización del producto:", error);
@@ -409,7 +396,6 @@ export const editOrderEntity = async (entityId,updateOrder) => {
     body: JSON.stringify(updateOrder),
     redirect: "follow",
   };
-  console.log(requestOptions);
   
   try {
     const response = await fetch(endpoint, requestOptions);
@@ -438,7 +424,6 @@ export const post2 = async (formData) => {
     body: JSON.stringify(formDataObject),
     redirect: "follow",
   };
-  console.log(requestOptions);
   
   try {
     const response = await fetch(`${apiUrl}/api/users`, requestOptions);
@@ -466,7 +451,6 @@ export const postOrderEntity = async (formData) => {
     body: JSON.stringify(formData),
     redirect: "follow",
   };
-  console.log(requestOptions);
   
   try {
     const response = await fetch(`${apiUrl}/api/order_entities`, requestOptions);
@@ -495,7 +479,6 @@ export const postOrderLine = async (formData) => {
     body: JSON.stringify(formData),
     redirect: "follow",
   };
-  console.log(requestOptions);
   
   try {
     const response = await fetch(`${apiUrl}/api/order_lines`, requestOptions);

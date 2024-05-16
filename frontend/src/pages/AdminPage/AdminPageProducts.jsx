@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { getProducts } from '../../api/useCases';
 import { deleteProduct, postProduct, updateProduct } from '../../api/api';
 import ModalNewProduct from '../../components/Product/ModalNewProduct';
@@ -7,71 +7,72 @@ import CardShoes from '../../components/CardShoes';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import catchProducts from '../../components/catchProducts';
-
+import Loaderanimated from '../../components/Loaderanimated';
 
 const AdminPageProducts = () => {
     const [allShoes, setAllShoes] = useState([]);
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const navigate= useNavigate();
-
+    const [loading, setLoading] = useState(true); // Inicialmente true para mostrar el loader
+    const [productsLoaded, setProductsLoaded] = useState(false); // Estado para rastrear si los productos se han cargado al menos una vez
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const intervalId = setInterval(fetchProducts, 5000); // Actualiza cada 5 segundos
-        return () => clearInterval(intervalId); // Limpia el temporizador al desmontar el componente
-    }, []);
+        const fetchProducts = async () => {
+            setLoading(true); // Indicar que se están cargando los productos
+            try {
+                const data = await catchProducts();
+                setAllShoes(data);
+                setProductsLoaded(true); // Marcar los productos como cargados al menos una vez
+            } catch (error) {
+                console.log("Error:", error);
+            } finally {
+                setLoading(false); // Indicar que se han cargado los productos o ha ocurrido un error
+            }
+        };
 
+        fetchProducts();
+    }, []); // Se ejecuta solo una vez al montar el componente
 
-    const fetchProducts = async () => {
-        try {
-            // const data = await getProducts();
-            const data= await catchProducts()
-            setAllShoes(data);
-            console.log("Productos:", data);
-        } catch (error) {
-            console.log("Error:", error);
-        }
-    };
-  
     const handleCrearProducto = () => {
         setOpen(true);
-        setOpen2(false); // Asegúrate de cerrar ModalEditProduct si está abierto
+        setOpen2(false);
     }
 
-    const handleEditarProducto = (product,onProductEdited) => {
-        setSelectedProduct(product); // Establecer el producto seleccionado
+    const handleEditarProducto = (product, onProductEdited) => {
+        setSelectedProduct(product);
         setOpen2(true);
-        setOpen(false); // Asegúrate de cerrar ModalNewProduct si está abierto
+        setOpen(false);
     }
 
-    const handleCloseModal =  () => {
+    const handleCloseModal = () => {
         setOpen(false);
     };
-  
+
     const handleEliminarProducto = async (id) => {
         await deleteProduct(id);
-        fetchProducts(); // Actualiza la lista de productos después de eliminar uno
+        const updatedShoes = allShoes.filter(shoe => shoe.id !== id);
+        setAllShoes(updatedShoes);
     }
+
     const handleCloseModal2 = () => {
-       
         setOpen2(false);
     };
 
     const handleProductCreated = async (newProductData) => {
-        await postProduct(newProductData); // Crea el nuevo producto
-        fetchProducts(); // Actualiza la lista de productos después de crear uno
-        setOpen(false); // Cierra el modal después de crear un producto
+        await postProduct(newProductData);
+        fetchProducts();
+        setOpen(false);
     }
 
     const handleProductUpdated = async (updatedProductData) => {
-        await updateProduct(updatedProductData); // Edita el producto
-        fetchProducts(); // Actualiza la lista de productos después de editar uno
-        setOpen2(false); // Cierra el modal después de editar un producto
+        await updateProduct(updatedProductData);
+        fetchProducts();
+        setOpen2(false);
     }
 
-    
-    const handleReturn =()=>{
+    const handleReturn = () => {
         navigate("../")
     }
 
@@ -89,20 +90,24 @@ const AdminPageProducts = () => {
             <div className="flex justify-center">
                 {open2 && <ModalEditProduct open={open2} closeModal={handleCloseModal2} product={selectedProduct} onProductUpdated={handleProductUpdated} />}
             </div>
-            
-            <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid md:mt-10">
-                {allShoes.map((manShoe, index) => (
-                    <div key={index} className="flex justify-center flex-col items-center  sm:mt-28 sm:mb-28 sm:gap-2">
-
-                        <CardShoes typeShoe={manShoe} />
-                        <button className="bg-black rounded-lg text-white font-medium p-4 m-2" onClick={() => handleEditarProducto(manShoe)}>Editar producto</button>
-                        <button className="border-2 border-red-600 p-4 text-red-600 rounded-lg font-medium m-2" onClick={() => handleEliminarProducto(manShoe.id)}>Eliminar producto</button>
-                    </div>
-                ))}
-            </div>
+            {loading && !productsLoaded ? ( // Mostrar loader solo si los productos aún no se han cargado al menos una vez
+                <div className="flex justify-center items-center mt-60">
+                    <Loaderanimated />
+                </div>
+            ) : (
+                <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid md:mt-10 ">
+                    {allShoes.map((manShoe, index) => (
+                        <div key={index} className="flex justify-center flex-col items-center  sm:mt-28 sm:mb-28 sm:gap-2 ">
+                            <CardShoes typeShoe={manShoe} />
+                            <button className="bg-black rounded-lg text-white font-medium p-4 m-2 mt-8" onClick={() => handleEditarProducto(manShoe)}>Editar producto</button>
+                            <button className="border-2 border-red-600 p-4 text-red-600 rounded-lg font-medium m-2" onClick={() => handleEliminarProducto(manShoe.id)}>Eliminar producto</button>
+                        </div>
+                    ))}
+                </div>
+            )}
             <button className='border-2 border-black rounded-lg m-4 font-medium p-2' onClick={handleReturn}>Volver</button>
         </>
     )
 }
 
-export default AdminPageProducts
+export default AdminPageProducts;

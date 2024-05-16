@@ -9,11 +9,9 @@ const ProtectedRoute2 = ({ user,redirect }) => {
   const [users, setUsers] = useState([]);
   const [storedUser, setStoredUser] = useState(null);
 
-  console.log(user);
   const { userfinal } = useAuthContext();
 
 
-  console.log(userfinal)
   
 
 

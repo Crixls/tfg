@@ -46,7 +46,6 @@ export const getProduct = async (endpoint) => {
 };
 
 export const postFavorites = async (idShoe,idUser) => {
-    console.log(idUser)
     const endpoint = `/api/favorites`;
     const productPath= `/api/products/${idShoe}`;
     const userPath= `/api/users/${idUser}`;
@@ -68,7 +67,6 @@ export const getUsers = async () => {
 export const getOrderEntities = async () => {
     const endpoint = "/api/order_entities";
     const data = await get(endpoint);
-    console.log(data);
     return data;
 };
 export const getOrderLines = async () => {
