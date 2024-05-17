@@ -11,6 +11,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import paypalImage from "../../assets/paypal.png";
 import StripeContainer from "../../components/Payment/StripeContainer";
+import catchEntities from "../../components/catchEntities";
 
 const CartPage = () => {
   const [orderLines, setOrderLines] = useState([]);
@@ -66,13 +67,12 @@ const CartPage = () => {
       try {
         setLoading(true);
 
-        const data = await getOrderEntities();
+        const data = await catchEntities();
         const filteredOrder = data.filter(order => {
           const userId = parseInt(order.user.split('/').pop(), 10);
           const userState = order.state;
           return userId === parseInt(userId2, 10) && userState === 0;
         });
-
         setUser(filteredOrder[0].user);
         setOrderEntity(filteredOrder);
         setLoading(false);
@@ -201,10 +201,7 @@ const CartPage = () => {
                   <p className="ml-4 font-bold text-white" >
                     PAGAR
                   </p>
-                </button>
-                <a className="flex justify-center items-center bg-black rounded-md p-4 mt-4 w-80" href="https://www.paypal.com/checkoutnow?cmd=_express-checkout&token=EC-6G927306LJ3954746&useraction=continue">
-                  <img className="w-24 bg-white p-2 rounded-md" src={paypalImage} alt="paypal" />
-                </a>
+                </button>               
               </div>
             </div>
           </div>

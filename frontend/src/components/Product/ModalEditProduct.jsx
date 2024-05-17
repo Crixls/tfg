@@ -33,7 +33,6 @@ const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
     e.preventDefault();
   
     const parsedPrice = parseFloat(price);
-    console.log(parsedPrice); // Log the parsed price to check its type
 
   
     try {
@@ -50,7 +49,6 @@ const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
         // imageFile
       };
 
-      console.log(updatedProductData);
 
       const idProduct = parseInt(product.id, 10);
   

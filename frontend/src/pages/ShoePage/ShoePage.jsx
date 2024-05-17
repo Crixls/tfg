@@ -7,6 +7,7 @@ import { postOrderLine } from "../../api/api";
 import Swal from "sweetalert2";
 import ImgComponent from "../../components/ImgComponent";
 import {  useNavigate } from 'react-router-dom';
+import catchEntities from "../../components/catchEntities";
 
 
 const ShoePage = () => {
@@ -51,7 +52,7 @@ const ShoePage = () => {
   useEffect(() => {
     const fetchApi = async () => {
       try {
-        const data = await getOrderEntities();
+        const data = await catchEntities();
         setOrderEntities(data);
       } catch (error) {
         console.log("Error:", error);

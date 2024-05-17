@@ -8,10 +8,13 @@ const GraficoProductos = ({dataProductos}) => {
     const option = {
         xAxis: {
           type: 'category',
-          data: xAxisData
+          data: xAxisData,
+          name: 'Id',
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          name: 'Cantidad', // Opcional: agregar nombre al eje
+
         },
         series: [
           {

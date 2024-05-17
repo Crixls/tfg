@@ -42,12 +42,15 @@ const UserRegisterForm = (props) => {
 
 
     const handleSubmit = async () => {
+        navigate("/login");
+
         try {
           // Validar campos obligatorios
           if (!username  || !email || !password ) {
             console.error("Por favor complete todos los campos correctamente.");
             return;
           }
+          
             const formData = new FormData();
             formData.append("username", username);
             formData.append("email", email);
@@ -57,7 +60,6 @@ const UserRegisterForm = (props) => {
 
           navigate("/login");
 
-          console.log(response);
           if (response) {
             // Si el usuario se creó correctamente, mostrar una alerta de éxito
             Swal.fire({

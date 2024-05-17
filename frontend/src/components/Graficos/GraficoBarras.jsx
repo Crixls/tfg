@@ -40,7 +40,7 @@ const option = {
   yAxis: [
     {
       type: 'value',
-      name: 'Ventas',
+      name: 'Cantidad ventas',
       position: 'right',
       alignTicks: true,
       axisLine: {

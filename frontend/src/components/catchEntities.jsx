@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const catchProducts = async () => {
-  const url = 'https://127.0.0.1:8000/api/products'; // Reemplaza 'tu-url-api/products' con la URL de tu endpoint
+const catchEntities = async () => {
+  const url = 'https://127.0.0.1:8000/api/order_entities'; // Reemplaza 'tu-url-api/products' con la URL de tu endpoint
   let allProducts = [];
   let page = 1;
   let condition = false;
@@ -18,9 +18,7 @@ const catchProducts = async () => {
       allProducts = allProducts.concat(data);
       page++;
     }
-
-    // Guardar en localStorage
-    localStorage.setItem('allProducts', JSON.stringify(allProducts));
+   
   } catch (error) {
     condition = false;
     console.error('Error:', error);
@@ -29,4 +27,4 @@ const catchProducts = async () => {
   return allProducts;
 };
 
-export default catchProducts;
+export default catchEntities;

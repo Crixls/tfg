@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getProducts } from '../../api/useCases';
 import { deleteProduct, postProduct, updateProduct } from '../../api/api';
 import ModalNewProduct from '../../components/Product/ModalNewProduct';
 import ModalEditProduct from '../../components/Product/ModalEditProduct';
 import CardShoes from '../../components/CardShoes';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import catchProducts from '../../components/catchProducts';
 import Loaderanimated from '../../components/Loaderanimated';
 
@@ -14,33 +12,40 @@ const AdminPageProducts = () => {
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const [loading, setLoading] = useState(true); // Inicialmente true para mostrar el loader
-    const [productsLoaded, setProductsLoaded] = useState(false); // Estado para rastrear si los productos se han cargado al menos una vez
+    const [loading, setLoading] = useState(true);
+    const [productsLoaded, setProductsLoaded] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            setLoading(true); // Indicar que se están cargando los productos
-            try {
-                const data = await catchProducts();
-                setAllShoes(data);
-                setProductsLoaded(true); // Marcar los productos como cargados al menos una vez
-            } catch (error) {
-                console.log("Error:", error);
-            } finally {
-                setLoading(false); // Indicar que se han cargado los productos o ha ocurrido un error
-            }
-        };
-
         fetchProducts();
-    }, []); // Se ejecuta solo una vez al montar el componente
+    }, []);
+
+    
+    useEffect(() => {
+        const intervalId = setInterval(fetchProducts, 5000);
+        return () => clearInterval(intervalId);
+    }, []);
+
+
+    const fetchProducts = async () => {
+        setLoading(true);
+        try {
+            const data = await catchProducts();
+            setAllShoes(data);
+            setProductsLoaded(true);
+        } catch (error) {
+            console.log("Error:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleCrearProducto = () => {
         setOpen(true);
         setOpen2(false);
     }
 
-    const handleEditarProducto = (product, onProductEdited) => {
+    const handleEditarProducto = (product) => {
         setSelectedProduct(product);
         setOpen2(true);
         setOpen(false);
@@ -50,26 +55,46 @@ const AdminPageProducts = () => {
         setOpen(false);
     };
 
-    const handleEliminarProducto = async (id) => {
-        await deleteProduct(id);
-        const updatedShoes = allShoes.filter(shoe => shoe.id !== id);
-        setAllShoes(updatedShoes);
-    }
-
     const handleCloseModal2 = () => {
         setOpen2(false);
     };
 
+    const handleEliminarProducto = async (id) => {
+        setLoading(true); // Mostrar loader
+        try {
+            await deleteProduct(id);
+            fetchProducts();  // Refrescar la lista de productos después de eliminar
+        } catch (error) {
+            console.log("Error:", error);
+        } finally {
+            setLoading(false); // Ocultar loader
+        }
+    }
+
     const handleProductCreated = async (newProductData) => {
-        await postProduct(newProductData);
-        fetchProducts();
-        setOpen(false);
+        setLoading(true); // Mostrar loader
+        try {
+            await postProduct(newProductData);
+            fetchProducts();  // Refrescar la lista de productos después de crear uno nuevo
+            setOpen(false);
+        } catch (error) {
+            console.log("Error:", error);
+        } finally {
+            setLoading(false); // Ocultar loader
+        }
     }
 
     const handleProductUpdated = async (updatedProductData) => {
-        await updateProduct(updatedProductData);
-        fetchProducts();
-        setOpen2(false);
+        setLoading(true); // Mostrar loader
+        try {
+            await updateProduct(updatedProductData);
+            fetchProducts();  // Refrescar la lista de productos después de actualizar uno
+            setOpen2(false);
+        } catch (error) {
+            console.log("Error:", error);
+        } finally {
+            setLoading(false); // Ocultar loader
+        }
     }
 
     const handleReturn = () => {
@@ -78,7 +103,7 @@ const AdminPageProducts = () => {
 
     return (
         <>
-            <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+            <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <p className="text-white flex w-full text-2xl font-bold">PRODUCTOS</p>
             </div>
             <div className="flex justify-center pt-10">
@@ -90,14 +115,14 @@ const AdminPageProducts = () => {
             <div className="flex justify-center">
                 {open2 && <ModalEditProduct open={open2} closeModal={handleCloseModal2} product={selectedProduct} onProductUpdated={handleProductUpdated} />}
             </div>
-            {loading && !productsLoaded ? ( // Mostrar loader solo si los productos aún no se han cargado al menos una vez
+            {loading && !productsLoaded ? (
                 <div className="flex justify-center items-center mt-60">
                     <Loaderanimated />
                 </div>
             ) : (
-                <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid md:mt-10 ">
+                <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid md:mt-10">
                     {allShoes.map((manShoe, index) => (
-                        <div key={index} className="flex justify-center flex-col items-center  sm:mt-28 sm:mb-28 sm:gap-2 ">
+                        <div key={index} className="flex justify-center flex-col items-center sm:mt-28 sm:mb-28 sm:gap-2">
                             <CardShoes typeShoe={manShoe} />
                             <button className="bg-black rounded-lg text-white font-medium p-4 m-2 mt-8" onClick={() => handleEditarProducto(manShoe)}>Editar producto</button>
                             <button className="border-2 border-red-600 p-4 text-red-600 rounded-lg font-medium m-2" onClick={() => handleEliminarProducto(manShoe.id)}>Eliminar producto</button>

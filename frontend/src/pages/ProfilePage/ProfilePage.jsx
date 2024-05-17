@@ -30,9 +30,7 @@ const ProfilePage = () => {
                 const user2=user.username;
                 return user2 === useLogged.login
             }));
-            console.log(filterUser);
             setUser(filterUser[0]);
-            console.log("Usuario:", data);
           } catch (error) {
             console.log("Error:", error);
           }

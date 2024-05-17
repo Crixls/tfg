@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { getOrderEntities, getProducts, getUsers } from "../api/useCases";
+import  { useEffect, useState } from "react";
+import { getUsers } from "../api/useCases";
 import { postOrderEntity } from "../api/api";
 import Swal from "sweetalert2";
 import { useAuthContext } from "../context/useAuthContext";
 import CardShoes from "../components/CardShoes";
-import ProductsSearch from "../components/ProductsSearch";
 import { useEntitiesContext } from '../context/useEntitiesContext';
 import miImagen from '../assets/home/zapa2.webp';
 import airjordan from '../assets/home/airjordan.webp';
 import circuit from '../assets/home/circuit-last.webp';
-import ObjectThreeD from "../components/ThreeD/ObjectThreeD";
 import Render from "../components/Render";
 import Loaderanimated from "../../src/components/Loaderanimated";
 import catchProducts from "../components/catchProducts";
+import catchEntities from "../components/catchEntities";
 
 
 const Home = () => {
@@ -94,7 +93,7 @@ const Home = () => {
     
     const fetchApi = async () => {
       try {
-        const data = await getOrderEntities();
+        const data = await catchEntities();
         const filteredOrder = data.filter(order => {
           const userId = parseInt(order.user.split('/').pop(), 10);
           const foundUser = allUsers.find(user => user.username === useLogged.login);

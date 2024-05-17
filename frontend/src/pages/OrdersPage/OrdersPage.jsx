@@ -41,7 +41,6 @@ const OrdersPage = () => {
             });
             setLoading(false);
 
-            console.log(filteredOrder);
             setOrderEntity(filteredOrder);
             // setLoading(false);
       
@@ -52,7 +51,6 @@ const OrdersPage = () => {
         fetchOrderEntities();
       }, [userLogged]);
 
-      console.log(orderEntity)
       
     return (
         <>
