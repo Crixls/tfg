@@ -1,18 +1,18 @@
-version: '3.8'
+version: '3.9'
 
 services:
 
     backend:
         build:
             context: ./backend
-            dockerfile: DockerFile
+            dockerfile: dockerfile
         
         environment:
             DB_HOST: db
             DB_PORT: 3306
             DB_DATABASE: trabajofingrado
-            DB_USERNAME: root
-            DB_PASSWORD:
+            DB_USERNAME: 'cris'
+            DB_PASSWORD: 'cris'
         
         ports: 
             - 8000:8000
@@ -50,14 +50,14 @@ services:
 
     
     db:
-        image: mysql:5.2.0
+        image: mysql
         restart: always
 
         environment:
             MYSQL_DATABASE: 'trabajofingrado'
-            MYSQL_USER: 'root'
-            MYSQL_PASSWORD: ''
-            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_USER: 'cris'
+            MYSQL_PASSWORD: 'cris'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
         ports:
           - "3306:3306"
