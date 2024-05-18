@@ -35,6 +35,9 @@ const ShoePage = () => {
 
   const navigate= useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
+
 
 
   useEffect(() => {
@@ -64,7 +67,9 @@ const ShoePage = () => {
   useEffect(() => {
     // Encuentra el id del usuario logueado
     const foundOrder = allOrderEntities.find(order => order.state === 0 && order.user === `/api/users/${idUser}`);
+    setLoading(false);
     if (foundOrder) {
+      setLoading(true);
       setOrderEntity_id(foundOrder.id);
     }
   }, [allOrderEntities, idUser]);
@@ -277,16 +282,15 @@ const ShoePage = () => {
           </form>
 
           <div className="flex flex-col">
-            <button onClick={handleCarrito} className="mb-4 text-md font-bold items-center flex mt-4 border w-60 justify-center rounded-md p-2 border-gray-300">Añadir a la cesta <div className="flex items-center justify-between pl-2 pr-2"><ion-icon name="cart-outline"></ion-icon></div></button> 
-
-            {stateFav ? (
-              <button className="items-center flex mb-4 mt-4 border w-40 justify-center rounded-md p-2 border-gray-300" >
-                <div className=" flex items-center w-32 justify-between mr-4 ml-4"><p className=" text-md font-bold ">Favorito</p><ion-icon name="heart"></ion-icon></div>
-              </button>
+            {!loading ? (
+              <div className=" flex items-center w-32 justify-between mr-4 ml-4 m-4"><p className=" text-md font-bold text-red-600 ">Cargando ...</p></div>
             ) : (
-              <button className="items-center flex mb-4 mt-4 border w-40 justify-center rounded-md p-2 border-gray-300" onClick={() => handleLike(details.id)}>
-                <div className=" flex items-center w-32 justify-between mr-4 ml-4"><p className="text-md font-bold">Favorito</p><ion-icon name="heart-outline"></ion-icon></div>
-              </button>
+              <>
+                <button onClick={handleCarrito} className="mb-4 text-md font-bold items-center flex mt-4 border w-60 justify-center rounded-md p-2 border-gray-300">Añadir a la cesta <div className="flex items-center justify-between pl-2 pr-2"><ion-icon name="cart-outline"></ion-icon></div></button> 
+                <button className="items-center flex mb-4 mt-4 border w-40 justify-center rounded-md p-2 border-gray-300" onClick={() => handleLike(details.id)}>
+                  <div className=" flex items-center w-32 justify-between mr-4 ml-4"><p className="text-md font-bold">Favorito</p><ion-icon name="heart-outline"></ion-icon></div>
+                </button>
+              </>
             )}
 
           </div>

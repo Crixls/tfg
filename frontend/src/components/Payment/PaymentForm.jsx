@@ -5,11 +5,9 @@ import Swal from 'sweetalert2';
 import { editOrderEntity } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 
-
 const PaymentForm = ({ total, order, user, date }) => {
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,14 +30,13 @@ const PaymentForm = ({ total, order, user, date }) => {
                     text: `El pago ha sido ${total}`,
                 }).then(() => {
                     setSuccess(true); // Establecer success en true después de un pago exitoso
+                    navigate("../"); // Redirigir al usuario a la ruta '../'
                 });
             } else {
                 console.error("Error al actualizar usuario");
             }
         } catch (error) {
             console.error("Error en la actualización del usuario:", error);
-        } finally {
-            //   closeModal();
         }
     };
 

@@ -123,8 +123,7 @@ const CartPage = () => {
       return orderEId === parseInt(entityId, 10);
     });
   };
-
-  const calculateTotalPrice = (orderLines) => {
+    const calculateTotalPrice = (orderLines) => {
     return orderLines.reduce((acc, order) => {
       const price = parseInt(order.unitPrice, 10);
       const amount = parseInt(order.amount, 10);

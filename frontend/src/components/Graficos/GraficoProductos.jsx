@@ -1,7 +1,6 @@
 import ReactECharts from "echarts-for-react";
 
 const GraficoProductos = ({dataProductos}) => {
-    console.log(dataProductos);
     const xAxisData = dataProductos.map(({ name }) => name);
     const seriesData = dataProductos.map(({ value }) => value); 
 
