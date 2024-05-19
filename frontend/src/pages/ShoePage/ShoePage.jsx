@@ -159,7 +159,7 @@ const ShoePage = () => {
   useEffect(() => {
     // Inicializar selectedColor con el primer color de details.color si existe
     if (details.color && details.color.length > 0) {
-      setSelectedColor(details.color[0]);
+      setSelectedColor("details.color[0]");
     }
   }, [details]);
   

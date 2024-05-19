@@ -77,9 +77,7 @@ const ModalEditUser = ({ user, open, closeModal, onUserUpdated }) => {
       }
     } catch (error) {
       console.error("Error en la actualización del usuario:", error);
-    } finally {
-      closeModal();
-    }
+    } 
   };
 
   return (

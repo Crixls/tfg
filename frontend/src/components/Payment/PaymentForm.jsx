@@ -27,7 +27,7 @@ const PaymentForm = ({ total, order, user, date }) => {
                 Swal.fire({
                     icon: 'success',
                     title: '¡Usuario ha pagado correctamente!',
-                    text: `El pago ha sido ${total}`,
+                    text: `El pago ha sido ${total}€`,
                 }).then(() => {
                     setSuccess(true); // Establecer success en true después de un pago exitoso
                     navigate("../"); // Redirigir al usuario a la ruta '../'

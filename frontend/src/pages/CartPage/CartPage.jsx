@@ -12,6 +12,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import paypalImage from "../../assets/paypal.png";
 import StripeContainer from "../../components/Payment/StripeContainer";
 import catchEntities from "../../components/catchEntities";
+import catchOrderLines from "../../components/cathOrderLines";
 
 const CartPage = () => {
   const [orderLines, setOrderLines] = useState([]);
@@ -102,7 +103,7 @@ const CartPage = () => {
     const fetchOrderLines = async () => {
       try {
         if (orderEntity.length > 0) {
-          const data = await getOrderLines();
+          const data = await catchOrderLines();
           const filteredOrderLine = filterOrderLines(data, orderEntity[0]?.id);
           const totalPrice = calculateTotalPrice(filteredOrderLine);
 
@@ -125,7 +126,7 @@ const CartPage = () => {
   };
     const calculateTotalPrice = (orderLines) => {
     return orderLines.reduce((acc, order) => {
-      const price = parseInt(order.unitPrice, 10);
+      const price = parseFloat(order.unitPrice, 10);
       const amount = parseInt(order.amount, 10);
       return acc + price * amount;
     }, 0);

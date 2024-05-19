@@ -6,6 +6,7 @@ import CardUser from '../../components/User/CardUser';
 import ModalEditUser from '../../components/User/ModalEditUser';
 import ModalNewUser from '../../components/User/ModalNewUser';
 import Loaderanimated from '../../components/Loaderanimated'; // Importar el componente Loaderanimated
+import catchUsers from '../../components/User/catchUsers';
 
 const AdminPageUsers = () => {
     const [allUsers, setAllUsers] = useState([]);
@@ -22,7 +23,7 @@ const AdminPageUsers = () => {
 
     const fetchUsers = async () => {
         try {
-            const data = await getUsers();
+            const data = await catchUsers();
             setAllUsers(data);
         } catch (error) {
             console.log("Error:", error);
@@ -35,6 +36,7 @@ const AdminPageUsers = () => {
         setOpen(true);
         setOpen2(false);
         fetchUsers();
+
     }
 
     const handleEditUser = (user) => {
@@ -52,18 +54,16 @@ const AdminPageUsers = () => {
         setOpen2(false);
     };
 
-    const handleDeleteUser =(id)=>{
+    const handleDeleteUser =async(id)=>{
         setLoading(true); // Indicar que se está eliminando un usuario
-        deleteUser(id)
-            .then(() => {
-                fetchUsers();
-            })
-            .catch(error => {
-                console.log("Error al eliminar el usuario:", error);
-            })
-            .finally(() => {
+        try {
+            await deleteUser(id);
+            fetchUsers();  // Refrescar la lista de productos después de eliminar
+        } catch (error) {
+            console.log("Error:", error);
+        }finally {
                 setLoading(false); // Indicar que se ha completado la eliminación del usuario
-            });
+         }
     }
 
     const handleReturn =()=>{

@@ -4,6 +4,7 @@ import FavoriteCard from "../../components/Favorite/FavoriteCard";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useEntitiesContext } from "../../context/useEntitiesContext";
 import Loaderanimated from "../../components/Loaderanimated";
+import cathFavorites from "../../components/cathFavorites";
 
 const FavoritePage = () => {
   const [favorites, setFavorites] = useState([]);
@@ -49,7 +50,7 @@ const FavoritePage = () => {
   const fetchFavorites = async (userId) => {
     try {
       setLoading(true);
-      const data = await getFavorites();
+      const data = await cathFavorites();
       const filteredFavorites = data.filter(favorite => {
         const favUserId = parseInt(favorite.user.split('/').pop(), 10);
         return favUserId === userId;

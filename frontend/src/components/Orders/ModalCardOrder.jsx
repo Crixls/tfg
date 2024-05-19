@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getOrderLines, getProducts } from "../../api/useCases";
+import catchOrderLines from "../cathOrderLines";
+import catchProducts from "../catchProducts";
 
 const ModalCardOrder = ({ order, closeModal, open }) => {
     const [filterOrderLines, setFilterOrderLines] = useState([]);
@@ -9,7 +10,7 @@ const ModalCardOrder = ({ order, closeModal, open }) => {
     useEffect(() => {
         const fetchOrderEntities = async () => {
             try {
-                const data = await getOrderLines();
+                const data = await catchOrderLines();
                 const filteredOrderLines = data.filter(orderLine => {
                     const orderId = parseInt(orderLine.orderentity.split('/').pop(), 10);
                     return orderId === parseInt(order.id, 10);
@@ -25,7 +26,7 @@ const ModalCardOrder = ({ order, closeModal, open }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const data = await getProducts();
+                const data = await catchProducts();
                 const productsMap = {};
                 filterOrderLines.forEach(orderLine => {
                     const productId2 = parseInt(orderLine.product.split('/').pop(), 10);
@@ -72,7 +73,7 @@ const ModalCardOrder = ({ order, closeModal, open }) => {
                                         )}
                                         <p className="text-white text-xs p-1 md:text-base lg:text-lg">{`Cantidad: ${product.amount}`}</p>
                                         <p className="text-white text-xs p-1 md:text-base lg:text-lg">{`Color: ${product.unitColor}`}</p>
-                                        <p className="text-white text-xs p-1 md:text-base lg:text-lg">{`Precio: ${product.unitPrice}`}</p>
+                                        <p className="text-white text-xs p-1 md:text-base lg:text-lg">{`Precio: ${product.unitPrice}€`}</p>
                                         <p className="text-white text-xs p-1 md:text-base lg:text-lg pb-4">{`Tamaño: ${product.unitSize}`}</p>
                                     </div>
                                 </div>
