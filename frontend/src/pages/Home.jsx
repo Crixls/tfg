@@ -17,7 +17,7 @@ const Home = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const [orderUser, setOrderUser] = useState(null);
-  const [useLogged, setUseLogged] = useState(false);
+  const [useLogged, setUseLogged] = useState(null);
   const [idUser, setIdUser] = useState(null);
   const { setUserLogged, setUsers2 } = useAuthContext();
   const [loading, setLoading] = useState(true);
@@ -26,15 +26,9 @@ const Home = () => {
 
   // Manejar el evento de redimensionamiento de la ventana
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
+    const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Obtener todos los usuarios y establecer el usuario autenticado
@@ -55,7 +49,7 @@ const Home = () => {
     };
 
     fetchUsers();
-  }, []);
+  }, [setUsers2]);
 
   // Obtener productos
   useEffect(() => {
@@ -76,7 +70,7 @@ const Home = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [handleUnload]);
 
   // Verificar el estado del usuario autenticado
   useEffect(() => {
@@ -91,70 +85,55 @@ const Home = () => {
     const fetchEntities = async () => {
       try {
         const data = await catchEntities();
-        const filteredOrder = data.filter(order => {
-          const userId = parseInt(order.user.split('/').pop(), 10);
+        const userIdFromLocalStorage = localStorage.getItem('userId');
+
+        let currentIdUser = idUser;
+        if (!currentIdUser && useLogged) {
           const foundUser = allUsers.find(user => user.username === useLogged.login);
           if (foundUser) {
-            setIdUser(parseInt(foundUser.id, 10));
-            setUserLogged(parseInt(foundUser.id, 10));
-            localStorage.setItem('userId', foundUser.id); // Almacena el ID del usuario en localStorage
-            return userId === foundUser.id;
+            currentIdUser = parseInt(foundUser.id, 10);
+            setIdUser(currentIdUser);
+            setUserLogged(currentIdUser);
+            localStorage.setItem('userId', currentIdUser);
           }
-          return false;
+        }
+
+        const filteredOrder = data.filter(order => {
+          const userId = parseInt(order.user.split('/').pop(), 10);
+          return userId === currentIdUser;
         });
 
         setOrderUser(filteredOrder);
 
-        if (filteredOrder.length === 0 && idUser !== null) {
+        const createNewOrder = async () => {
           const orderEntityData = {
-            user: `/api/users/${idUser}`,
+            user: `/api/users/${currentIdUser}`,
             date: new Date().toISOString(),
             state: 0,
             total: 0
           };
-
           const response = await postOrderEntity(orderEntityData);
-
           if (response) {
             Swal.fire({
               icon: 'success',
               title: '¡Tenemos el carrito correctamente!',
-              text: `El usuario ${idUser} ha sido actualizado exitosamente.`,
+              text: `El usuario ${currentIdUser} ha sido actualizado exitosamente.`,
             });
           } else {
             console.error("Error al actualizar usuario");
           }
-        }
+        };
 
-        const allOrdersStateOne = filteredOrder.every(order => order.state === 1);
-        if (allOrdersStateOne) {
-          try {
-            const orderEntityData = {
-              user: `/api/users/${idUser}`,
-              date: new Date().toISOString(),
-              state: 0,
-              total: 0
-            };
-            const response = await postOrderEntity(orderEntityData);
-
-            if (response) {
-              Swal.fire({
-                icon: 'success',
-                title: '¡Tenemos el carrito correctamente!',
-                text: `El usuario ${idUser} ha sido actualizado exitosamente.`,
-              });
-              setLoading(false);
-            } else {
-              console.error("Error al actualizar usuario");
-            }
-          } catch (error) {
-            console.error("Error al crear una nueva orderentitydata:", error);
+        if (filteredOrder.length === 0) {
+          await createNewOrder();
+        } else {
+          const allOrdersStateOne = filteredOrder.every(order => order.state === 1);
+          if (allOrdersStateOne) {
+            await createNewOrder();
           }
         }
 
-        if (filteredOrder.some(order => order.state === 0)) {
-          setLoading(false);
-        }
+        setLoading(false);
       } catch (error) {
         console.log("Error:", error);
       }
@@ -163,7 +142,7 @@ const Home = () => {
     if (allUsers.length > 0 && useLogged) {
       fetchEntities();
     }
-  }, [allUsers, useLogged, idUser]);
+  }, [allUsers, useLogged, idUser, setUserLogged]);
 
   return (
     <div>
@@ -175,14 +154,12 @@ const Home = () => {
         <>
           <div className="lg:items-center lg:flex lg:p-10 md:p-10 md:flex md:flex-col md:justify-center md:items-center sm:p-10 sm:flex sm:flex-col sm:justify-center sm:items-center p-8">
             {windowWidth > 769 ? (
-              <>
-                <div className="items-center flex sm:p-10 sm:pt-4 p-10 justify-between">
-                  <img className="w-1/2" src={airjordan} alt="hombres" />
-                  <div className="w-2/5 mr-20">
-                    <Render type="nike" />
-                  </div>
+              <div className="items-center flex sm:p-10 sm:pt-4 p-10 justify-between">
+                <img className="w-1/2" src={airjordan} alt="hombres" />
+                <div className="w-2/5 mr-20">
+                  <Render type="nike" />
                 </div>
-              </>
+              </div>
             ) : (
               <>
                 <div className="items-center flex justify-between md:flex md:justify-center">
@@ -197,14 +174,12 @@ const Home = () => {
 
           <div className="lg:items-center lg:flex lg:p-10 lg:justify-between md:flex md:flex-col md:justify-center md:items-center">
             {windowWidth > 769 ? (
-              <>
-                <div className="items-center flex p-10 justify-between">
-                  <div className="md:w-2/5 sm:w-3/4">
-                    <Render type="puma" />
-                  </div>
-                  <img className="w-1/2 sm:w-1/2" src={circuit} alt="circuito" />
+              <div className="items-center flex p-10 justify-between">
+                <div className="md:w-2/5 sm:w-3/4">
+                  <Render type="puma" />
                 </div>
-              </>
+                <img className="w-1/2 sm:w-1/2" src={circuit} alt="circuito" />
+              </div>
             ) : (
               <>
                 <div className="items-center flex p-10 justify-between md:flex md:justify-center">

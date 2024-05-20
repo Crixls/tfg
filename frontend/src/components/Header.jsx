@@ -215,7 +215,7 @@ const Header = () => {
                   <li >
                     <button 
                       className="noto-sans text-white p-1 rounded-md font-bold hover:text-gray-400" 
-                      onMouseEnter={handleOpenSports} 
+                      onClick={handleOpenSports} 
                     >
                       Deportes
                     </button>

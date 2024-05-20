@@ -32,6 +32,7 @@ const ShoePage = () => {
   const [selectedColor2, setSelectedColor2] = useState('');
   const [selectedSize, setSelectedsize] = useState('');
   const [details, setdetails] = useState('');
+  const [productLike, setproductLike] = useState(false);
 
   const navigate= useNavigate();
 
@@ -114,7 +115,8 @@ const ShoePage = () => {
     if (!isFavorite) {
       // Verificar si idUser es válido
       if (idUser) {
-        addFavorite(idShoe, idUser); // Agregar a favoritos
+        addFavorite(idShoe, idUser); 
+        setproductLike(true);
       } else {
         console.warn("El ID de usuario no está disponible aún.");
       }
@@ -288,7 +290,11 @@ const ShoePage = () => {
               <>
                 <button onClick={handleCarrito} className="mb-4 text-md font-bold items-center flex mt-4 border w-60 justify-center rounded-md p-2 border-gray-300">Añadir a la cesta <div className="flex items-center justify-between pl-2 pr-2"><ion-icon name="cart-outline"></ion-icon></div></button> 
                 <button className="items-center flex mb-4 mt-4 border w-40 justify-center rounded-md p-2 border-gray-300" onClick={() => handleLike(details.id)}>
+                 {!productLike?(
                   <div className=" flex items-center w-32 justify-between mr-4 ml-4"><p className="text-md font-bold">Favorito</p><ion-icon name="heart-outline"></ion-icon></div>
+                 ):(
+                  <div className=" flex items-center w-32 justify-between mr-4 ml-4"><p className="text-md font-bold">Favorito</p><ion-icon name="heart"></ion-icon></div>
+                 )} 
                 </button>
               </>
             )}
