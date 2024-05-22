@@ -24,7 +24,7 @@ services:
             - db
 
         networks:
-            - app
+            - mynetwork
         
 
     frontend:
@@ -38,30 +38,26 @@ services:
         environment:
             - NODE_ENV=production
         
-        # depends_on:
-        #     - backend
-
         networks:
-            - app
+            - mynetwork
 
     db:
         image: mysql
         restart: always
-
+        volumes:
+            - ./sql:/docker-entrypoint-initdb.d
         environment:
             MYSQL_DATABASE: 'trabajofingrado'
             MYSQL_USER: 'cris'
             MYSQL_PASSWORD: 'cris'
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-
         ports:
           - "3306:3306"
         networks:
-            - app
-
+            - mynetwork
 
 networks:
-    app:
+    mynetwork:
         driver: bridge
 
       
