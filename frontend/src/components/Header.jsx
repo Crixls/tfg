@@ -1,6 +1,7 @@
 import  { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.svg'; // Ajusta la ruta al archivo SVG de tu logo
+import fondo from '../assets/Texturelabs_Grunge_277M.jpg'
 import { useAuthContext } from '../context/useAuthContext';
 import { getUsers } from '../api/useCases';
 // import ProductsSearch from './ProductsSearch';
@@ -135,7 +136,7 @@ const Header = () => {
 
 
   return (
-    <header className=" lg:text-white lg:flex lg:justify-between lg:items-center md:text-white sm:text-white md:flex md:justify-between sm:justify-between md:items-center sm:items-center font-bold font-sans sm:h-28 md:h-40 lg:h-40 sm:flex flex items-center justify-between  h-28 text-white " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_277M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <header className=" lg:text-white lg:flex lg:justify-between lg:items-center md:text-white sm:text-white md:flex md:justify-between sm:justify-between md:items-center sm:items-center font-bold font-sans sm:h-28 md:h-40 lg:h-40 sm:flex flex items-center justify-between  h-28 text-white " style={{ backgroundImage:  `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="lg:flex lg:items-center lg:bg-white lg:m-0 lg:p-0  md:justify-center sm:justify-center md:h-40 md:flex md:items-center md:bg-white md:m-0 md:p-0 sm:flex sm:items-center sm:bg-white sm:h-28 bg-white flex items-center h-28">
         <div>
           <Link to="/">
