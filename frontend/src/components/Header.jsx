@@ -228,7 +228,7 @@ const Header = () => {
 
 
           {modalOpenSports && (
-            <div  onMouseLeave={handleCloseSports}  className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:h-96 lg:flex lg:justify-center lg:items-center  md:fixed md:top-0 md:left-0 md:right-0 md:h-12 md:flex md:justify-center md:items-center md:mt-40 lg:mt-1 sm:fixed sm:top-0 sm:left-0 sm:right-0 sm:h-96 sm:flex sm:justify-center sm:items-center sm:mt-32 fixed top-0 left-0 right-0 h-96 flex justify-center items-center mt-32" onMouseEnter={handleOpenSports} onMouseLeave={handleCloseSports}>
+            <div  onMouseLeave={handleCloseSports}  className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:h-96 lg:flex lg:justify-center lg:items-center  md:fixed md:top-0 md:left-0 md:right-0 md:h-12 md:flex md:justify-center md:items-center md:mt-40 lg:mt-1 sm:fixed sm:top-0 sm:left-0 sm:right-0 sm:h-96 sm:flex sm:justify-center sm:items-center sm:mt-32 fixed top-0 left-0 right-0 h-96 flex justify-center items-center mt-32" onMouseEnter={handleOpenSports} >
               <div className="lg:bg-gray-200 lg:w-1/2 lg:p-6   lg:rounded-md md:bg-gray-200 md:w-screen md:p-5 md:rounded-md sm:rounded-md sm:bg-gray-200 sm:w-screen sm:p-5 rounded-md bg-gray-200 w-screen">
                 <ul className='flex items-center justify-center sm:flex-wrap flex-wrap'>
                   <li className='pr-10 pt-2'>

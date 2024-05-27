@@ -27,10 +27,10 @@ RUN bash /tmp/installer.sh
 
 RUN mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
 
-# Copy the rest of the application code
-
 # Expose port 80 to the Docker host
 EXPOSE 80
 
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
 # Run Apache server
-CMD ["apache2-foreground"]
+CMD ["symfony", "server:start", "--no-tls", "--dir=/var/www/html"]

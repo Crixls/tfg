@@ -10,7 +10,7 @@ const ErrorCommercePage = () => {
 
   return (
     <div className=" bg-black h-screen flex justify-center" > 
-      <img src={errorimg} alt="image" className='w-2/3 md:h-2/3 md:w-full sm:h-2/3 sm:w-screen' />
+      <img src={errorimg} alt="image" className='h-80 md:h-2/3 md:w-2/3 sm:h-80 dm:w-h-80' />
     </div>
   );
 }

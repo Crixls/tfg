@@ -47,8 +47,6 @@ const router = createBrowserRouter([
       { path: "/tenis", element: <TenisPage /> },
       { path: "/search", element: <SearchPage /> },
       
-      
-
     ],
   },
   
