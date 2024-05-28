@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 // import { getUserInfo } from "../api/useCases";
 
 // Obtiene la URL de la API del entorno de Vite
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL | 'http://localhost:8000';
 
 // Crea el contexto de autenticación
 const AuthContext = createContext();

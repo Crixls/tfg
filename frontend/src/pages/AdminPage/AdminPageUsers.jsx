@@ -7,6 +7,7 @@ import ModalEditUser from '../../components/User/ModalEditUser';
 import ModalNewUser from '../../components/User/ModalNewUser';
 import Loaderanimated from '../../components/Loaderanimated'; // Importar el componente Loaderanimated
 import catchUsers from '../../components/User/catchUsers';
+import fondo from "../../assets/favorite/favoritetext.jpg";
 
 const AdminPageUsers = () => {
     const [allUsers, setAllUsers] = useState([]);
@@ -72,7 +73,7 @@ const AdminPageUsers = () => {
 
     return (
         <>
-            <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+            <div className="p-4 mt-10" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}> 
                 <p className="text-white flex w-full text-2xl font-bold">USUARIOS</p>
             </div>
             <div className="flex justify-center pt-10">

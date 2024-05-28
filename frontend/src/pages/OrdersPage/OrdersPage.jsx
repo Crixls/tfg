@@ -5,6 +5,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CardOrders from '../../components/Orders/CardOrders';
 import Loaderanimated from "../../components/Loaderanimated";
 import catchEntities from '../../components/catchEntities';
+import fondo from "../../assets/favorite/favoritetext.jpg";
 
 
 
@@ -53,7 +54,7 @@ const OrdersPage = () => {
       
     return (
         <>
-            <div className="p-4 mt-10 " style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+            <div className="p-4 mt-10 " style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}> 
                 <p className="text-white flex w-full text-2xl font-bold">Pedidos del usuario</p>
             </div>
             {loading ? (

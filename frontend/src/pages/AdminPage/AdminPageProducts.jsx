@@ -6,6 +6,7 @@ import CardShoes from '../../components/CardShoes';
 import { useNavigate } from 'react-router-dom';
 import catchProducts from '../../components/catchProducts';
 import Loaderanimated from '../../components/Loaderanimated';
+import fondo from '../../assets/favorite/favoritetext.jpg';
 
 const AdminPageProducts = () => {
     const [allShoes, setAllShoes] = useState([]);
@@ -103,7 +104,7 @@ const AdminPageProducts = () => {
 
     return (
         <>
-            <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="p-4 mt-10" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <p className="text-white flex w-full text-2xl font-bold">PRODUCTOS</p>
             </div>
             <div className="flex justify-center pt-10">

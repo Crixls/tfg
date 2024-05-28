@@ -2,6 +2,7 @@ import { useEntitiesContext } from '../../context/useEntitiesContext';
 import CardShoes from '../../components/CardShoes';
 import { useEffect, useState } from 'react';
 import Loaderanimated from '../../components/Loaderanimated';
+import fondo from "../../assets/favorite/favoritetext.jpg";
 
 const SearchPage = () => {
   const { searchProducts } = useEntitiesContext();
@@ -19,7 +20,7 @@ const SearchPage = () => {
     <>
       <div
         className="p-4 mt-10 flex"
-        style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+        style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         <p className="text-white flex w-full text-2xl font-bold">RESULTADOS DE LA BÚSQUEDA</p>
       </div>

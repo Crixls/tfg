@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import GraficoBarras from '../../components/Graficos/GraficoBarras';
 import GraficoProductos from '../../components/Graficos/GraficoProductos';
 import Loaderanimated from '../../components/Loaderanimated'; // Importar el componente Loaderanimated
+import fondo from '../../assets/favorite/favoritetext.jpg';
 
 const AdminEstadisticas = () => {
     const { logged } = useAuthContext();
@@ -126,7 +127,7 @@ const AdminEstadisticas = () => {
 
     return (
         <>
-            <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+            <div className="p-4 mt-10" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}> 
                 <p className="text-white flex w-full text-2xl font-bold">ESTADÍSTICAS</p>
             </div>
             <div className='h-screen '>

@@ -5,7 +5,7 @@ import catchProducts from "../catchProducts";
 const ModalCardOrder = ({ order, closeModal, open }) => {
     const [filterOrderLines, setFilterOrderLines] = useState([]);
     const [relatedProducts, setRelatedProducts] = useState({});
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL | 'http://localhost:8000';
 
     useEffect(() => {
         const fetchOrderEntities = async () => {

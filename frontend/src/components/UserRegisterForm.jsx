@@ -77,17 +77,7 @@ const UserRegisterForm = (props) => {
         }
     };
 
-    // const handleModalClose = () => {
-    //     // setOpen(false); // Cerrar el modal
-    //     closeModal();
-    //     // Resetear los estados del formulario
-    //     setUsername("");
-    //     setEmail("");
-    //     setPassword("");
-    //     setConfirmPassword("");
-    //     setPasswordValid(false);
-    //     setPasswordsMatch(true);
-    // };
+  
 
   
     return (

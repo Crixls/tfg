@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { updateUser } from "../../api/api";
 import Swal from "sweetalert2";
 import {  getUsers } from "../../api/useCases";
+import fondo from "../../assets/favorite/favoritetext.jpg";
 
 const ProfilePage = () => {
     const [username, setUsername] = useState('');
@@ -96,7 +97,7 @@ const ProfilePage = () => {
   return (
     <>
         <div >
-        <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+        <div className="p-4 mt-10" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}> 
             <p className='font-bold text-2xl text-white'>MI CUENTA</p>
           </div>
             <div className=" m-10 ">

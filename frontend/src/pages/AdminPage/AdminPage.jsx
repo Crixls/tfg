@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import fondo from '../../assets/admin.webp';
 
 const AdminPage = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="h-20vh" style={{ backgroundImage: 'url(/src/assets/admin.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="h-20vh" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="bg-black relative">
         <div className=" bg-black w-full container px-4 p-8">
           <h1 className="text-white text-3xl lg:text-4xl font-bold">Admin Page</h1>

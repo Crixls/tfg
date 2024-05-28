@@ -14,13 +14,16 @@ import StripeContainer from "../../components/Payment/StripeContainer";
 import catchEntities from "../../components/catchEntities";
 import catchOrderLines from "../../components/cathOrderLines";
 
+import fondo from "../../assets/favorite/favoritetext.jpg";
+import fondo2 from "../../assets/tex1.jpg";
+
 const CartPage = () => {
   const [orderLines, setOrderLines] = useState([]);
   const [orderEntity, setOrderEntity] = useState("");
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const { userLogged } = useAuthContext();
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL | 'http://localhost:8000';
   const [open, setOpen] = useState(false);
   const [selectOrder, setSelectOrder] = useState(null);
   const [selectProduct, setSelectProduct] = useState(null);
@@ -166,7 +169,7 @@ const CartPage = () => {
       ) : (
         <div className="lg:grid lg:grid-cols-2 ">
           <div className="m-10">
-            <div className="p-4 mt-16" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="p-4 mt-16" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <p className="text-xl font-bold text-white">CESTA DE COMPRAS - {orderLines.length}</p>
             </div>
             {orderLines.map((order, index) => (
@@ -192,7 +195,7 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="bg-gray-100 m-10 mt-24 p-10  flex flex-col items-center justify-center" style={{ backgroundImage: 'url(/src/assets/tex1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div className="bg-gray-100 m-10 mt-24 p-10  flex flex-col items-center justify-center" style={{ backgroundImage: `url(${fondo2})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="p-10" style={{ backgroundColor: "rgba(128, 128, 128, 0.8)" }}>
               <p className="text-lg font-bold text-white ">Total: {total} €</p>
               <div className="flex flex-col items-center mt-6">

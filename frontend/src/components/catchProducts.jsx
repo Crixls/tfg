@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const catchProducts = async () => {
-  const url = 'https://127.0.0.1:8000/api/products'; // Reemplaza 'tu-url-api/products' con la URL de tu endpoint
+  const url = 'https://127.0.0.1:8000/api/products' | 'http://localhost:8000/api/products'; // Reemplaza 'tu-url-api/products' con la URL de tu endpoint
   let allProducts = [];
   let page = 1;
   let condition = false;

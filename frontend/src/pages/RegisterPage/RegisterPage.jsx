@@ -1,13 +1,14 @@
 
 
 import UserRegisterForm from "../../components/UserRegisterForm";
+import fondo from "../../assets/registerfondo.webp"
 
 const RegisterPage = () => {
 
   
   return (
    
-      <div  style={{ backgroundImage: 'url(/src/assets/registerfondo.webp)', backgroundSize: 'cover', backgroundPosition: 'center', padding:"32px" }}>
+      <div  style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center', padding:"32px" }}>
         <UserRegisterForm
           open={open}
         >

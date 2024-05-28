@@ -2,7 +2,9 @@ import  { useState, useEffect } from "react";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import Loaderanimated from "../../components/Loaderanimated";
-const apiUrl = import.meta.env.VITE_API_URL;
+import logo from "../../assets/Texturelabs_Grunge_302M.jpg"
+
+const apiUrl = import.meta.env.VITE_API_URL | 'http://localhost:8000';
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -80,7 +82,7 @@ const LoginPage = () => {
       </div>
 
       
-      <div className="bg-white h-screen " style={{ backgroundImage: 'url(/src/assets/Texturelabs_Grunge_302M.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="bg-white h-screen " style={{ backgroundImage: `url(${logo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-xl mx-auto mt-40 bg-gray-100 p-8 rounded-lg shadow-lg">
             <div className="mb-6">

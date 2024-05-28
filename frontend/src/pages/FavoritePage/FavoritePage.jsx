@@ -6,6 +6,9 @@ import { useEntitiesContext } from "../../context/useEntitiesContext";
 import Loaderanimated from "../../components/Loaderanimated";
 import cathFavorites from "../../components/cathFavorites";
 
+import fondo from "../../assets/favorite/favoritetext.jpg";
+
+
 const FavoritePage = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -64,7 +67,7 @@ const FavoritePage = () => {
 
   return (
     <>
-      <div className="p-4 mt-10" style={{ backgroundImage: 'url(/src/assets/favorite/favoritetext.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}> 
+      <div className="p-4 mt-10" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}> 
         <p className="text-white flex w-full text-2xl font-bold">Tus productos favoritos</p>
       </div>
       {loading ? (
