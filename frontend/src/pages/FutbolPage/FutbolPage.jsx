@@ -3,7 +3,6 @@ import SportsComponent from '../../components/Sports/SportsComponent'
 import { useEntitiesContext } from '../../context/useEntitiesContext';
 import fondo from "../../assets/favorite/favoritetext.jpg";
 
-
 const FutbolPage = () => {
     const {handleUnload}= useEntitiesContext();
 

@@ -2,7 +2,10 @@
 import axios from 'axios';
 
 const catchUsers = async () => {
-  const url = 'https://127.0.0.1:8000/api/users' | 'http://localhost:8000/api/users';// Reemplaza 'tu-url-api/products' con la URL de tu endpoint
+
+  // 'https://127.0.0.1:8000/api/users' 
+
+  const url = 'http://localhost:8000/api/users';// Reemplaza 'tu-url-api/products' con la URL de tu endpoint
   let allProducts = [];
   let page = 1;
   let condition = false;
