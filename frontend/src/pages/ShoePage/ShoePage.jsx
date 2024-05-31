@@ -12,7 +12,7 @@ import catchEntities from "../../components/catchEntities";
 
 const ShoePage = () => {
   const { dataDetails } = useEntitiesContext();
-  const apiUrl = import.meta.env.VITE_API_URL | 'http://localhost:8000';
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
   const [stateFav, setstateFav] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
   const [allOrderEntities, setOrderEntities] = useState([]);

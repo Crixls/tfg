@@ -23,7 +23,7 @@ const CartPage = () => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const { userLogged } = useAuthContext();
-  const apiUrl = import.meta.env.VITE_API_URL | 'http://localhost:8000';
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
   const [open, setOpen] = useState(false);
   const [selectOrder, setSelectOrder] = useState(null);
   const [selectProduct, setSelectProduct] = useState(null);

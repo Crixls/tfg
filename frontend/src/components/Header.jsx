@@ -159,8 +159,8 @@ const Header = () => {
                 <ProductsSearch></ProductsSearch>
               </li>
             : 
-              <li className="lg:custom-cursor-pointer lg:flex lg:items-center  md:custom-cursor-pointer sm:p-1 md:flex sm:flex sm:items-center md:items-center md:ml-4 md:mr-4 flex items-center ml-1 mr-1" onClick={handleSearch}>
-                <ion-icon name="search-outline"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
+              <li className="custom-cursor-pointer lg:custom-cursor-pointer lg:flex lg:items-center  md:custom-cursor-pointer sm:p-1 md:flex sm:flex sm:items-center md:items-center md:ml-4 md:mr-4 flex items-center ml-1 mr-1 before:" onClick={handleSearch}>
+                <ion-icon name="search-outline" className="custom-cursor-pointer"  style={{color:"black", padding:"1px", borderRadius: "0.375rem"}}></ion-icon>
               </li> 
             }
 

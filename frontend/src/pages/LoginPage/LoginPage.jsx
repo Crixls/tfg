@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Loaderanimated from "../../components/Loaderanimated";
 import logo from "../../assets/Texturelabs_Grunge_302M.jpg"
 
-const apiUrl = import.meta.env.VITE_API_URL | 'http://localhost:8000';
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
