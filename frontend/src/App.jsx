@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 import ManPage from "./pages/ManPage/ManPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ErrorBoundary from "./components/ErrorBoundary";
 import WomanPage from "./pages/WomanPage/WomanPage";
 import KidsPage from "./pages/KidsPage/KidsPage";
 import ShoePage from "./pages/ShoePage/ShoePage";
@@ -51,7 +50,6 @@ function App() {
     <HashRouter>
       <AuthProvider>
         <EntitiesProvider>
-          <ErrorBoundary>
             <Header />
             <Routes>
               {/* Rutas públicas sin Header y Footer */}
@@ -87,7 +85,6 @@ function App() {
               <Route path="cart" element={userLogged ? <CartPage /> : <Navigate to="/login" />} />
             </Routes>
             <Footer />
-          </ErrorBoundary>
         </EntitiesProvider>
       </AuthProvider>
     </HashRouter>
