@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const catchEntities = async () => {
   // 'https://127.0.0.1:8000/api/order_entities'
-  const url = 'https://127.0.0.1:8000/api/order_entities' || 'http://localhost:8000/api/order_entities'; // Reemplaza 'tu-url-api/products' con la URL de tu endpoint
+  const url =  'http://localhost:8000/api/order_entities'; // Reemplaza 'tu-url-api/products' con la URL de tu endpoint
   let allProducts = [];
   let page = 1;
   let condition = false;

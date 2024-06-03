@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import axios from "axios";
+import { CardElement } from '@stripe/react-stripe-js';
 import Swal from 'sweetalert2';
 import { editOrderEntity } from '../../api/api';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const PaymentForm = ({ total, order, user, date }) => {
     const [success, setSuccess] = useState(false);
-    const navigate = useNavigate();
+    const [redirect, setRedirect] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,15 +21,14 @@ const PaymentForm = ({ total, order, user, date }) => {
             };
 
             const response = await editOrderEntity(order, updatedUserData);
-
             if (response) {
                 Swal.fire({
                     icon: 'success',
                     title: '¡Usuario ha pagado correctamente!',
                     text: `El pago ha sido ${total}€`,
                 }).then(() => {
-                    setSuccess(true); // Establecer success en true después de un pago exitoso
-                    navigate("../"); // Redirigir al usuario a la ruta '../'
+                    setSuccess(true); // Establecer success en true después de la alerta
+                    setRedirect(true); // Establecer redirect en true para redirigir
                 });
             } else {
                 console.error("Error al actualizar usuario");
@@ -41,30 +39,38 @@ const PaymentForm = ({ total, order, user, date }) => {
     };
 
     const handleReturn = () => {
-        navigate("../");
+        setRedirect(true); // Establecer redirect en true para redirigir
     };
+
+    if (redirect) {
+        return <Navigate to="../" />;
+    }
 
     return (
         <>
             {!success ?
-                <div className={`modal ${open ? 'open' : 'closed'} fixed inset-0 z-50 flex justify-center items-center`} style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
+                <div className="modal open fixed inset-0 z-50 flex justify-center items-center">
                     <div className='bg-gray-200 p-24 rounded-md'>
                         <form onSubmit={handleSubmit} className='w-80'>
                             <fieldset className='FormGroup'>
                                 <div className='FormRow'>
-                                    <CardElement ></CardElement>
+                                    <CardElement />
                                 </div>
                             </fieldset>
                             <div className='flex justify-center mt-10'>
-                                <button className='bg-black text-white pl-6 pr-6 p-2 rounded-md m-4'>Realizar pago</button>
+                                <button type='submit' className='bg-black text-white p-2 rounded'>
+                                    Pagar
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
                 :
                 <div>
-                    <h2 className='text-xl pl-10 pt-10 font-bold'>Has realizado tu compra con éxito</h2>
-                    <button className='border-2 border-black rounded-lg m-4 font-medium p-2' onClick={handleReturn}>Volver</button>
+                    <h2 className='text-xl pl-10 pt-10 font-bold'>Has realizado el pago correctamente</h2>
+                    <button className='border-2 border-black rounded-lg m-4 font-bold p-2' onClick={handleReturn}>
+                        Volver
+                    </button>
                 </div>
             }
         </>

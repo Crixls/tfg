@@ -4,7 +4,7 @@ import axios from 'axios';
 const cathFavorites = async () => {
 
   // 'https://127.0.0.1:8000/api/favorites'
-  const url =' https://127.0.0.1:8000/api/favorites'||'http://localhost:8000/api/favorites'; // Reemplaza 'tu-url-api/products' con la URL de tu endpoint
+  const url ='http://localhost:8000/api/favorites'; // Reemplaza 'tu-url-api/products' con la URL de tu endpoint
   let allProducts = [];
   let page = 1;
   let condition = false;
