@@ -146,66 +146,10 @@ const Home = () => {
 
   return (
     <div>
-      {idUser ? (
-        loading ? (
-          <div className="flex justify-center items-center mt-60">
-            <Loaderanimated />
-          </div>
-        ) : (
-          <>
-            <div className="lg:items-center lg:flex lg:p-10 md:p-10 md:flex md:flex-col md:justify-center md:items-center sm:p-10 sm:flex sm:flex-col sm:justify-center sm:items-center p-8">
-              {windowWidth > 769 ? (
-                <div className="items-center flex sm:p-10 sm:pt-4 p-10 justify-between">
-                  <img className="w-1/2" src={airjordan} alt="hombres" />
-                  <div className="w-2/5 mr-20">
-                    <Render type="nike" />
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <div className="items-center flex justify-between md:flex md:justify-center">
-                    <img className="lg:w-1/2 md:w-5/6" src={airjordan} alt="hombres" />
-                  </div>
-                  <div className="lg:w-2/5 md:w-2/3 md:flex md:flex-col md:justify-center md:items-center sm:w-3/4 sm:flex sm:justify-center sm:items-center">
-                    <Render type="nike" />
-                  </div>
-                </>
-              )}
-            </div>
-
-            <div className="lg:items-center lg:flex lg:p-10 lg:justify-between md:flex md:flex-col md:justify-center md:items-center">
-              {windowWidth > 769 ? (
-                <div className="items-center flex p-10 justify-between">
-                  <div className="md:w-2/5 sm:w-3/4">
-                    <Render type="puma" />
-                  </div>
-                  <img className="w-1/2 sm:w-1/2" src={circuit} alt="circuito" />
-                </div>
-              ) : (
-                <>
-                  <div className="items-center flex p-10 justify-between md:flex md:justify-center">
-                    <img className="md:w-5/6" src={circuit} alt="circuito" />
-                  </div>
-                  <div className="lg:w-2/5 md:w-2/3 md:flex md:flex-col md:justify-center md:items-center sm:pl-48 sm:flex sm:justify-center sm:items-center sm:w-3/4">
-                    <Render type="puma" />
-                  </div>
-                </>
-              )}
-            </div>
-
-            <div className="flex">
-              <img src={miImagen} alt="shoe1" />
-            </div>
-
-            <div className="lg:grid lg:grid-cols-2 lg:gap-4 lg:m-20 lg:justify-center lg:items-center md:grid-cols-2 md:grid sm:grid sm:grid-col-1">
-              {products.map((womanShoe, index) => (
-                <div key={index} className="flex justify-center sm:ml-10 sm:mr-10 sm:mt-28 sm:mb-28 sm:gap-2">
-                  <CardShoes typeShoe={womanShoe} />
-                </div>
-              ))}
-            </div>
-          </>
-        )
+      {loading ? (
+        <div className="flex justify-center items-center mt-60">
+          <Loaderanimated />
+        </div>
       ) : (
         <>
           <div className="lg:items-center lg:flex lg:p-10 md:p-10 md:flex md:flex-col md:justify-center md:items-center sm:p-10 sm:flex sm:flex-col sm:justify-center sm:items-center p-8">
