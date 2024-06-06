@@ -1,14 +1,48 @@
-FROM php:8.2.0-apache
+# FROM php:8.2.0-apache
 
+
+# # Set the working directory in the container
+# WORKDIR /var/www/html
+
+# COPY . .
+
+
+# # Copy composer.lock and composer.json
+# COPY composer.lock composer.json ./
+
+# # Install PHP dependencies
+# RUN apt-get update && apt-get install -y \
+#     git \
+#     zip \
+#     unzip \
+#     && docker-php-ext-install pdo pdo_mysql
+
+# # Install Composer
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# # Install Symfony CLI
+# RUN curl -sS https://get.symfony.com/cli/installer -o /tmp/installer.sh 
+
+# RUN bash /tmp/installer.sh
+
+# RUN mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
+
+# # Expose port 80 to the Docker host
+# EXPOSE 80
+
+# RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# # Run Apache server
+# CMD ["symfony", "server:start", "--no-tls", "--dir=/var/www/html"]
+
+
+FROM php:8.2.0-apache
 
 # Set the working directory in the container
 WORKDIR /var/www/html
 
+# Copy project files to the working directory
 COPY . .
-
-
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json ./
 
 # Install PHP dependencies
 RUN apt-get update && apt-get install -y \
@@ -21,16 +55,29 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Symfony CLI
-RUN curl -sS https://get.symfony.com/cli/installer -o /tmp/installer.sh 
+RUN curl -sS https://get.symfony.com/cli/installer -o /tmp/installer.sh && \
+    bash /tmp/installer.sh && \
+    mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
 
-RUN bash /tmp/installer.sh
+# Create a non-root user to run Composer and Symfony
+RUN useradd -m -d /home/composeruser composeruser
 
-RUN mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
+# Change ownership of the working directory to the non-root user
+RUN chown -R composeruser:composeruser /var/www/html
+
+# Change to the non-root user and set the working directory
+USER composeruser
+WORKDIR /var/www/html
+
+# Copy composer files and install dependencies
+COPY --chown=composeruser:composeruser composer.lock composer.json ./
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Expose port 80 to the Docker host
 EXPOSE 80
 
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+# Change back to root to run the web server
+USER root
 
-# Run Apache server
+# Run Apache server using Symfony CLI
 CMD ["symfony", "server:start", "--no-tls", "--dir=/var/www/html"]
