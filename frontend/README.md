@@ -1,73 +1,8 @@
-# Despliegue de la aplicación STREET PULSE
+# React + Vite
 
-## 1. Primer paso es instalar docker
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- Actualizar los paquetes:
+Currently, two official plugins are available:
 
-sudo apt update
-
-- Instalar paquetes necesarios para que apt pueda usar un repositorio sobre HTTPS:
-
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-
-- Añadir la clave GPG del repositorio oficial de Docker:
-
-curl -fsSL <https://download.docker.com/linux/ubuntu/gpg> | sudo apt-key add –
-
-- Añadir el repositorio de Docker a las fuentes de APT:
-
-sudo add-apt-repository “deb [arch=amd64] <https://download.docker.com/linux/ubuntu> $(lsb_release -cs) stable”
-
-- Volver a actualizar los paquetes:
-
-sudo apt update
-
-- Instalar Docker:
-
-sudo apt install docker-ce
-
-- Comprobar la versión de Docker:
-
-sudo docker –version
-
-- Añadir el usuario al grupo de Docker:
-
-sudo usermod -aG docker $USER
-
-## 2. Segundo paso es instalar composer
-
-- Actualizar los paquetes:
-
-sudo apt update
-
-- Instalar Curl:
-
-sudo apt install curl
-
-- Descargar e instalar Composer:
-
-sudo curl -sS <https://getcomposer.org/installer> | sudo php – --install-dir=/usr/local/bin --filename=composer
-
-- Instalar Composer:
-
-sudo apt install composer
-
-- Comprobar la versión de Composer:
-
-composer –version
-
-- Instalar Docker Compose:
-
-sudo apt install docker-compose
-
-- Clonar el repositorio del proyecto:
-
-git clone <https://github.com/Crixls/tfg.git>
-
-- Cambiar al directorio del proyecto:
-
-cd tfg/
-
-- Levantar los servicios con Docker Compose:
-
-sudo docker-compose up --build
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
