@@ -52,11 +52,9 @@ function App() {
         <EntitiesProvider>
             <Header />
             <Routes>
-              {/* Rutas públicas sin Header y Footer */}
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
 
-              {/* Rutas principales con Header y Footer */}
               <Route path="/" element={<Home />} />
               <Route path="man" element={<ManPage />} />
               <Route path="woman" element={<WomanPage />} />
@@ -71,13 +69,11 @@ function App() {
               <Route path="search" element={<SearchPage />} />
               <Route path="*" element={<ErrorCommercePage />} />
 
-              {/* Rutas de administración */}
               <Route path="admin" element={isadmin ? <AdminPage /> : <Navigate to="/" />} />
               <Route path="admin/products" element={isadmin ? <AdminPageProducts /> : <Navigate to="/" />} />
               <Route path="admin/users" element={isadmin ? <AdminPageUsers /> : <Navigate to="/" />} />
               <Route path="admin/estadisticas" element={isadmin ? <AdminEstadisticas /> : <Navigate to="/" />} />
 
-              {/* Rutas protegidas para usuarios autenticados */}
               <Route path="favorites" element={userLogged ? <FavoritePage /> : <Navigate to="/login" />} />
               <Route path="payment" element={userLogged ? <PayPage /> : <Navigate to="/login" />} />
               <Route path="profile" element={userLogged ? <ProfilePage /> : <Navigate to="/login" />} />

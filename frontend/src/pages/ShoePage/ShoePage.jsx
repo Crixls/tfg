@@ -126,7 +126,7 @@ const ShoePage = () => {
 
   const handleCarrito = async () => {
     try {
-      const inputValue = document.getElementById('catidad').value; // Obtener el valor del campo de entrada
+      const inputValue = document.getElementById('catidad').value; 
   
       const datos = {
         product: `/api/products/${product_id}`,
@@ -159,14 +159,12 @@ const ShoePage = () => {
   };
 
   useEffect(() => {
-    // Inicializar selectedColor con el primer color de details.color si existe
     if (details.color && details.color.length > 0) {
       setSelectedColor("details.color[0]");
     }
   }, [details]);
   
   useEffect(() => {
-    // Inicializar selectedColor2 con el segundo color de details.color si existe
     if (details.color && details.color.length > 1) {
       setSelectedColor2(details.color[1]);
     }
@@ -239,7 +237,6 @@ const ShoePage = () => {
             
           <div>
               {details.color && details.color.length >= 2 ? (
-                // Renderiza botones para cada color en details.color
                 details.color.map((col, index) => (
                   <ColorButton
                     color={col}
@@ -249,7 +246,6 @@ const ShoePage = () => {
                   />
                 ))
               ) : details.color && details.color.length === 1 ? (
-                // Renderiza un solo botón si solo hay un color disponible
                 <ColorButton
                   color={details.color[0]}
                   selectedColor={selectedColor2}

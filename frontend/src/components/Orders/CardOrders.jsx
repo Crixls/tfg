@@ -6,7 +6,7 @@ const CardOrders = ({ order }) => {
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        const formattedDate = date.toLocaleDateString(); // Formatea la fecha en el formato local
+        const formattedDate = date.toLocaleDateString(); 
         return formattedDate;
     };
 

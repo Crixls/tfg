@@ -36,7 +36,7 @@ const ModalNewUser = ({ open, closeModal, onUserCreated }) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Previene el comportamiento predeterminado del formulario
+    event.preventDefault(); 
     try {
       // Validar campos obligatorios
       if (!username || !email || !password) {
@@ -51,14 +51,13 @@ const ModalNewUser = ({ open, closeModal, onUserCreated }) => {
       const response = await post2(formData);
 
       if (response) {
-        // Si el usuario se creó correctamente, mostrar una alerta de éxito
         Swal.fire({
           icon: 'success',
           title: '¡Usuario creado correctamente!',
           text: `El usuario ${username} ha sido creado exitosamente.`,
         });
-        onUserCreated(response); // Llama a la función onUserCreated con el nuevo usuario
-        closeModal(); // Cierra el modal después de enviar el formulario
+        onUserCreated(response); 
+        closeModal(); 
       } else {
         console.error("Error al registrar usuario");
       }

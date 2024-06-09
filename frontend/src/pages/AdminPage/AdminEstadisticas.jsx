@@ -5,7 +5,7 @@ import { getFavorites, getOrderEntities, getOrderLines, getUsers } from '../../a
 import { useNavigate } from "react-router-dom";
 import GraficoBarras from '../../components/Graficos/GraficoBarras';
 import GraficoProductos from '../../components/Graficos/GraficoProductos';
-import Loaderanimated from '../../components/Loaderanimated'; // Importar el componente Loaderanimated
+import Loaderanimated from '../../components/Loaderanimated'; 
 import fondo from '../../assets/favorite/favoritetext.jpg';
 
 const AdminEstadisticas = () => {
@@ -14,7 +14,7 @@ const AdminEstadisticas = () => {
     const [data, setData] = useState([]); 
     const [dataBar, setDataBar] = useState([]); 
     const [dataProductos, setDataProductos] = useState([]); 
-    const [loading, setLoading] = useState(true); // Estado para el componente de carga
+    const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
     
     const handleReturn =()=>{
@@ -24,10 +24,9 @@ const AdminEstadisticas = () => {
     useEffect(() => {
         const fetchApi = async () => {
             try {
-                setLoading(true); // Indicar que se están cargando los datos
+                setLoading(true); 
                 const data = await getFavorites();
                 setFavorites(data);
-                // Contar los favoritos y formatear los datos para el gráfico circular
                 const productCount = {};
                 data.forEach((favorite) => {
                     const idproduct = parseInt(favorite.product.split('/').pop(), 10);
@@ -41,11 +40,11 @@ const AdminEstadisticas = () => {
                     name: idproduct,
                     value: productCount[idproduct],
                 }));
-                setData(formattedData); // Actualizar el estado con los datos formateados
+                setData(formattedData); 
             } catch (error) {
                 console.log("Error:", error);
             } finally {
-                setLoading(false); // Indicar que se han cargado los datos o ha ocurrido un error
+                setLoading(false); 
             }
         };
         fetchApi();
@@ -54,32 +53,29 @@ const AdminEstadisticas = () => {
     useEffect(() => {
         const fetchApi = async () => {
             try {
-                setLoading(true); // Indicar que se están cargando los datos
+                setLoading(true); 
                 const data = await getOrderEntities();
                 const currentYear = new Date().getFullYear();
                 const orderEntitiesCount = {};
     
-                // Iterar sobre cada mes del año
                 for (let month = 1; month <= 12; month++) {
                     const filteredData = data.filter(order => {
                         const orderDate = new Date(order.date);
                         return orderDate.getFullYear() === currentYear && orderDate.getMonth() + 1 === month;
                     });
     
-                    // Contar la cantidad de orderentities para el mes actual
                     orderEntitiesCount[month] = filteredData.length;
                 }
     
-                // Formatear los datos para el gráfico de barras
                 const formattedData = Object.keys(orderEntitiesCount).map(month => ({
-                    name: getMonthName(parseInt(month)), // Obtener el nombre del mes
-                    value: orderEntitiesCount[month], // La cantidad de orderentities en ese mes
+                    name: getMonthName(parseInt(month)), 
+                    value: orderEntitiesCount[month], 
                 }));
-                setDataBar(formattedData); // Actualizar el estado con los datos formateados
+                setDataBar(formattedData); 
             } catch (error) {
                 console.log("Error:", error);
             } finally {
-                setLoading(false); // Indicar que se han cargado los datos o ha ocurrido un error
+                setLoading(false); 
             }
         };
         fetchApi();
@@ -88,7 +84,7 @@ const AdminEstadisticas = () => {
     useEffect(() => {
         const fetchApi = async () => {
             try {
-                setLoading(true); // Indicar que se están cargando los datos
+                setLoading(true); 
                 const data = await getOrderLines();
 
                 const productCountTwo = {};
@@ -104,25 +100,24 @@ const AdminEstadisticas = () => {
                     name: idproduct,
                     value: productCountTwo[idproduct],
                 }));
-                setDataProductos(formattedData); // Actualizar el estado con los datos formateados
+                setDataProductos(formattedData); 
                
-                // setDataBar(formattedData); // Actualizar el estado con los datos formateados
+                // setDataBar(formattedData); 
             } catch (error) {
                 console.log("Error:", error);
             } finally {
-                setLoading(false); // Indicar que se han cargado los datos o ha ocurrido un error
+                setLoading(false); 
             }
         };
         fetchApi();
     }, [logged]);
 
-    // Función para obtener el nombre del mes a partir de su número
     const getMonthName = (monthNumber) => {
         const months = [
             "Ene", "Feb", "Mar", "Abr", "May", "Jun",
             "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
         ];
-        return months[monthNumber - 1]; // Los meses comienzan en 0 en JavaScript, por lo que se resta 1
+        return months[monthNumber - 1]; 
     };
 
     return (
@@ -131,7 +126,7 @@ const AdminEstadisticas = () => {
                 <p className="text-white flex w-full text-2xl font-bold">ESTADÍSTICAS</p>
             </div>
             <div className='h-screen '>
-                {loading ? ( // Mostrar el componente de carga si loading es true
+                {loading ? ( 
                     <div className="flex justify-center items-center mt-60">
                         <Loaderanimated />
                     </div>

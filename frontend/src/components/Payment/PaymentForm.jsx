@@ -12,9 +12,8 @@ const PaymentForm = ({ total, order, user, date }) => {
         e.preventDefault();
 
         try {
-            // Validar campos obligatorios
             const updatedUserData = {
-                state: 1, // Asegurarse de enviar state como 1
+                state: 1, 
                 user: user,
                 total: total,
                 date: date
@@ -27,8 +26,8 @@ const PaymentForm = ({ total, order, user, date }) => {
                     title: '¡Usuario ha pagado correctamente!',
                     text: `El pago ha sido ${total}€`,
                 }).then(() => {
-                    setSuccess(true); // Establecer success en true después de la alerta
-                    setRedirect(true); // Establecer redirect en true para redirigir
+                    setSuccess(true); 
+                    setRedirect(true); 
                 });
             } else {
                 console.error("Error al actualizar usuario");
@@ -39,7 +38,7 @@ const PaymentForm = ({ total, order, user, date }) => {
     };
 
     const handleReturn = () => {
-        setRedirect(true); // Establecer redirect en true para redirigir
+        setRedirect(true); 
     };
 
     if (redirect) {

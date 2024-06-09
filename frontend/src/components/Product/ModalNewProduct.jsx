@@ -28,12 +28,12 @@ const ModalNewProduct = ({  open, closeModal,onProductCreated  }) => {
       formData.append("description", description);
       formData.append("price", price);
       formData.append("imageFile", imageFile);
-      formData.append("size", JSON.stringify(size)); // Convertir a JSON string
+      formData.append("size", JSON.stringify(size)); 
       formData.append("brand", brand);
       formData.append("category", category);
       formData.append("new", newProduct);
-      formData.append("color", JSON.stringify(color)); // Convertir a JSON string
-      formData.append("deporte", JSON.stringify(deporte)); // Convertir a JSON string
+      formData.append("color", JSON.stringify(color)); 
+      formData.append("deporte", JSON.stringify(deporte)); 
       
       {console.log(formData)}
 
@@ -52,7 +52,6 @@ const ModalNewProduct = ({  open, closeModal,onProductCreated  }) => {
     } catch (error) {
       console.error("Error en el envío del formulario:", error);
     } finally {
-      // Limpiar el formulario después de enviarlo
       resetForm();
     }
   };
@@ -168,7 +167,7 @@ const ModalNewProduct = ({  open, closeModal,onProductCreated  }) => {
             className="ml-2 mr-2"
             type="file"
             id="imageFile"
-            accept="image/*" // Acepta solo archivos de imagen
+            accept="image/*" 
             onChange={handleImageChange}
             required
           />

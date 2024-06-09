@@ -24,14 +24,12 @@ const Home = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { handleUnload } = useEntitiesContext();
 
-  // Manejar el evento de redimensionamiento de la ventana
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Obtener todos los usuarios y establecer el usuario autenticado
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -80,7 +78,6 @@ const Home = () => {
     }
   }, []);
 
-  // Obtener y verificar las entidades
   useEffect(() => {
     const fetchEntities = async () => {
       try {

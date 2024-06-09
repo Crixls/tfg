@@ -5,7 +5,7 @@ import { deleteUser } from '../../api/api';
 import CardUser from '../../components/User/CardUser';
 import ModalEditUser from '../../components/User/ModalEditUser';
 import ModalNewUser from '../../components/User/ModalNewUser';
-import Loaderanimated from '../../components/Loaderanimated'; // Importar el componente Loaderanimated
+import Loaderanimated from '../../components/Loaderanimated'; 
 import catchUsers from '../../components/User/catchUsers';
 import fondo from "../../assets/favorite/favoritetext.jpg";
 
@@ -14,7 +14,7 @@ const AdminPageUsers = () => {
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
-    const [loading, setLoading] = useState(true); // Estado para el componente de carga
+    const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const AdminPageUsers = () => {
         } catch (error) {
             console.log("Error:", error);
         } finally {
-            setLoading(false); // Indicar que se han cargado los usuarios o ha ocurrido un error
+            setLoading(false); 
         }
     };
 
@@ -56,14 +56,14 @@ const AdminPageUsers = () => {
     };
 
     const handleDeleteUser =async(id)=>{
-        setLoading(true); // Indicar que se está eliminando un usuario
+        setLoading(true); 
         try {
             await deleteUser(id);
-            fetchUsers();  // Refrescar la lista de productos después de eliminar
+            fetchUsers();  
         } catch (error) {
             console.log("Error:", error);
         }finally {
-                setLoading(false); // Indicar que se ha completado la eliminación del usuario
+                setLoading(false); 
          }
     }
 
@@ -86,7 +86,7 @@ const AdminPageUsers = () => {
                 {open2 && <ModalEditUser open={open2} closeModal={handleCloseModal2} user={selectedUser}/>}
             </div>
             
-            {loading ? ( // Mostrar el componente de carga si loading es true
+            {loading ? ( 
                 <div className="flex justify-center items-center mt-60">
                     <Loaderanimated />
                 </div>

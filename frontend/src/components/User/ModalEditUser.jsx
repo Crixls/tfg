@@ -50,7 +50,6 @@ const ModalEditUser = ({ user, open, closeModal, onUserUpdated }) => {
     e.preventDefault();
 
     try {
-      // Validar campos obligatorios
       if (!username || !email || !password) {
         console.error("Por favor complete todos los campos correctamente.");
         return;
@@ -113,8 +112,8 @@ const ModalEditUser = ({ user, open, closeModal, onUserUpdated }) => {
               className='rounded-md m-2'
               id="roles"
               style={{ marginBottom: '1rem' }}
-              value={roles.join(', ')} // Convertimos el array a una cadena para mostrar en el textarea
-              onChange={(event) => setRoles(event.target.value.split(',').map(role => role.trim()))} // Convertimos la cadena a un array al cambiar el valor
+              value={roles.join(', ')}
+              onChange={(event) => setRoles(event.target.value.split(',').map(role => role.trim()))} 
             />
 
             <label htmlFor="password" className='m-2 font-bold text-white'>Password *</label>

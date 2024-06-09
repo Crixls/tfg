@@ -11,7 +11,6 @@ function NikeSneakers(props) {
     const brownRef = useRef();
     const { nodes, materials } = useGLTF(nike)
 
-    // Carga las texturas
    
 
     return (

@@ -5,7 +5,7 @@ import { updateProduct } from '../../api/api';
 const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [price, setPrice] = useState(null); // Inicializando con null
+  const [price, setPrice] = useState(null); 
   // const [imageFile, setImageFile] = useState(null);
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
@@ -14,7 +14,6 @@ const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
   const [color, setColor] = useState([]);
   const [deporte, setDeporte] = useState([]);
 
-  // Establecer valores iniciales del estado con los valores del producto
   useEffect(() => {
     if (product) {
       setName(product.name || '');
@@ -39,7 +38,7 @@ const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
       const updatedProductData = {
         name,
         description,
-        price:parsedPrice, // Use parsedPrice instead of price
+        price:parsedPrice, 
         size,
         brand,
         category,
@@ -54,7 +53,7 @@ const ModalEditProduct = ({ product, open, closeModal, onProductUpdated  }) => {
   
       const response = await updateProduct(idProduct, updatedProductData);
   
-      onProductUpdated(response); // Llama a la función onProductCreated con el nuevo producto
+      onProductUpdated(response); 
       if (response) {
         Swal.fire({
           icon: 'success',

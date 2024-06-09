@@ -55,7 +55,6 @@ const router = createBrowserRouter([
     element: <ProtectedRoute redirect="/" />, 
     children: [
       {
-        // No necesitamos "/" aquí, ya que estas rutas son relativas a "/admin"
         children:[
           { index: true, element: <AdminPage /> },
           { path: "products", element: <AdminPageProducts /> }, 
@@ -71,7 +70,6 @@ const router = createBrowserRouter([
     element: <RootLayout />, // Utiliza RootLayout como contenedor principal
     children: [
       {
-        // Rutas secundarias relativas a "/"
         element: <PrivateRoutes redirect="/login" />, // Protege las rutas secundarias con PrivateRoutes
         children:[
           { path: "/favorites", element: <FavoritePage /> }, // Ruta para la página de favoritos

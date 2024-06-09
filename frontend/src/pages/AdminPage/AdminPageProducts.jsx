@@ -61,40 +61,40 @@ const AdminPageProducts = () => {
     };
 
     const handleEliminarProducto = async (id) => {
-        setLoading(true); // Mostrar loader
+        setLoading(true); 
         try {
             await deleteProduct(id);
-            fetchProducts();  // Refrescar la lista de productos después de eliminar
+            fetchProducts();  
         } catch (error) {
             console.log("Error:", error);
         } finally {
-            setLoading(false); // Ocultar loader
+            setLoading(false); 
         }
     }
 
     const handleProductCreated = async (newProductData) => {
-        setLoading(true); // Mostrar loader
+        setLoading(true); 
         try {
             await postProduct(newProductData);
-            fetchProducts();  // Refrescar la lista de productos después de crear uno nuevo
+            fetchProducts();  
             setOpen(false);
         } catch (error) {
             console.log("Error:", error);
         } finally {
-            setLoading(false); // Ocultar loader
+            setLoading(false); 
         }
     }
 
     const handleProductUpdated = async (updatedProductData) => {
-        setLoading(true); // Mostrar loader
+        setLoading(true); 
         try {
             await updateProduct(updatedProductData);
-            fetchProducts();  // Refrescar la lista de productos después de actualizar uno
+            fetchProducts();  
             setOpen2(false);
         } catch (error) {
             console.log("Error:", error);
         } finally {
-            setLoading(false); // Ocultar loader
+            setLoading(false); 
         }
     }
 

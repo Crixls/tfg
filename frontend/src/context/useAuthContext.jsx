@@ -1,18 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
 // import { getUserInfo } from "../api/useCases";
 
-// Obtiene la URL de la API del entorno de Vite
 const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-// Crea el contexto de autenticación
 const AuthContext = createContext();
 
 
-// Componente proveedor de autenticación
 export const AuthProvider = (props) => {
   const { children } = props;
 
-  // Estado del usuario autenticado y el token
   const [logged, setLogged] = useState(null);
   const [userL, setuserL] = useState(null);
   const [userLogged, setUserLogged]= useState(null);
@@ -46,9 +42,7 @@ export const AuthProvider = (props) => {
       });
       if (!response.ok)
         throw new Error("No se pudo obtener la información del usuario");
-      // console.log("getuserinfo response:", response);
       const data = await response.json();
-      // console.log("getuserinfo data:", data);
       return data;
     } catch (error) {
       console.error("Error en getUserInfo:", error);
@@ -60,7 +54,6 @@ export const AuthProvider = (props) => {
 
   const login = async (newToken) => {
     try {
-      // Llama a `getUserInfo` para obtener la información del usuario
       const userObject = await getUserInfo(newToken);
       setLogged(userObject);
       setToken(newToken);
@@ -89,7 +82,6 @@ export const AuthProvider = (props) => {
   );
 };
 
-// Hook personalizado para acceder al contexto de autenticación
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };

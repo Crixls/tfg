@@ -2,7 +2,6 @@
 import ReactECharts from "echarts-for-react";
 
 const GraficoCircular = ({ data }) => {
-    // Inicializa un objeto para almacenar el recuento de cada idproduct
 
     const option = {
         tooltip: {

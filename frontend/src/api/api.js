@@ -214,12 +214,11 @@ export const updateProduct = async (productId, updatedProductData) => {
 
     
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json"); // Cambiado a "application/json"
-
+    myHeaders.append("Content-Type", "application/json"); 
     const requestOptions = {
       method: "PUT",
       headers: myHeaders,
-      body: JSON.stringify(updatedProductData), // Enviar los datos directamente como JSON
+      body: JSON.stringify(updatedProductData), 
       redirect: "follow"
     };
 
@@ -229,10 +228,10 @@ export const updateProduct = async (productId, updatedProductData) => {
     }
 
     const result = await response.text();
-    return result; // O devolver la respuesta si se necesita en otro lugar
+    return result; 
   } catch (error) {
     console.error("Error en la actualización del producto:", error);
-    throw error; // Lanzar el error para manejarlo en el componente que llama a esta función
+    throw error; 
   }
 };
 
@@ -242,12 +241,12 @@ export const updateOrderLine = async (orderLineId, updatedOrderData) => {
     const endpoint = `${apiUrl2}${orderLineId}`;
     
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json"); // Cambiado a "application/json"
+    myHeaders.append("Content-Type", "application/json"); 
 
     const requestOptions = {
       method: "PUT",
       headers: myHeaders,
-      body: JSON.stringify(updatedOrderData), // Enviar los datos directamente como JSON
+      body: JSON.stringify(updatedOrderData), 
       redirect: "follow"
     };
 
@@ -257,10 +256,10 @@ export const updateOrderLine = async (orderLineId, updatedOrderData) => {
     }
 
     const result = await response.text();
-    return result; // O devolver la respuesta si se necesita en otro lugar
+    return result;
   } catch (error) {
     console.error("Error en la actualización del producto:", error);
-    throw error; // Lanzar el error para manejarlo en el componente que llama a esta función
+    throw error; 
   }
 };
 
@@ -319,7 +318,7 @@ export const postProduct = async (formData) => {
 export const postFav = async (endpoint, userApiPath, productApiPath) => {
   const myHeaders = new Headers();
   myHeaders.append("Accept", "application/json");
-  myHeaders.append("Content-Type", "application/json"); // Agrega el encabezado Content-Type
+  myHeaders.append("Content-Type", "application/json"); 
 
   // Crea el cuerpo de la solicitud en formato JSON
   const requestBody = JSON.stringify({
@@ -330,7 +329,7 @@ export const postFav = async (endpoint, userApiPath, productApiPath) => {
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
-    body: requestBody, // Utiliza el cuerpo JSON creado anteriormente
+    body: requestBody, 
     redirect: "follow",
   };
 
@@ -372,10 +371,10 @@ export const updateUser = async (userId, updatedUserData) => {
     }
     
     const result = await response.text();
-    return result; // O devolver la respuesta si se necesita en otro lugar
+    return result; 
   } catch (error) {
     console.error("Error en la actualización del producto:", error);
-    throw error; // Lanzar el error para manejarlo en el componente que llama a esta función
+    throw error; 
   }
   
 };

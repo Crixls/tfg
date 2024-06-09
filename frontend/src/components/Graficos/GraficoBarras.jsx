@@ -3,7 +3,6 @@ import ReactECharts from "echarts-for-react";
 
 
 const GraficoBarras = ({ dataBar }) => {
-    // Mapear los nombres de los meses y los valores
     const xAxisData = dataBar.map(({ name }) => name);
     const seriesData = dataBar.map(({ value }) => value);
 

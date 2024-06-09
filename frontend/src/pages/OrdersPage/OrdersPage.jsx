@@ -35,8 +35,7 @@ const OrdersPage = () => {
             const data = await catchEntities();
             const filteredOrder = data.filter(order => {
               const userId = parseInt(order.user.split('/').pop(), 10);
-              const userState = order.state; // Acceder al estado del usuario
-              // Comprobar que el ID del usuario sea igual al del usuario loggeado y que el estado sea 0
+              const userState = order.state; 
               return userId === parseInt(userId2, 10) && userState === 1;
             });
             setLoading(false);

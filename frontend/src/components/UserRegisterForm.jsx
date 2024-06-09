@@ -45,7 +45,6 @@ const UserRegisterForm = (props) => {
         navigate("/login");
 
         try {
-          // Validar campos obligatorios
           if (!username  || !email || !password ) {
             console.error("Por favor complete todos los campos correctamente.");
             return;
@@ -61,7 +60,6 @@ const UserRegisterForm = (props) => {
           navigate("/login");
 
           if (response) {
-            // Si el usuario se creó correctamente, mostrar una alerta de éxito
             Swal.fire({
               icon: 'success',
               title: '¡Usuario creado correctamente!',

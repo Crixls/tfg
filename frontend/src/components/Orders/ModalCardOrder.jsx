@@ -32,8 +32,8 @@ const ModalCardOrder = ({ order, closeModal, open }) => {
                     const productId2 = parseInt(orderLine.product.split('/').pop(), 10);
                     const product = data.find(product => product.id === productId2);
                     if (product) {
-                        const { id, name, contentUrl } = product; // Destructura la información necesaria
-                        productsMap[productId2] = { id, name, contentUrl }; // Guarda la información necesaria
+                        const { id, name, contentUrl } = product; 
+                        productsMap[productId2] = { id, name, contentUrl }; 
                     }
                 });
                 setRelatedProducts(productsMap);

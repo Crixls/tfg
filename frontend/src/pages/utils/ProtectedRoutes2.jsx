@@ -21,16 +21,7 @@ const ProtectedRoute2 = ({ user,redirect }) => {
     return <Navigate to={redirect} replace />;
   }
 
-  // Uncomment this section if you want to check for admin role
-  // const isAdmin = users.find(
-  //   (user) =>
-  //     user.username === storedUser?.login &&
-  //     user.roles.includes("ROLE_ADMIN")
-  // );
 
-  // if (!isAdmin) {
-  //   return <Navigate to={redirect} replace />;
-  // }
 
   return <Outlet />;
 };

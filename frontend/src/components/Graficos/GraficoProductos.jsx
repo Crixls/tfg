@@ -12,7 +12,7 @@ const GraficoProductos = ({dataProductos}) => {
         },
         yAxis: {
           type: 'value',
-          name: 'Cantidad', // Opcional: agregar nombre al eje
+          name: 'Cantidad', 
 
         },
         series: [

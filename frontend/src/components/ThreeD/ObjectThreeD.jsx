@@ -32,18 +32,16 @@ function ObjectThreeD(props) {
       const fbxLoader = new FBXLoader();
 
       fbxLoader.load(`/src/assets/${carpeta}/${file}`, (object) => {
-        object.scale.set(0.13, 0.13, 0.13); // Ajusta el tamaño como desees
+        object.scale.set(0.13, 0.13, 0.13); 
 
         if(carpeta === "shoe2"){
-            object.scale.set(0.19, 0.19, 0.19); // Ajusta el tamaño como desees
+            object.scale.set(0.19, 0.19, 0.19); 
 
         }
 
-        // Recorre todos los objetos del modelo cargado y ajusta el brillo del material
         object.traverse((child) => {
           if (child.isMesh) {
-            // Cambia el color del material para aumentar el brillo
-            child.material.color = new THREE.Color(1, 1, 1); // Color blanco
+            child.material.color = new THREE.Color(1, 1, 1); 
           }
         });
 

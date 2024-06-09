@@ -1,6 +1,6 @@
 import  { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.svg'; // Ajusta la ruta al archivo SVG de tu logo
+import logo from '../assets/logo.svg'; 
 import fondo from '../assets/Texturelabs_Grunge_277M.jpg'
 import { useAuthContext } from '../context/useAuthContext';
 import { getUsers } from '../api/useCases';

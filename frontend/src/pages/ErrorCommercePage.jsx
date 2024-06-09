@@ -4,7 +4,6 @@ import errorimg from '../../src/assets/error/error.webp';
 
 const ErrorCommercePage = () => {
   useEffect(() => {
-    // Eliminar todo el contenido del localStorage
     localStorage.clear();
   }, []);
 
