@@ -1,3 +1,5 @@
+// Aquí estan las llamadas de la API
+
 const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 import Swal from 'sweetalert2';
 

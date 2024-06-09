@@ -1,3 +1,5 @@
+//Cards de los zapatos
+
 import { useEntitiesContext } from "../context/useEntitiesContext";
 import {  useNavigate } from 'react-router-dom';
 import { LazyLoadImage} from 'react-lazy-load-image-component';

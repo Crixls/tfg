@@ -1,3 +1,5 @@
+//Componente Favorito
+
 import  { useEffect, useState } from 'react'
 import { deleteFavorite2, getFavorite, getProduct } from '../../api/useCases';
 import { LazyLoadImage} from 'react-lazy-load-image-component';

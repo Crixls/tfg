@@ -1,3 +1,5 @@
+// Método de pago
+
 import React, { useState } from 'react';
 import { CardElement } from '@stripe/react-stripe-js';
 import Swal from 'sweetalert2';

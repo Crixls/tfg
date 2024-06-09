@@ -1,3 +1,5 @@
+// Métodos para llamar a la API
+
 import {deleteFav, get, post, postFav, put} from './api';
 
 export const getFavorites = async () => {
